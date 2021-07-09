@@ -4,7 +4,6 @@ function NavBar(){
     return(
         <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
             <div className="container">
-                <a href="https://bootswatch.com/" className="navbar-brand">Minhas Finanças</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -12,7 +11,6 @@ function NavBar(){
                     <ul className="navbar-nav">
                         <NavBarItem href="#/home" label="home" />
                         <NavBarItem href="#/cadastro-usuarios" label="Usuários" />
-                        <NavBarItem href="#/" label="Lançamento" />
                         <NavBarItem href="#/login" label="Login" />
                     </ul>
                 </div>

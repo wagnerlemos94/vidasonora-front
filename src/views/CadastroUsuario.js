@@ -22,19 +22,29 @@ class CadastroUsuario extends React.Component{
         this.service = new UsuarioSerice();
     }
 
-    cadastrar = () => {
-        const usuario = {
-            nome : this.state.nome,
-            email : this.state.email,
-            senha : this.state.senha
+    validarSenha = () => { 
+        if(!(this.state.senha == this.state.senhaRepeticao)){
+            mensagemErro("Senha estão diferentes");
+            const erro = true;
+            return erro;
         }
-        
-        this.service.salvar(usuario).then(Response =>{
-            mensagemSucesso("Usuario cadastrado com suceso! Faça login para acessar o sistema.");
-            this.props.history.push('/login');
-        }).catch( error => {
-            mensagemErro(error.Response.data);
-        });
+    }
+
+    cadastrar = () => {
+        if(!this.validarSenha()){
+            const usuario = {
+                nome : this.state.nome,
+                email : this.state.email,
+                senha : this.state.senha
+            }
+            
+            this.service.salvar(usuario).then(Response =>{
+                mensagemSucesso("Usuario cadastrado com suceso! Faça login para acessar o sistema.");
+                this.props.history.push('/login');
+            }).catch( error => {
+                mensagemErro(error.Response.data);
+            });
+        }
     }
 
     cancelar = () => {
