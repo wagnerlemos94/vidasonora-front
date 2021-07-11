@@ -9,7 +9,7 @@ import { mensagemErro } from '../components/toastr';
 class Login extends React.Component{
 
     state = {
-        login: '',
+        email: '',
         senha:'',
     }
 
@@ -20,7 +20,7 @@ class Login extends React.Component{
     
     entrar = () => {
         this.service.autenticar({
-            login: this.state.login,
+            email: this.state.email,
             senha: this.state.senha
         }).then(response => {
             LocalStorageService.adicionarItem('_usuario_logado', response.data);
@@ -47,7 +47,7 @@ class Login extends React.Component{
                                             <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
                                                 <input type="email" className="form-control"
                                                 value={this.state.email}
-                                                onChange={e => this.setState({login: e.target.value})}
+                                                onChange={e => this.setState({email: e.target.value})}
                                                 id="exampleInputEmail1"
                                                 aria-describedby="emailHelp" placeholder="Digite o Email" />
                                             </FormGroup>

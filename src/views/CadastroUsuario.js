@@ -11,10 +11,10 @@ import { mensagemErro, mensagemSucesso } from '../components/toastr';
 class CadastroUsuario extends React.Component{
     
     state = {
-        nome: '',
         email: '',
         senha: '',
-        senhaRepeticao: ''
+        senhaRepeticao: '',
+        status: 1
     }
 
     constructor(){
@@ -22,29 +22,40 @@ class CadastroUsuario extends React.Component{
         this.service = new UsuarioSerice();
     }
 
-    validarSenha = () => { 
-        if(!(this.state.senha == this.state.senhaRepeticao)){
-            mensagemErro("Senha estão diferentes");
-            const erro = true;
-            return erro;
+    validacao = () => { 
+        const msgs = [];
+        
+        if(this.state.senha !== this.state.senhaRepeticao){
+            msgs.push("Senha estão diferentes");
         }
+
+        return msgs;
     }
 
     cadastrar = () => {
-        if(!this.validarSenha()){
-            const usuario = {
-                nome : this.state.nome,
-                email : this.state.email,
-                senha : this.state.senha
-            }
-            
-            this.service.salvar(usuario).then(Response =>{
-                mensagemSucesso("Usuario cadastrado com suceso! Faça login para acessar o sistema.");
-                this.props.history.push('/login');
-            }).catch( error => {
-                mensagemErro(error.Response.data);
+        
+        const msgs = this.validacao();
+
+        if(msgs.length > 0){
+            msgs.forEach((msg, index) => {
+                mensagemErro(msg);
             });
+            return false;
         }
+
+        const usuario = {
+            email : this.state.email,
+            senha : this.state.senha,
+            status : this.state.status
+        }
+        
+        this.service.salvar(usuario).then(Response =>{
+            mensagemSucesso("Usuario cadastrado com suceso! Faça login para acessar o sistema.");
+            this.props.history.push('/login');
+        }).catch( error => {
+            mensagemErro(error.Response.data);
+        });
+        
     }
 
     cancelar = () => {
@@ -57,14 +68,7 @@ class CadastroUsuario extends React.Component{
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="bs-component">
-                            <FormGroup label="Nome: *" htmlFor="inputNome">
-                                <input type="text" 
-                                id="inputNome"
-                                className="form-control"
-                                name="nome" 
-                                onChange={e => this.setState({nome : e.target.value})}/>
-                            </FormGroup>
-
+                           
                             <FormGroup label="Email: *" htmlFor="inputEmail">
                                 <input type="text" 
                                 id="inputEmail"
