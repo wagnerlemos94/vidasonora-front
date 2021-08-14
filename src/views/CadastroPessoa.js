@@ -27,7 +27,9 @@ class CadastroPessoa extends React.Component{
             bairro : null,
             rua : null,
             numero : null,
-            cidade : null,
+            cidade : {
+                id:null
+            },
             complemento: null
         }
         
@@ -45,7 +47,7 @@ class CadastroPessoa extends React.Component{
 
     render(){
         return(
-            <Card title="Cadastro de Pessoa">
+            <Card title="Cadastro de Cliente">
                 <div className="row">
                     <h6>Dados Pessoais</h6>
                     <div className="row">                        
@@ -138,7 +140,7 @@ class CadastroPessoa extends React.Component{
                             <FormGroup label="Cidade" htmlFor="inputCidade">
                                 <input className="form-control mt-2 mb-2" type="text" id="cidade"
                                     name="cidade" placeholder="Salvador"
-                                    onChange={ e => this.state.endereco.cidade = e.target.value}
+                                    onChange={ e => this.state.endereco.cidade.id = e.target.value}
                                     />                 
                             </FormGroup>
                         </div>
