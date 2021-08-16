@@ -29,7 +29,7 @@ class CadastroPessoa extends React.Component{
             rua : '',
             numero : '',
             cidade : {
-                nome:''
+                id:''
             },
             uf:'',
             complemento: ''
@@ -37,23 +37,15 @@ class CadastroPessoa extends React.Component{
         
     }
 
-    prencherEndereco = (endereco) =>{
-        this.setState({
-            bairro:endereco.data,
-            rua:endereco.data,
-            numero:endereco.data,
-        });
-    }
-
     cadastrar = () => {
         this.state.enderecos.push(this.state.endereco);
-        // console.log(this.state);
+        console.log(this.state);
         this.service.salvar(this.state).then(response => {
             console.log(response.data);
 
         }).catch(error => {
             console.log(error.response.data);
-        })
+        });
     }
 
     render(){
@@ -135,12 +127,12 @@ class CadastroPessoa extends React.Component{
                         <ViaCep cep={this.state.endereco.cep} lazy>
                             { ({ data, loading, error, fetch }) => {
                                 if (data) {
-                                    {
-                                        this.state.endereco.bairro = data.bairro;
-                                        this.state.endereco.rua = data.logradouro;
-                                        this.state.endereco.cidade = {nome: data.localidade};
-                                        this.state.endereco.uf = data.uf;
-                                    }
+                                    
+                                    this.state.endereco.bairro = data.bairro;
+                                    this.state.endereco.rua = data.logradouro;
+                                    this.state.endereco.cidade = {id : 1};
+                                    this.state.endereco.uf = data.uf;
+                                    
                                 }
                                 return <div className="row">
                                     <div className="col-4">
@@ -149,7 +141,7 @@ class CadastroPessoa extends React.Component{
                                             onChange={e => this.setState({endereco:{
                                                 cep: e.target.value,
                                                 cidade : {
-                                                    nome:''
+                                                    id:''
                                                 }
                                             }})} placeholder="CEP" type="text"
                                             onBlur={fetch}/>
@@ -159,8 +151,8 @@ class CadastroPessoa extends React.Component{
                                         <FormGroup label="Cidade" htmlFor="inputCidade" required>
                                             <input className="form-control mt-2 mb-2" type="text" id="cidade"
                                             name="cidade" placeholder="Salvador"
-                                            value={this.state.endereco.cidade.nome}
-                                            onChange={e => this.setState({endereco: {cidade:{nome: e.target.value}}})}
+                                            value={this.state.endereco.cidade.id}
+                                            onChange={e => this.setState({endereco: {cidade:{id: e.target.value}}})}
                                             />                 
                                         </FormGroup>
                                     </div>
