@@ -125,7 +125,7 @@ class CadastroPessoa extends React.Component{
                     <div>        
                         
                         <ViaCep cep={this.state.endereco.cep} lazy>
-                            { ({ data, fetch }) => {
+                        { ({ data, fetch }) => {
                                 if (data) {
                                     this.state.endereco.bairro = data.bairro;
                                     this.state.endereco.rua = data.rua;
@@ -227,7 +227,7 @@ class CadastroPessoa extends React.Component{
                     
                     <div className="row mt-2">
                         <div className="col">
-                            <button type="submit" className="btn btn-primary mx-2" onSubmit={this.cadastrar}>Salvar</button>
+                            <button className="btn btn-primary mx-2" onClick={this.cadastrar}>Salvar</button>
                             <button className="btn btn-danger">Cancelar</button>
                         </div>
                     </div>
