@@ -215,7 +215,7 @@ class CadastroPessoa extends React.Component{
                     
                     <div className="row mt-2">
                         <div className="col">
-                            <button className="btn btn-primary mx-2" onClick={this.cadastrar}>Salvar</button>
+                            <button type="submit" className="btn btn-primary mx-2" onSubmit={this.cadastrar}>Salvar</button>
                             <button className="btn btn-danger">Cancelar</button>
                         </div>
                     </div>
