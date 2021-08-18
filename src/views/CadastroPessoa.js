@@ -29,7 +29,7 @@ class CadastroPessoa extends React.Component{
             rua : '',
             numero : '',
             cidade : {
-                id:''
+                nome:''
             },
             uf:'',
             complemento: ''
@@ -37,60 +37,91 @@ class CadastroPessoa extends React.Component{
         
     }
 
-    cadastrar = () => {
-        this.state.enderecos.push(this.state.endereco);
-        console.log(this.state);
-        this.service.salvar(this.state).then(response => {
-            console.log(response.data);
-
-        }).catch(error => {
-            console.log(error.response.data);
+    validarFormulario = (event) => {   
+        let validado = true;
+        event.preventDefault();
+        const endereco = this.state.endereco;
+        event.target.className += " was-validated";
+        Object.values(this.state).map((valor,chave) => {
+            if(valor == "" && typeof(valor) != "object"){
+                validado = false;
+            }
         });
+        this.state.contatos.forEach((contato) => {
+            if(contato.tipo == "email"){
+                const valorContato = contato.contato;
+                if(valorContato.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) != null){
+                    validado = false;
+                }
+            }
+        });
+        Object.values(endereco).map((valor,chave) => {
+            if(valor == ""){
+                validado = false;
+            }
+        });
+
+        return validado;
+
+    }
+
+    cadastrar = (event) => {
+        const result = this.validarFormulario(event);
+        if(result){
+            this.state.enderecos.push(this.state.endereco);
+            console.log(this.state);
+            this.service.salvar(this.state).then(response => {
+                console.log(response.data);
+    
+            }).catch(error => {
+                console.log(error.response.data);
+            });
+
+        }
     }
 
     render(){
         return(
             <Card title="Cadastro de Cliente">
-                <div className="row">
-                    <h6>Dados Pessoais</h6>
-                    <div className="row">                        
+                <form className="needs-validation" onSubmit={this.cadastrar} noValidate>
+                    <div className="row">
                         <div className="col-12">
-                            <FormGroup label="Nome" htmlFor="inputNome" required>
+                            <FormGroup label="Nome" htmlFor="inputNome" >
                                 <input className="form-control mt-2 mb-2" type="text" id="nome"
                                     name="nome" placeholder="Nome Completo"
                                     onChange={ e => this.setState({nome : e.target.value})}
+                                    required
                                     />                   
                             </FormGroup>
                         </div>
-                    </div>
-                    <div className="row">        
+                        
                         <div className="col-4">
-                            <FormGroup label="CPF" htmlFor="inputCpf" required>
-                                <input className="form-control mt-2 mb-2" type="text" id="cpf"
+                            <FormGroup label="CPF" htmlFor="inputCpf" >
+                                <input className="form-control mt-2 mb-2" type="text" id="cpf" required
                                 name="cpf" placeholder="000.000.000-00"
                                 onChange={ e => this.setState({cpf : e.target.value})}
                                 />               
                             </FormGroup>
                         </div>               
                         <div className="col-4">
-                            <FormGroup label="RG" htmlFor="inputRG" required>
-                                <input className="form-control mt-2 mb-2" type="text" id="rg"
+                            <FormGroup label="RG" htmlFor="inputRG" >
+                                <input className="form-control mt-2 mb-2" type="text" id="rg" required
                                 name="rg" placeholder="00.000.000-00"
                                 onChange={ e => this.setState({rg : e.target.value})}
                                 />                
                             </FormGroup>
                         </div> 
                         <div className="col-4">
-                            <FormGroup label="Data de Nascimento" htmlFor="inputNascimento" required>
-                                <input className="form-control mt-2 mb-2" type="date" id="nascimento"
+                            <FormGroup label="Data de Nascimento" htmlFor="inputNascimento" >
+                                <input className="form-control mt-2 mb-2" type="date" id="nascimento" required
                                 name="nascimento"
                                 onChange={ e => this.setState({nascimento : e.target.value})}
                                 />                
                             </FormGroup>
                         </div> 
                         <div className="col-4">                        
-                            <FormGroup label="Celular" htmlFor="inputCelular" required>
-                                <input className="form-control mt-2 mb-2" type="text" id="celular"
+                            <FormGroup label="Celular" htmlFor="inputCelular" >
+                                <input className="form-control mt-2 mb-2" type="text" id="celular" required
                                     name="contatos[]" placeholder="(00) 0 0000-0000"
                                     onBlur={ e => this.state.contatos.push({
                                         tipo: 'celular',
@@ -100,8 +131,8 @@ class CadastroPessoa extends React.Component{
                             </FormGroup>
                         </div>
                         <div className="col-4">                        
-                            <FormGroup label="Email" htmlFor="inputEmail" required>
-                                <input className="form-control mt-2 mb-2" type="text" id="email"
+                            <FormGroup label="Email" htmlFor="inputEmail" >
+                                <input className="form-control mt-2 mb-2" type="email" id="email" required
                                     name="contatos[]" placeholder="email@email.com"
                                     onBlur={ e => this.state.contatos.push({
                                         tipo: 'email',
@@ -111,32 +142,28 @@ class CadastroPessoa extends React.Component{
                             </FormGroup>
                         </div>
                         <div className="col-4">                        
-                            <FormGroup label="Profissão" htmlFor="inputProfissao" required>
-                                <input className="form-control mt-2 mb-2" type="text" id="profissao"
+                            <FormGroup label="Profissão" htmlFor="inputProfissao" >
+                                <input className="form-control mt-2 mb-2" type="text" id="profissao" required
                                     name="profissao" placeholder="Auxiliar Administrativo"
                                     onChange={ e => this.setState({profissao : e.target.value})}
                                     />                 
                             </FormGroup>
-                        </div>
+                        </div>                    
                     </div>
-                </div>
-                <div className="row">
-                    <h6 className="mt-4 mb-2">Endereço</h6>
-                    <div>        
-                        
-                        <ViaCep cep={this.state.endereco.cep} lazy>
+                    <hr/>                  
+                    <ViaCep cep={this.state.endereco.cep} lazy>
                         { ({ data, fetch }) => {
                                 if (data) {
                                     this.state.endereco.bairro = data.bairro;
-                                    this.state.endereco.rua = data.rua;
-                                    this.state.endereco.cidade.id = data.localidade;
+                                    this.state.endereco.rua = data.logradouro;
+                                    this.state.endereco.cidade.nome = data.localidade;
                                     this.state.endereco.uf = data.uf;                                  
                                     
                                 }
                                 return <div className="row">
                                     <div className="col-4">
-                                        <FormGroup label="CEP" htmlFor="inputCep" required>
-                                            <input className="form-control mt-2 mb-2" id="cep" 
+                                        <FormGroup label="CEP" htmlFor="inputCep" >
+                                            <input className="form-control mt-2 mb-2" id="cep"  required
                                             onChange={e => this.setState({endereco:{
                                                 ...this.state.endereco,
                                                 cep: e.target.value
@@ -145,20 +172,20 @@ class CadastroPessoa extends React.Component{
                                         </FormGroup>
                                     </div>
                                     <div className="col-4">                        
-                                        <FormGroup label="Cidade" htmlFor="inputCidade" required>
-                                            <input className="form-control mt-2 mb-2" type="text" id="cidade"
+                                        <FormGroup label="Cidade" htmlFor="inputCidade" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="cidade" required
                                             name="cidade" placeholder="Salvador"
-                                            value={this.state.endereco.cidade.id}
+                                            value={this.state.endereco.cidade.nome}
                                             onChange={e => this.setState({cidade: {
                                                 ...this.state.cidade,
-                                                id:e.target.value
+                                                nome:e.target.value
                                             }})}
                                             />                 
                                         </FormGroup>
                                     </div>
                                     <div className="col-4">                        
-                                        <FormGroup label="Estado" htmlFor="inputEstado" required>
-                                            <input className="form-control mt-2 mb-2" type="text" id="estado"
+                                        <FormGroup label="Estado" htmlFor="inputEstado" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="estado" required
                                             name="estado" placeholder="BA"
                                             value={this.state.endereco.uf}
                                             onChange={e => this.setState({endereco: {
@@ -170,8 +197,8 @@ class CadastroPessoa extends React.Component{
                                     </div>
 
                                     <div className="col-4">                        
-                                        <FormGroup label="Bairro" htmlFor="inputBairro" required>
-                                            <input className="form-control mt-2 mb-2" type="text" id="bairro"
+                                        <FormGroup label="Bairro" htmlFor="inputBairro" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="bairro" required
                                                 name="bairro" placeholder="Bairro"
                                                 value={this.state.endereco.bairro}
                                                 onChange={e => this.setState({endereco: {
@@ -182,9 +209,10 @@ class CadastroPessoa extends React.Component{
                                         </FormGroup>
                                     </div>
                                     <div className="col-4">                        
-                                        <FormGroup label="Rua" htmlFor="inputRua" required>
-                                            <input className="form-control mt-2 mb-2" type="text" id="rua"
+                                        <FormGroup label="Rua" htmlFor="inputRua" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="rua" required
                                                 name="rua" placeholder="Rua da vitoria"
+                                                value={this.state.endereco.rua}
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
                                                     rua:e.target.value
@@ -194,8 +222,8 @@ class CadastroPessoa extends React.Component{
                                     </div>
                                     
                                     <div className="col-4">                        
-                                        <FormGroup label="Numero" htmlFor="inputNumero" required>
-                                            <input className="form-control mt-2 mb-2" type="text" id="numero"
+                                        <FormGroup label="Numero" htmlFor="inputNumero" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="numero" required
                                                 name="numero" placeholder="0000"
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
@@ -204,34 +232,32 @@ class CadastroPessoa extends React.Component{
                                                 />                 
                                         </FormGroup>
                                     </div>
-                                    <div className="row">    
-                                        <div className="col-12">
-                                            <FormGroup label="Complemento" htmlFor="inputComplemento" required>
-                                                <input className="form-control mt-2 mb-2" type="text" id="complemento"
-                                                name="complemento" placeholder="Complemento"
-                                                    onChange={e => this.setState({endereco: {
-                                                        ...this.state.endereco,
-                                                        complemento:e.target.value
-                                                    }})}
-                                                />               
-                                            </FormGroup>
-                                        </div>     
-                                    </div>
+                                
+                                    <div className="col-12">
+                                        <FormGroup label="Complemento" htmlFor="inputComplemento" >
+                                            <input className="form-control mt-2 mb-2" type="text" id="complemento" required
+                                            name="complemento" placeholder="Complemento"
+                                                onChange={e => this.setState({endereco: {
+                                                    ...this.state.endereco,
+                                                    complemento:e.target.value
+                                                }})}
+                                            />               
+                                        </FormGroup>
+                                    </div>     
+                                    
                                 </div>
                             }}
-                        </ViaCep>          
-                    </div>
-                        
-                        
-                        
+                        </ViaCep>   
                     
-                    <div className="row mt-2">
-                        <div className="col">
-                            <button className="btn btn-primary mx-2" onClick={this.cadastrar}>Salvar</button>
-                            <button className="btn btn-danger">Cancelar</button>
+                    <div>       
+                        <div className="row">
+                            <div className="col">
+                                <button className="btn btn-primary mx-2" type="submit">Salvar</button>
+                                <button className="btn btn-danger">Cancelar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </Card>
         );
     }

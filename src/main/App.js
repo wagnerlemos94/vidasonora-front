@@ -5,7 +5,10 @@ import NavBar from '../components/NavBar';
 
 import 'toastr/build/toastr.min.js';
 
-import 'bootswatch/dist/flatly/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import'bootstrap-css-only/css/bootstrap.min.css';
+import'mdbreact/dist/css/mdb.css';
+
 import '../custom.css';
 import 'toastr/build/toastr.css';
 

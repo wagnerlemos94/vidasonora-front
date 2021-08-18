@@ -6,6 +6,10 @@ import UsuarioSerice from '../app/service/usuarioService';
 import LocalStorageService from '../app/service/localStorageService';
 import { mensagemErro } from '../components/toastr';
 
+import {MDBInput } from 'mdbreact';
+
+
+
 class Login extends React.Component{
 
     state = {
@@ -30,13 +34,10 @@ class Login extends React.Component{
         });
     }
 
-    prepareCadastrar = () => {
-        this.props.history.push('/cadastro-usuarios');
-    }
-
     render(){
         return(            
             <div className="row">
+                
                 <div className="col-md-6" style={ {position:'relative', left: '300px'}}>
                     <div className="bs-docs-section">
                         <Card title="Login">
@@ -44,24 +45,22 @@ class Login extends React.Component{
                                 <div className="col-lg-12">
                                     <div className="bs-component">
                                         <fieldset>
-                                            <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
-                                                <input type="email" className="form-control"
-                                                value={this.state.email}
-                                                onChange={e => this.setState({email: e.target.value})}
-                                                id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" placeholder="Digite o Email" />
-                                            </FormGroup>
-
-                                            <FormGroup label="Senha: *" htmlFor="exampleInputPassword1">
-                                                <input type="password" className="form-control"
+                                            <FormGroup label="" htmlFor="inputEmail">
+                                            <MDBInput label="Email: *" icon="envelope" group type="email" validate error="wrong"
+                                                    success="right"
+                                                    id="inputEmail"
+                                                    value={this.state.email}
+                                                    onChange={e => this.setState({email: e.target.value})}
+                                                />                                  
+                                            <MDBInput label="password" icon="lock" group type="password"
                                                 value={this.state.senha}
                                                 onChange={e => this.setState({senha: e.target.value})}
-                                                id="exampleInputPassword1"
-                                                aria-describedby="Password" placeholder="Password" />
+                                                id="inputPassword"
+                                                validate />
                                             </FormGroup>
-
-                                            <button onClick={this.entrar} type="button" className="btn btn-success">Entrar</button>
-                                            <button onClick={this.prepareCadastrar} type="button" className="btn btn-danger">Cadastrar</button>                                            
+                                            <center>
+                                                <button onClick={this.entrar} type="button" className="btn btn-primary">Login</button>                                        
+                                            </center>
                                         </fieldset>
                                     </div>
                                 </div>
