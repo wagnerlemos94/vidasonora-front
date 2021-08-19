@@ -7,6 +7,8 @@ import ViaCep from 'react-via-cep';
 
 import { mensagemErro, mensagemSucesso } from '../components/toastr';
 
+import InputMask from "react-input-mask";
+
 
 
 class CadastroPessoa extends React.Component{
@@ -99,17 +101,17 @@ class CadastroPessoa extends React.Component{
                         
                         <div className="col-4">
                             <FormGroup label="CPF" htmlFor="inputCpf" >
-                                <input className="form-control mt-2 mb-2" type="text" id="cpf" required
+                                <InputMask mask="999.999.999-99" className="form-control mt-2 mb-2" type="text" id="cpf" required
                                 name="cpf" placeholder="000.000.000-00"
-                                onChange={ e => this.setState({cpf : e.target.value})}
+                                onChange={ e => this.setState({cpf : e.target.value.replace(/[^\d]+/g,'')})}
                                 />               
                             </FormGroup>
                         </div>               
                         <div className="col-4">
                             <FormGroup label="RG" htmlFor="inputRG" >
-                                <input className="form-control mt-2 mb-2" type="text" id="rg" required
+                                <InputMask mask="99.999.999-99" className="form-control mt-2 mb-2" type="text" id="rg" required
                                 name="rg" placeholder="00.000.000-00"
-                                onChange={ e => this.setState({rg : e.target.value})}
+                                onChange={ e => this.setState({rg : e.target.value.replace(/[^\d]+/g,'')})}
                                 />                
                             </FormGroup>
                         </div> 
@@ -123,11 +125,11 @@ class CadastroPessoa extends React.Component{
                         </div> 
                         <div className="col-4">                        
                             <FormGroup label="Celular" htmlFor="inputCelular" >
-                                <input className="form-control mt-2 mb-2" type="text" id="celular" required
+                                <InputMask mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
                                     name="contatos[]" placeholder="(00) 0 0000-0000"
                                     onBlur={ e => this.state.contatos.push({
                                         tipo: 'celular',
-                                        contato : e.target.value
+                                        contato : e.target.value.replace(/[^\d]+/g,'')
                                     })}
                                     />                 
                             </FormGroup>
@@ -165,18 +167,18 @@ class CadastroPessoa extends React.Component{
                                 return <div className="row">
                                     <div className="col-4">
                                         <FormGroup label="CEP" htmlFor="inputCep" >
-                                            <input className="form-control mt-2 mb-2" id="cep"  required
+                                            <InputMask mask="99.999.999" className="form-control mt-2 mb-2" id="cep"  required
                                             onChange={e => this.setState({endereco:{
                                                 ...this.state.endereco,
-                                                cep: e.target.value
-                                            }})} placeholder="CEP" type="text"
+                                                cep: e.target.value.replace(/[^\d]+/g,'')
+                                            }})} placeholder="00.000.000" type="text"
                                             onBlur={fetch}/>
                                         </FormGroup>
                                     </div>
                                     <div className="col-4">                        
                                         <FormGroup label="Cidade" htmlFor="inputCidade" >
                                             <input className="form-control mt-2 mb-2" type="text" id="cidade" required
-                                            name="cidade" placeholder="Salvador"
+                                            name="cidade" placeholder="Ex: Salvador"
                                             value={this.state.endereco.cidade.nome}
                                             onChange={e => this.setState({cidade: {
                                                 ...this.state.cidade,
@@ -188,7 +190,7 @@ class CadastroPessoa extends React.Component{
                                     <div className="col-4">                        
                                         <FormGroup label="Estado" htmlFor="inputEstado" >
                                             <input className="form-control mt-2 mb-2" type="text" id="estado" required
-                                            name="estado" placeholder="BA"
+                                            name="estado" placeholder="Ex: BA"
                                             value={this.state.endereco.uf}
                                             onChange={e => this.setState({endereco: {
                                                 ...this.state.endereco,
@@ -201,7 +203,7 @@ class CadastroPessoa extends React.Component{
                                     <div className="col-4">                        
                                         <FormGroup label="Bairro" htmlFor="inputBairro" >
                                             <input className="form-control mt-2 mb-2" type="text" id="bairro" required
-                                                name="bairro" placeholder="Bairro"
+                                                name="bairro" placeholder="Ex: Bairro"
                                                 value={this.state.endereco.bairro}
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
@@ -213,7 +215,7 @@ class CadastroPessoa extends React.Component{
                                     <div className="col-4">                        
                                         <FormGroup label="Rua" htmlFor="inputRua" >
                                             <input className="form-control mt-2 mb-2" type="text" id="rua" required
-                                                name="rua" placeholder="Rua da vitoria"
+                                                name="rua" placeholder="Ex: Rua da vitoria"
                                                 value={this.state.endereco.rua}
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
@@ -225,11 +227,11 @@ class CadastroPessoa extends React.Component{
                                     
                                     <div className="col-4">                        
                                         <FormGroup label="Numero" htmlFor="inputNumero" >
-                                            <input className="form-control mt-2 mb-2" type="text" id="numero" required
-                                                name="numero" placeholder="0000"
+                                            <InputMask mask="9999" className="form-control mt-2 mb-2" type="text" id="numero" required
+                                                name="numero" placeholder="Ex: 0000"
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
-                                                    numero:e.target.value
+                                                    numero:e.target.value.replace(/[^\d]+/g,'')
                                                 }})}
                                                 />                 
                                         </FormGroup>
@@ -238,7 +240,7 @@ class CadastroPessoa extends React.Component{
                                     <div className="col-12">
                                         <FormGroup label="Complemento" htmlFor="inputComplemento" >
                                             <input className="form-control mt-2 mb-2" type="text" id="complemento" required
-                                            name="complemento" placeholder="Complemento"
+                                            name="complemento" placeholder="Ex: Complemento"
                                                 onChange={e => this.setState({endereco: {
                                                     ...this.state.endereco,
                                                     complemento:e.target.value
@@ -249,16 +251,11 @@ class CadastroPessoa extends React.Component{
                                     
                                 </div>
                             }}
-                        </ViaCep>   
-                    
-                    <div>       
-                        <div className="row">
-                            <div className="col">
+                        </ViaCep>                       
+                            <div className="">
                                 <button className="btn btn-primary mx-2" type="submit">Salvar</button>
-                                <button className="btn btn-danger">Cancelar</button>
+                                {/* <button className="btn btn-danger">Cancelar</button> */}
                             </div>
-                        </div>
-                    </div>
                 </form>
             </Card>
         );
