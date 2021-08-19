@@ -13,6 +13,7 @@ function NavBar(){
                         <NavBarItem href="#/cadastro-usuarios" label="Usuários" />
                         <NavBarItem href="#/login" label="Login" />
                         <NavBarItem href="#/cadastro-pessoa" label="Clientes" />
+                        <NavBarItem href="#/lista-pessoa" label="Lista" />
                     </ul>
                 </div>
             </div>
