@@ -12,6 +12,10 @@ class PessoaService extends ApiService{
     buscarPessoa(id){
         return this.get(`/${id}`);
     }
+
+    buscarTodos(){
+        return this.get(`/`);
+    }
 }
 
 export default PessoaService;
