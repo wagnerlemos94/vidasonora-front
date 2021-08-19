@@ -5,6 +5,8 @@ import FormGroup from '../components/Form-group';
 import PessoaService from '../app/service/PessoaService';
 import ViaCep from 'react-via-cep';
 
+import { mensagemErro, mensagemSucesso } from '../components/toastr';
+
 
 
 class CadastroPessoa extends React.Component{
@@ -50,7 +52,7 @@ class CadastroPessoa extends React.Component{
         this.state.contatos.forEach((contato) => {
             if(contato.tipo == "email"){
                 const valorContato = contato.contato;
-                if(valorContato.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) != null){
+                if(valorContato.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) == null){
                     validado = false;
                 }
             }
@@ -71,10 +73,10 @@ class CadastroPessoa extends React.Component{
             this.state.enderecos.push(this.state.endereco);
             console.log(this.state);
             this.service.salvar(this.state).then(response => {
-                console.log(response.data);
+                mensagemSucesso("Cadastro realizado com sucesso!");
     
             }).catch(error => {
-                console.log(error.response.data);
+                mensagemErro("Cadastro não realizado");
             });
 
         }
