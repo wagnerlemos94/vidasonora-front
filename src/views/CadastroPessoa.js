@@ -10,6 +10,8 @@ import { mensagemErro, mensagemSucesso } from '../components/toastr';
 import InputMask from "react-input-mask";
 
 import { parseISO, format, } from 'date-fns';
+
+import LocalStorageService from '../app/service/localStorageService';
   
 
 
@@ -22,14 +24,15 @@ class CadastroPessoa extends React.Component{
     }
 
     state = {
-
-        nome:'',
-        cpf:'',
-        rg:'',
-        profissao:'',
-        nascimento:'0000-01-01',
-        contatos:[],
-        enderecos:[],
+        pessoa:{
+            nome:'',
+            cpf:'',
+            rg:'',
+            profissao:'',
+            nascimento:'0000-01-01',
+            contatos:[],
+            enderecos:[],
+        },  
         endereco:{
             cep : '',
             bairro : '',
@@ -38,23 +41,41 @@ class CadastroPessoa extends React.Component{
             cidade : {
                 nome:''
             },
-            uf:'',
+            estado:'',
             complemento: ''
+        },
+        titulo:"Cadastro de Cliente"
+    }
+
+    componentDidMount(){
+        const usuarioEdit = LocalStorageService.obterItem("_usuario_edit");
+        if(usuarioEdit){    
+            this.setState({pessoa:usuarioEdit});
+            this.setState({
+                titulo:"Edição de Cliente",
+                celular:usuarioEdit.contatos[0].contato,
+                email:usuarioEdit.contatos[1].contato,
+            });
+            const endereco = usuarioEdit.enderecos[0];
+            this.setState({endereco:endereco});
+            const estado = usuarioEdit.enderecos[0].cidade.estado.nome;
+            console.log(usuarioEdit.enderecos[0]);
         }
-        
+        LocalStorageService.removerItem("_usuario_edit");
     }
 
     validarFormulario = (event) => { 
         let validado = true;
+        console.log(this.state.pessoa.id);
         event.preventDefault();
         const endereco = this.state.endereco;
         event.target.className += " was-validated";
-        Object.values(this.state).map((valor,chave) => {
+        Object.values(this.state.pessoa).map((valor,index) => {
             if(valor == "" && typeof(valor) != "object"){
                 validado = false;
             }
         });
-        this.state.contatos.forEach((contato) => {
+        this.state.pessoa.contatos.forEach((contato) => {
             if(contato.tipo == "email"){
                 const valorContato = contato.contato;
                 if(valorContato.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) == null){
@@ -62,7 +83,7 @@ class CadastroPessoa extends React.Component{
                 }
             }
         });
-        Object.values(endereco).map((valor,chave) => {
+        Object.values(endereco).map((valor,index) => {
             if(valor == ""){
                 validado = false;
             }
@@ -72,31 +93,44 @@ class CadastroPessoa extends React.Component{
 
     }
 
-    cadastrar = (event) => {
+    salvar = (event) => {
         const result = this.validarFormulario(event);
         if(result){
-            this.state.enderecos.push(this.state.endereco);
-            console.log(this.state);
-            this.service.salvar(this.state).then(response => {
-                mensagemSucesso("Cadastro realizado com sucesso!");
-                this.props.history.push('/home')    
-            }).catch(error => {
-                mensagemErro("Cadastro não realizado");
-            });
+            if(!this.state.pessoa.id){
+                this.state.pessoa.enderecos.push(this.state.endereco);
+                this.service.salvar(this.state.pessoa).then(response => {
+                    mensagemSucesso("Cadastro realizado com sucesso!");
+                    this.props.history.push('/home')    
+                }).catch(error => {
+                    mensagemErro("Cadastro não realizado");
+                });
+            }else{
+                this.state.pessoa.enderecos.push(this.state.endereco);
+                this.service.atualizar(this.state.pessoa).then(response => {
+                    mensagemSucesso("Cadastro atualizado com sucesso!");
+                    this.props.history.push('/home')    
+                }).catch(error => {
+                    mensagemErro("Cadastro não realizado");
+                });
+
+            }
 
         }
     }
 
     render(){
         return(
-            <Card title="Cadastro de Cliente">
-                <form className="needs-validation" onSubmit={this.cadastrar} noValidate>
+            <Card title={this.state.titulo}>
+                <form className="needs-validation" onSubmit={this.salvar} noValidate>
                     <div className="row">
                         <div className="col-12">
                             <FormGroup label="Nome" htmlFor="inputNome" >
-                                <input className="form-control mt-2 mb-2" type="text" id="nome"
+                                <input value={this.state.pessoa.nome} className="form-control mt-2 mb-2" type="text" id="nome"
                                     name="nome" placeholder="Nome Completo"
-                                    onChange={ e => this.setState({nome : e.target.value})}
+                                    onChange={ e => this.setState({pessoa :{
+                                        ...this.state.pessoa, 
+                                        nome :e.target.value
+                                        }})}
                                     required
                                     />                   
                             </FormGroup>
@@ -104,57 +138,69 @@ class CadastroPessoa extends React.Component{
                         
                         <div className="col-4">
                             <FormGroup label="CPF" htmlFor="inputCpf" >
-                                <InputMask mask="999.999.999-99" className="form-control mt-2 mb-2" type="text" id="cpf" required
+                                <InputMask value={this.state.pessoa.cpf} mask="999.999.999-99" className="form-control mt-2 mb-2" type="text" id="cpf" required
                                 name="cpf" placeholder="000.000.000-00"
-                                onChange={ e => this.setState({cpf : e.target.value.replace(/[^\d]+/g,'')})}
+                                onChange={ e => this.setState({pessoa:{
+                                    ...this.state.pessoa,
+                                    cpf : e.target.value.replace(/[^\d]+/g,'')
+                                }})}
                                 />               
                             </FormGroup>
                         </div>               
                         <div className="col-4">
                             <FormGroup label="RG" htmlFor="inputRG" >
-                                <InputMask mask="99.999.999-99" className="form-control mt-2 mb-2" type="text" id="rg" required
+                                <InputMask value={this.state.pessoa.rg} mask="99.999.999-99" className="form-control mt-2 mb-2" type="text" id="rg" required
                                 name="rg" placeholder="00.000.000-00"
-                                onChange={ e => this.setState({rg : e.target.value.replace(/[^\d]+/g,'')})}
+                                onChange={ e => this.setState({pessoa:{
+                                    ...this.state.pessoa,
+                                    rg : e.target.value.replace(/[^\d]+/g,'')
+                                }})}
                                 />                
                             </FormGroup>
                         </div> 
                         <div className="col-4">
                             <FormGroup label="Data de Nascimento" htmlFor="inputNascimento" >
-                                <input className="form-control mt-2 mb-2" type="date" id="nascimento" required
+                                <input value={this.state.pessoa.nascimento} className="form-control mt-2 mb-2" type="date" id="nascimento" required
                                 name="nascimento"
-                                onChange={ e => this.setState({nascimento :
-                                        format(parseISO(e.target.value), "dd/MM/yyyy")
-                                    })}
+                                onChange={ e => this.setState({pessoa:{
+                                        ...this.state.pessoa,
+                                        nascimento : format(parseISO(e.target.value), "dd/MM/yyyy")
+                                    }})}
                                 />            
                             </FormGroup>
                         </div> 
                         <div className="col-4">                        
                             <FormGroup label="Celular" htmlFor="inputCelular" >
-                                <InputMask mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
+                                <InputMask value={this.state.celular} mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
                                     name="contatos[]" placeholder="(00) 0 0000-0000"
-                                    onBlur={ e => this.state.contatos.push({
+                                    onBlur={ e => this.state.pessoa.contatos.push({
                                         tipo: 'celular',
                                         contato : e.target.value.replace(/[^\d]+/g,'')
                                     })}
+                                    onChange={e => this.setState({celular:e.target.value})}
                                     />                 
                             </FormGroup>
                         </div>
                         <div className="col-4">                        
                             <FormGroup label="Email" htmlFor="inputEmail" >
-                                <input className="form-control mt-2 mb-2" type="email" id="email" required
+                                <input value={this.state.email} className="form-control mt-2 mb-2" type="email" id="email" required
                                     name="contatos[]" placeholder="email@email.com"
-                                    onBlur={ e => this.state.contatos.push({
+                                    onBlur={ e => this.state.pessoa.contatos.push({
                                         tipo: 'email',
-                                        contato : e.target.value
+                                        email : e.target.value
                                     })}
+                                    onChange={e => this.setState({email:e.target.value})}
                                     />                 
                             </FormGroup>
                         </div>
                         <div className="col-4">                        
                             <FormGroup label="Profissão" htmlFor="inputProfissao" >
-                                <input className="form-control mt-2 mb-2" type="text" id="profissao" required
+                                <input value={this.state.pessoa.profissao} className="form-control mt-2 mb-2" type="text" id="profissao" required
                                     name="profissao" placeholder="Auxiliar Administrativo"
-                                    onChange={ e => this.setState({profissao : e.target.value})}
+                                    onChange={ e => this.setState({pessoa:{
+                                        ...this.state.pessoa,
+                                        profissao : e.target.value
+                                    }})}
                                     />                 
                             </FormGroup>
                         </div>                    
@@ -166,13 +212,13 @@ class CadastroPessoa extends React.Component{
                                 this.state.endereco.bairro = data.bairro;
                                 this.state.endereco.rua = data.logradouro;
                                 this.state.endereco.cidade.nome = data.localidade;
-                                this.state.endereco.uf = data.uf;                                  
+                                this.state.endereco.estado = data.uf;                                  
                                 
                             }
                             return <div className="row">
                                 <div className="col-4">
                                     <FormGroup label="CEP" htmlFor="inputCep" >
-                                        <InputMask mask="99.999.999" className="form-control mt-2 mb-2" id="cep"  required
+                                        <InputMask value={this.state.endereco.cep} mask="99.999.999" className="form-control mt-2 mb-2" id="cep"  required
                                         onChange={e => this.setState({endereco:{
                                             ...this.state.endereco,
                                             cep: e.target.value.replace(/[^\d]+/g,'')
@@ -196,12 +242,12 @@ class CadastroPessoa extends React.Component{
                                     <FormGroup label="Estado" htmlFor="inputEstado" >
                                         <input className="form-control mt-2 mb-2" type="text" id="estado" required
                                         name="estado" placeholder="Ex: BA"
-                                        value={this.state.endereco.uf}
+                                        value={this.state.endereco.estado}
                                         onChange={e => this.setState({endereco: {
                                             ...this.state.endereco,
-                                            uf:e.target.value
+                                            estado:e.target.value
                                         }})}
-                                        />                 
+                                        />   
                                     </FormGroup>
                                 </div>
 
@@ -232,7 +278,7 @@ class CadastroPessoa extends React.Component{
                                 
                                 <div className="col-4">                        
                                     <FormGroup label="Numero" htmlFor="inputNumero" >
-                                        <InputMask mask="9999" className="form-control mt-2 mb-2" type="text" id="numero" required
+                                        <InputMask value={this.state.endereco.numero} mask="9999" className="form-control mt-2 mb-2" type="text" id="numero" required
                                             name="numero" placeholder="Ex: 0000"
                                             onChange={e => this.setState({endereco: {
                                                 ...this.state.endereco,

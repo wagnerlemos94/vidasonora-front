@@ -10,10 +10,10 @@ function NavBar(){
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav">
                         <NavBarItem href="#/home" label="home" />
-                        <NavBarItem href="#/cadastro-usuarios" label="Usuários" />
-                        <NavBarItem href="#/login" label="Login" />
-                        <NavBarItem href="#/cadastro-pessoa" label="Clientes" />
-                        <NavBarItem href="#/lista-pessoa" label="Lista" />
+                        {/* <NavBarItem href="#/cadastro-usuarios" label="Usuários" /> */}
+                        {/* <NavBarItem href="#/login" label="Login" /> */}
+                        {/* <NavBarItem href="#/cadastro-pessoa" label="Clientes" /> */}
+                        <NavBarItem href="#/lista-pessoa" label="Clientes" />
                     </ul>
                 </div>
             </div>

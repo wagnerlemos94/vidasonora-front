@@ -16,6 +16,10 @@ class PessoaService extends ApiService{
     buscarTodos(){
         return this.get(`/`);
     }
+
+    atualizar(pessoa){
+        return this.put(`/${pessoa.id}`, pessoa);
+    }
 }
 
 export default PessoaService;

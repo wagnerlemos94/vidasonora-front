@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 import DataTable from '../components/dataTables/DataTable';
+import LocalStorageService from '../app/service/localStorageService';
 
 import PessoaService from '../app/service/PessoaService';
 
@@ -20,6 +21,8 @@ class ListaPessoa extends React.Component{
     editar = (event) => {
         const id = event.target.id
         this.service.buscarPessoa(id).then(response => {
+          LocalStorageService.adicionarItem('_usuario_edit', response.data);
+          this.props.history.push('/cadastro-pessoa');
         }).catch(error => {
             console.log(error.data.response);
         });
