@@ -44,24 +44,22 @@ class CadastroPessoa extends React.Component{
             estado:'',
             complemento: ''
         },
+        celular:'',
+        email:'',
         titulo:"Cadastro de Cliente"
     }
 
     componentDidMount(){
         const usuarioEdit = LocalStorageService.obterItem("_usuario_edit");
         if(usuarioEdit){    
-            this.setState({pessoa:usuarioEdit});
             this.setState({
-                titulo:"Edição de Cliente",
-                celular:usuarioEdit.contatos[0].contato,
-                email:usuarioEdit.contatos[1].contato,
+                pessoa:usuarioEdit.pessoa,
+                endereco:usuarioEdit.endereco,
+                celular:usuarioEdit.celular,
+                email:usuarioEdit.email,
+                titulo:usuarioEdit.titulo,
             });
-            const endereco = usuarioEdit.enderecos[0];
-            this.setState({endereco:endereco});
-            const estado = usuarioEdit.enderecos[0].cidade.estado.nome;
-            console.log(usuarioEdit.enderecos[0]);
-        }
-        LocalStorageService.removerItem("_usuario_edit");
+        }        
     }
 
     validarFormulario = (event) => { 
@@ -112,9 +110,8 @@ class CadastroPessoa extends React.Component{
                 }).catch(error => {
                     mensagemErro("Cadastro não realizado");
                 });
-
+                LocalStorageService.removerItem("_usuario_edit");
             }
-
         }
     }
 
@@ -292,6 +289,7 @@ class CadastroPessoa extends React.Component{
                                     <FormGroup label="Complemento" htmlFor="inputComplemento" >
                                         <input className="form-control mt-2 mb-2" type="text" id="complemento" required
                                         name="complemento" placeholder="Ex: Complemento"
+                                        value={this.state.endereco.complemento}
                                             onChange={e => this.setState({endereco: {
                                                 ...this.state.endereco,
                                                 complemento:e.target.value

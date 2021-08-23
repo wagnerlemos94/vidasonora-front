@@ -21,11 +21,48 @@ class ListaPessoa extends React.Component{
     editar = (event) => {
         const id = event.target.id
         this.service.buscarPessoa(id).then(response => {
-          LocalStorageService.adicionarItem('_usuario_edit', response.data);
+          const state = new Object;
+          state.pessoa = response.data;
+          state.pessoa.nascimento = this.formartarData(response.data.nascimento);
+          state.titulo = 'Editar Cliente';
+          state.pessoa.contatos.forEach(contato => {
+            if(contato.tipo == 'celular'){
+              state.celular = contato.contato;
+            }else if(contato.tipo == 'email'){
+              state.email = contato.contato;
+              }
+          });
+          state.pessoa.enderecos.forEach(endereco => {
+            if(endereco){
+              state.endereco = {
+                cep : endereco.cep,
+                bairro : endereco.bairro,
+                rua : endereco.rua,
+                numero : endereco.numero,
+                cidade : {
+                    nome:endereco.cidade.nome
+                },
+                estado:endereco.cidade.estado.nome,
+                complemento: endereco.complemento
+              }
+            }
+          });
+          LocalStorageService.adicionarItem('_usuario_edit', state);
           this.props.history.push('/cadastro-pessoa');
         }).catch(error => {
             console.log(error.data.response);
         });
+    }
+
+    formartarData(data){
+       
+      const ano = data.slice(-4);
+      const mes = data.slice(3, -5);
+      const dia = data.slice(0, -8);
+
+      data = `${ano}-${mes}-${dia}`;
+      
+      return data;
     }
 
     componentDidMount(){
@@ -42,6 +79,7 @@ class ListaPessoa extends React.Component{
     }
 
     novoCadastro = () => {
+        LocalStorageService.removerItem("_usuario_edit");
         this.props.history.push('/cadastro-pessoa');
     }
 
