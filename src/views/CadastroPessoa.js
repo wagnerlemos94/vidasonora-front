@@ -29,7 +29,7 @@ class CadastroPessoa extends React.Component{
             cpf:'',
             rg:'',
             profissao:'',
-            nascimento:'0000-01-01',
+            nascimento:'',
             contatos:[],
             enderecos:[],
         },  
@@ -63,9 +63,12 @@ class CadastroPessoa extends React.Component{
     }
 
     validarFormulario = (event) => { 
-        let validado = true;
-        console.log(this.state.pessoa.id);
         event.preventDefault();
+        let validado = true;
+        let nascimento = this.state.pessoa.nascimento;
+        nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
+        this.state.pessoa.nascimento = nascimento;
+        
         const endereco = this.state.endereco;
         event.target.className += " was-validated";
         Object.values(this.state.pessoa).map((valor,index) => {
@@ -75,10 +78,9 @@ class CadastroPessoa extends React.Component{
         });
         this.state.pessoa.contatos.forEach((contato) => {
             if(contato.tipo == "email"){
-                const valorContato = contato.contato;
-                if(valorContato.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/) == null){
-                    validado = false;
-                }
+                const email = contato.contato;
+                const validarEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/);
+                validado = validarEmail;
             }
         });
         Object.values(endereco).map((valor,index) => {
@@ -95,6 +97,7 @@ class CadastroPessoa extends React.Component{
         const result = this.validarFormulario(event);
         if(result){
             if(!this.state.pessoa.id){
+                this.state.pessoa.enderecos = [];
                 this.state.pessoa.enderecos.push(this.state.endereco);
                 this.service.salvar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro realizado com sucesso!");
@@ -103,7 +106,9 @@ class CadastroPessoa extends React.Component{
                     mensagemErro("Cadastro não realizado");
                 });
             }else{
+                this.state.pessoa.enderecos = [];
                 this.state.pessoa.enderecos.push(this.state.endereco);
+                console.log(this.state.pessoa);
                 this.service.atualizar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro atualizado com sucesso!");
                     this.props.history.push('/home')    
@@ -161,7 +166,7 @@ class CadastroPessoa extends React.Component{
                                 name="nascimento"
                                 onChange={ e => this.setState({pessoa:{
                                         ...this.state.pessoa,
-                                        nascimento : format(parseISO(e.target.value), "dd/MM/yyyy")
+                                        nascimento : e.target.value
                                     }})}
                                 />            
                             </FormGroup>
@@ -184,7 +189,7 @@ class CadastroPessoa extends React.Component{
                                     name="contatos[]" placeholder="email@email.com"
                                     onBlur={ e => this.state.pessoa.contatos.push({
                                         tipo: 'email',
-                                        email : e.target.value
+                                        contato : e.target.value
                                     })}
                                     onChange={e => this.setState({email:e.target.value})}
                                     />                 

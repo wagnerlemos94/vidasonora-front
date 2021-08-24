@@ -50,7 +50,7 @@ class ListaPessoa extends React.Component{
           LocalStorageService.adicionarItem('_usuario_edit', state);
           this.props.history.push('/cadastro-pessoa');
         }).catch(error => {
-            console.log(error.data.response);
+            console.log(error);
         });
     }
 
