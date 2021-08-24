@@ -21,20 +21,24 @@ class ListaPessoa extends React.Component{
     editar = (event) => {
         const id = event.target.id
         this.service.buscarPessoa(id).then(response => {
-          const state = new Object;
+          const state = new Object();
           state.pessoa = response.data;
           state.pessoa.nascimento = this.formartarData(response.data.nascimento);
           state.titulo = 'Editar Cliente';
           state.pessoa.contatos.forEach(contato => {
-            if(contato.tipo == 'celular'){
+            if(contato.tipo === 'celular'){
+              state.idCelular = contato.id;
               state.celular = contato.contato;
-            }else if(contato.tipo == 'email'){
+            }else if(contato.tipo === 'email'){
+              state.idEmail = contato.id;
               state.email = contato.contato;
               }
           });
+          state.pessoa.contatos = [];
           state.pessoa.enderecos.forEach(endereco => {
             if(endereco){
               state.endereco = {
+                id : endereco.id,
                 cep : endereco.cep,
                 bairro : endereco.bairro,
                 rua : endereco.rua,
@@ -74,7 +78,7 @@ class ListaPessoa extends React.Component{
             });
             this.setState({});
         }).catch(error => {
-            console.log(error.response.data);
+            console.log(error);
         });
     }
 

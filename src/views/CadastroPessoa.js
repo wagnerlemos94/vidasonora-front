@@ -44,7 +44,9 @@ class CadastroPessoa extends React.Component{
             estado:'',
             complemento: ''
         },
+        idCelular:null,
         celular:'',
+        idEmail:null,
         email:'',
         titulo:"Cadastro de Cliente"
     }
@@ -58,8 +60,10 @@ class CadastroPessoa extends React.Component{
                 celular:usuarioEdit.celular,
                 email:usuarioEdit.email,
                 titulo:usuarioEdit.titulo,
+                idCelular:usuarioEdit.idCelular,
+                idEmail:usuarioEdit.idEmail
             });
-        }        
+        }       
     }
 
     validarFormulario = (event) => { 
@@ -72,21 +76,23 @@ class CadastroPessoa extends React.Component{
         const endereco = this.state.endereco;
         event.target.className += " was-validated";
         Object.values(this.state.pessoa).map((valor,index) => {
-            if(valor == "" && typeof(valor) != "object"){
+            if(valor === "" && typeof(valor) != "object"){
                 validado = false;
             }
+            return validado;    
         });
         this.state.pessoa.contatos.forEach((contato) => {
-            if(contato.tipo == "email"){
+            if(contato.tipo === "email"){
                 const email = contato.contato;
                 const validarEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/);
                 validado = validarEmail;
             }
         });
         Object.values(endereco).map((valor,index) => {
-            if(valor == ""){
+            if(valor === ""){
                 validado = false;
             }
+            return validado;
         });
 
         return validado;
@@ -97,21 +103,27 @@ class CadastroPessoa extends React.Component{
         const result = this.validarFormulario(event);
         if(result){
             if(!this.state.pessoa.id){
-                this.state.pessoa.enderecos = [];
                 this.state.pessoa.enderecos.push(this.state.endereco);
                 this.service.salvar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro realizado com sucesso!");
-                    this.props.history.push('/home')    
+                    this.props.history.push('/lista-pessoa');
                 }).catch(error => {
                     mensagemErro("Cadastro não realizado");
                 });
             }else{
-                this.state.pessoa.enderecos = [];
                 this.state.pessoa.enderecos.push(this.state.endereco);
+                this.state.pessoa.contatos.forEach((contato) => {
+                    if(contato.tipo === "email"){
+                        console.log(contato);
+                        // contato.id = this.state.idEmail;
+                    }else if(contato.tipo === "celular"){
+                        // contato.id = this.state.idCelular;
+                    }
+                });
                 console.log(this.state.pessoa);
                 this.service.atualizar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro atualizado com sucesso!");
-                    this.props.history.push('/home')    
+                    this.props.history.push('/lista-pessoa'); 
                 }).catch(error => {
                     mensagemErro("Cadastro não realizado");
                 });
@@ -176,6 +188,7 @@ class CadastroPessoa extends React.Component{
                                 <InputMask value={this.state.celular} mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
                                     name="contatos[]" placeholder="(00) 0 0000-0000"
                                     onBlur={ e => this.state.pessoa.contatos.push({
+                                        id: this.state.idCelular,
                                         tipo: 'celular',
                                         contato : e.target.value.replace(/[^\d]+/g,'')
                                     })}
@@ -188,6 +201,7 @@ class CadastroPessoa extends React.Component{
                                 <input value={this.state.email} className="form-control mt-2 mb-2" type="email" id="email" required
                                     name="contatos[]" placeholder="email@email.com"
                                     onBlur={ e => this.state.pessoa.contatos.push({
+                                        id:this.state.idEmail,
                                         tipo: 'email',
                                         contato : e.target.value
                                     })}
