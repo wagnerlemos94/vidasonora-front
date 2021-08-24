@@ -12,8 +12,8 @@ import InputMask from "react-input-mask";
 import { parseISO, format, } from 'date-fns';
 
 import LocalStorageService from '../app/service/localStorageService';
-  
 
+import { cpf } from 'cpf-cnpj-validator'; 
 
 
 class CadastroPessoa extends React.Component{
@@ -66,9 +66,21 @@ class CadastroPessoa extends React.Component{
         }       
     }
 
+    validarCpf = () => {
+        let validado = true;
+        if(!cpf.isValid(this.state.pessoa.cpf)){
+            mensagemErro("CPF Inválido");
+        }else{
+            mensagemSucesso("CPF Válido");            
+            validado = false;
+        }
+        return validado;
+    }
+
     validarFormulario = (event) => { 
         event.preventDefault();
         let validado = true;
+        
         let nascimento = this.state.pessoa.nascimento;
         nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
         this.state.pessoa.nascimento = nascimento;
@@ -158,6 +170,7 @@ class CadastroPessoa extends React.Component{
                                     ...this.state.pessoa,
                                     cpf : e.target.value.replace(/[^\d]+/g,'')
                                 }})}
+                                onBlur={this.validarCpf}
                                 />               
                             </FormGroup>
                         </div>               
