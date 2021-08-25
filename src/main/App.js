@@ -11,8 +11,13 @@ import'mdbreact/dist/css/mdb.css';
 
 import '../custom.css';
 import 'toastr/build/toastr.css';
+import ValidarUsuario from '../app/service/ValidarUsuario';
 
 class App extends React.Component {
+
+  componentDidMount(){
+    ValidarUsuario.usuarioLogado();
+  }
 
   render(){
 

@@ -2,9 +2,8 @@ import React from 'react';
 import Card from '../components/Card';
 import DataTable from '../components/dataTables/DataTable';
 import LocalStorageService from '../app/service/localStorageService';
-
+import ValidarUsuario from '../app/service/ValidarUsuario';
 import PessoaService from '../app/service/PessoaService';
-
 import { MDBIcon } from 'mdbreact';
 
 class ListaPessoa extends React.Component{
@@ -16,6 +15,22 @@ class ListaPessoa extends React.Component{
     constructor(){
         super();
         this.service = new PessoaService();
+    }
+
+    componentDidMount(){
+      ValidarUsuario.usuarioLogado();
+      if(ValidarUsuario.usuarioLogado()){
+        this.service.buscarTodos().then(response => {
+            this.setState({pessoas:response.data});     
+            this.state.pessoas.forEach(pessoa => {
+                pessoa.edit = <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit" /></a>
+                pessoa.excluir = 'Excluir'
+            });
+            this.setState({});
+        }).catch(error => {
+            console.log(error);
+        });
+      }
     }
 
     editar = (event) => {
@@ -67,19 +82,6 @@ class ListaPessoa extends React.Component{
       data = `${ano}-${mes}-${dia}`;
       
       return data;
-    }
-
-    componentDidMount(){
-        this.service.buscarTodos().then(response => {
-            this.setState({pessoas:response.data});     
-            this.state.pessoas.forEach(pessoa => {
-                pessoa.edit = <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit" /></a>
-                pessoa.excluir = 'Excluir'
-            });
-            this.setState({});
-        }).catch(error => {
-            console.log(error);
-        });
     }
 
     novoCadastro = () => {

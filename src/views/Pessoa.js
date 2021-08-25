@@ -1,22 +1,17 @@
 import React from 'react';
 import Card from '../components/Card';
 import FormGroup from '../components/Form-group';
-
 import PessoaService from '../app/service/PessoaService';
 import ViaCep from 'react-via-cep';
-
 import { mensagemErro, mensagemSucesso } from '../components/toastr';
-
 import InputMask from "react-input-mask";
-
 import { parseISO, format, } from 'date-fns';
-
 import LocalStorageService from '../app/service/localStorageService';
-
+import ValidarUsuario from '../app/service/ValidarUsuario';
 import { cpf } from 'cpf-cnpj-validator'; 
 
 
-class CadastroPessoa extends React.Component{
+class Pessoa extends React.Component{
 
     constructor(){
         super();
@@ -52,6 +47,7 @@ class CadastroPessoa extends React.Component{
     }
 
     componentDidMount(){
+        ValidarUsuario.usuarioLogado();
         const usuarioEdit = LocalStorageService.obterItem("_usuario_edit");
         if(usuarioEdit){    
             this.setState({
@@ -345,4 +341,4 @@ class CadastroPessoa extends React.Component{
 }
 
 
-export default CadastroPessoa;
+export default Pessoa;

@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import FormGroup from '../components/Form-group';
 import { withRouter } from 'react-router-dom';
 import UsuarioSerice from '../app/service/usuarioService';
-import LocalStorageService from '../app/service/localStorageService';
+import ValidarUsuario from '../app/service/ValidarUsuario';
 import { mensagemErro } from '../components/toastr';
 
 import {MDBInput } from 'mdbreact';
@@ -27,8 +27,7 @@ class Login extends React.Component{
             email: this.state.email,
             senha: this.state.senha
         }).then(response => {
-            LocalStorageService.adicionarItem('_usuario_logado', response.data);
-            this.props.history.push('/home')
+            ValidarUsuario.login(response.data);
         }).catch(erro => {
             mensagemErro(erro.response.data);
         });
