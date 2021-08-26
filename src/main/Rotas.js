@@ -5,6 +5,7 @@ import Login from '../views/Login';
 import CadastroUsuario from '../views/CadastroUsuario';
 import Pessoa from '../views/Pessoa';
 import ListaPessoa from '../views/ListaPessoa';
+import Prontuario from '../views/Prontuario';
 
 import { Route, Switch, HashRouter} from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function Rotas(){
                 <Route path="/cadastro-usuarios" component={CadastroUsuario} />
                 <Route path="/cadastro-pessoa" component={Pessoa} />
                 <Route path="/lista-pessoa" component={ListaPessoa} />
+                <Route path="/prontuario" component={Prontuario} />
             </Switch>
         </HashRouter>
     );
