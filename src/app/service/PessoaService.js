@@ -17,6 +17,10 @@ class PessoaService extends ApiService{
         return this.get(`/`);
     }
 
+    buscarPessoasIdNome(){
+        return this.get(`/prontuario`);
+    }
+
     atualizar(pessoa){
         return this.put(`/${pessoa.id}`, pessoa);
     }
