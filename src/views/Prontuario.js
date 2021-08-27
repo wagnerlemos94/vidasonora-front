@@ -20,9 +20,7 @@ class Prontuario extends React.Component{
         if(ValidarUsuario.usuarioLogado()){
             this.service.buscarPessoasIdNome().then(response => {
                 const pessoa = response.data;
-                Object.values(response.data).map((pessoa) => {
-                    console.log(pessoa);
-                });
+                this.setState({options:pessoa});
             }).catch(erro => {
                 console.log(erro);
             });
