@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
-import FormGroup from '../components/Form-group';
+import FormGroup from '../components/FormGroup';
 import { withRouter } from 'react-router-dom';
 import UsuarioSerice from '../app/service/usuarioService';
 import ValidarUsuario from '../app/service/ValidarUsuario';

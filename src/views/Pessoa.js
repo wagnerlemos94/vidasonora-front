@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
-import FormGroup from '../components/Form-group';
+import FormGroup from '../components/FormGroup';
 import PessoaService from '../app/service/PessoaService';
 import ViaCep from 'react-via-cep';
 import { mensagemErro, mensagemSucesso } from '../components/toastr';

@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import Select from 'react-select';
 import PessoaService from '../app/service/PessoaService';
 import ValidarUsuario from '../app/service/ValidarUsuario';
+import AnamnesePac from '../components/AnamnesePac';
 
 class Prontuario extends React.Component{
     
@@ -12,7 +13,7 @@ class Prontuario extends React.Component{
     }
 
     state = {
-        titulo:'Cadastro de Prontuário',
+        titulo:'Prontuário',
         options:[]
     }
     
@@ -31,6 +32,7 @@ class Prontuario extends React.Component{
         return(
             <Card title={this.state.titulo}>
                   <Select options={this.state.options} />
+                  <AnamnesePac />
             </Card>
         );
     }
