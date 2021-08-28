@@ -59,6 +59,202 @@ class AnamnesePac extends React.Component{
                         </FormGroup>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-4">
+                        <Card title="Queixas:">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Default radio
+                                </label>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-4">
+                        <Card title="Queixas:">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="prurido" />
+                                <label class="form-check-label" for="prurido">
+                                    Prurido
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otorreia" />
+                                <label class="form-check-label" for="otorreia">
+                                    Otorreia
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otite" />
+                                <label class="form-check-label" for="otite">
+                                    Otite
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="tonturaVertigem" />
+                                <label class="form-check-label" for="tonturaVertigem">
+                                    Tontura/vertigem
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="perfuracaoMembranaTimpanica" />
+                                <label class="form-check-label" for="perfuracaoMembranaTimpanica">
+                                    Perfuração membrana timpânica
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="desconfortoSonsIntensos" />
+                                <label class="form-check-label" for="desconfortoSonsIntensos">
+                                    Desconforto sons intensos
+                                </label>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-4">
+                        <Card title="Queixas:">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="prurido" />
+                                <label class="form-check-label" for="prurido">
+                                    Prurido
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otorreia" />
+                                <label class="form-check-label" for="otorreia">
+                                    Otorreia
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otite" />
+                                <label class="form-check-label" for="otite">
+                                    Otite
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="tonturaVertigem" />
+                                <label class="form-check-label" for="tonturaVertigem">
+                                    Tontura/vertigem
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="perfuracaoMembranaTimpanica" />
+                                <label class="form-check-label" for="perfuracaoMembranaTimpanica">
+                                    Perfuração membrana timpânica
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="desconfortoSonsIntensos" />
+                                <label class="form-check-label" for="desconfortoSonsIntensos">
+                                    Desconforto sons intensos
+                                </label>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-4">
+                        <Card title="Comobirdades">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="hipertensao" />
+                                <label class="form-check-label" for="hipertensao">
+                                    Hipertensão
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="diabetes" />
+                                <label class="form-check-label" for="diabetes">
+                                    Diabetes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="colesterolAlto" />
+                                <label class="form-check-label" for="colesterolAlto">
+                                    Colesterol alto
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="doencasHormonais" />
+                                <label class="form-check-label" for="doencasHormonais">
+                                    Doenças hormonais
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="doencasMetabolicas" />
+                                <label class="form-check-label" for="doencasMetabolicas">
+                                    Doenças metabólicas
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="doencasInfecciosas" />
+                                <label class="form-check-label" for="doencasInfecciosas">
+                                    Doenças infecciosas
+                                </label>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="col-4">
+                        <Card title="Queixas:">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="prurido" />
+                                <label class="form-check-label" for="prurido">
+                                    Prurido
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otorreia" />
+                                <label class="form-check-label" for="otorreia">
+                                    Otorreia
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="otite" />
+                                <label class="form-check-label" for="otite">
+                                    Otite
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="tonturaVertigem" />
+                                <label class="form-check-label" for="tonturaVertigem">
+                                    Tontura/vertigem
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="perfuracaoMembranaTimpanica" />
+                                <label class="form-check-label" for="perfuracaoMembranaTimpanica">
+                                    Perfuração membrana timpânica
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="desconfortoSonsIntensos" />
+                                <label class="form-check-label" for="desconfortoSonsIntensos">
+                                    Desconforto sons intensos
+                                </label>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
             </Card>
         );
     }
