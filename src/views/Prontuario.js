@@ -14,7 +14,8 @@ class Prontuario extends React.Component{
 
     state = {
         titulo:'Prontuário',
-        options:[]
+        options:[],
+        paciente:"sssssssss"
     }
     
     componentDidMount(){
@@ -27,12 +28,18 @@ class Prontuario extends React.Component{
             });
         }
     }
+    salvar = () => {
+        console.log(this.state);
+    }
 
     render(){
         return(
             <Card title={this.state.titulo}>
-                  <Select options={this.state.options} />
-                  <Anamnese />
+                  <Select options={this.state.options}
+                    onChange={e => this.setState({paciente:e})}
+                  />
+                  <Anamnese paciente={this.state.paciente}/>
+                  <button className="btn btn-success" onClick={this.salvar}>Salvar</button>
             </Card>
         );
     }

@@ -43,13 +43,14 @@ class Anamnese extends React.Component{
 
     render(){
         return(
+            <div prontuario={this.state.prontuario.paciente = this.props.paciente} >
             <Card title={this.state.titulo}>
                 <FormGroup htmlForm="nomeMedico" label="Encaminhado por :">
                     <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
                         value={this.state.prontuario.nomeMedico}
                        onChange={e => this.setState({prontuario:{
-                            ...this.state.prontuario,
-                            nomeMedico: e.target.value
+                           ...this.state.prontuario,
+                           nomeMedico: e.target.value
                         }})}
                         required
                     />
@@ -144,8 +145,8 @@ class Anamnese extends React.Component{
                                 <input className="form-check-input" type="checkbox" value="" id="colesterolAlto" 
                                    value="SIM"
                                    onChange={e => this.setState({comorbidades:{
-                                        ...this.state.comorbidades,
-                                        colesterolAlto: e.target.value
+                                       ...this.state.comorbidades,
+                                       colesterolAlto: e.target.value
                                     }})}
                                 />
                                 <label className="form-check-label" htmlFor="colesterolAlto">
@@ -269,6 +270,7 @@ class Anamnese extends React.Component{
                 </div>
                 <button className="btn btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
+            </div>
         );
     }
 }
