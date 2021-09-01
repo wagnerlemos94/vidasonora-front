@@ -4,12 +4,6 @@ import Anamnese from './Anamnese';
 class AnamnesePac extends React.Component{
 
     state = {
-        titulo:"Anamnese PAC",
-        prontuario:{
-            nomeMedico:"",
-            preferenciaManual:"",
-            escolaridade:""
-        }
     }
 
     render(){

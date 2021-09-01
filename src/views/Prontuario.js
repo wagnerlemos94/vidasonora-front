@@ -17,7 +17,7 @@ class Prontuario extends React.Component{
         options:[],
         anamnese:{
             paciente:{},
-            nomeMedico:"nomeMedico",
+            nomeMedico:"",
             preferenciaManual:"",
             escolaridade:"",
             historicoPerdaAuditiva:"",
@@ -70,7 +70,7 @@ class Prontuario extends React.Component{
                     }})}
                   />
                   <AnamnesePac anamnese={this.state.anamnese}/>
-                  <button className="btn btn-primary" onClick={this.salvar}>Salvar</button>
+                  <button className="btn btn-md btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
         );
     }

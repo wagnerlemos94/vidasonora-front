@@ -6,8 +6,7 @@ import AnamnesePacRadioButton from './AnamnesePacRadioButton';
 
 class Anamnese extends React.Component{
     
-    state = {
-        ...this.props.anamnese
+    state = {      
     }
     render(){
         return(
@@ -15,7 +14,6 @@ class Anamnese extends React.Component{
             <Card title={this.state.titulo}>
                 <FormGroup htmlForm="nomeMedico" label="Encaminhado por :">
                     <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
-                        // value={this.state.anamnese.nomeMedico}
                         onChange={e => this.props.anamnese.nomeMedico = e.target.value}
                         required
                     />
@@ -25,7 +23,7 @@ class Anamnese extends React.Component{
                         <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
                             <select className="form-control" defaultValue=""
                                 onChange={e => this.props.anamnese.preferenciaManual = e.target.value}
-                                 required
+                                required
                             >
                                 <option value="" disabled>Selecione...</option>
                                 <option value="DESTRA">DESTRA</option>
