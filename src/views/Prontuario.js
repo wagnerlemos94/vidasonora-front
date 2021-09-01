@@ -15,7 +15,32 @@ class Prontuario extends React.Component{
     state = {
         titulo:'Prontuário',
         options:[],
-        paciente:"sssssssss"
+        titulo:"Anamnese",
+        prontuario:{
+            paciente:{},
+            nomeMedico:"",
+            preferenciaManual:"",
+            escolaridade:"",
+            historicoPerdaAuditiva:"",
+            usoAASI:"",
+            zumbido:"",
+            comorbidades:{
+                hipertensao:"",
+                diabetes:"",
+                colesterolAlto:"",
+                doencasHormonais:"",
+                doencasMetabolicas:"",
+                doencasInfecciosas:"",
+            },
+            queixas:{
+                prurido:"",
+                otorreia:"",
+                otite:"",
+                tonturaVertigem:"",
+                perfuracaoMembranaTimpanica:"",
+                desconfortoSonsIntensos:"",
+            }
+        }
     }
     
     componentDidMount(){
@@ -29,17 +54,21 @@ class Prontuario extends React.Component{
         }
     }
     salvar = () => {
-        console.log(this.state);
+        const prontuario = this.state.prontuario;
+        console.log(prontuario);
     }
 
     render(){
         return(
             <Card title={this.state.titulo}>
                   <Select options={this.state.options}
-                    onChange={e => this.setState({paciente:e})}
+                    onChange={e => this.setState({prontuario:{
+                        ...this.state.prontuario,
+                        paciente:e
+                    }})}
                   />
-                  <Anamnese paciente={this.state.paciente}/>
-                  <button className="btn btn-success" onClick={this.salvar}>Salvar</button>
+                  <Anamnese anamnese={this.state}/>
+                  <button className="btn btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
         );
     }

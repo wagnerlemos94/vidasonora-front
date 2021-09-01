@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
-import DataTable from '../components/dataTables/DataTable';
+import DataTable from '../components/DataTable';
 import LocalStorageService from '../app/service/localStorageService';
 import ValidarUsuario from '../app/service/ValidarUsuario';
 import PessoaService from '../app/service/PessoaService';
