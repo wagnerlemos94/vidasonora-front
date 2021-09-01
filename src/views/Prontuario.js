@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import Select from 'react-select';
 import PessoaService from '../app/service/PessoaService';
 import ValidarUsuario from '../app/service/ValidarUsuario';
-import Anamnese from '../components/anamnese/Anamnese';
+import AnamnesePac from '../components/anamnese/AnamnesePac';
 
 class Prontuario extends React.Component{
     
@@ -15,10 +15,9 @@ class Prontuario extends React.Component{
     state = {
         titulo:'Prontuário',
         options:[],
-        titulo:"Anamnese",
-        prontuario:{
+        anamnese:{
             paciente:{},
-            nomeMedico:"",
+            nomeMedico:"nomeMedico",
             preferenciaManual:"",
             escolaridade:"",
             historicoPerdaAuditiva:"",
@@ -54,8 +53,8 @@ class Prontuario extends React.Component{
         }
     }
     salvar = () => {
-        const prontuario = this.state.prontuario;
-        console.log(prontuario);
+        const anamnese = this.state.anamnese;
+        console.log(anamnese);
     }
 
     render(){
@@ -64,10 +63,13 @@ class Prontuario extends React.Component{
                   <Select options={this.state.options}
                     onChange={e => this.setState({prontuario:{
                         ...this.state.prontuario,
-                        paciente:e
+                        paciente:{
+                            id:e.value,
+                            nome:e.label
+                        }
                     }})}
                   />
-                  <Anamnese anamnese={this.state}/>
+                  <AnamnesePac anamnese={this.state.anamnese}/>
                   <button className="btn btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
         );

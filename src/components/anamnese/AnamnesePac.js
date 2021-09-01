@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card';
+import Anamnese from './Anamnese';
 
 class AnamnesePac extends React.Component{
 
@@ -14,9 +14,9 @@ class AnamnesePac extends React.Component{
 
     render(){
         return(
-            <Card title={this.state.titulo}>
-                
-            </Card>
+            <div>
+                <Anamnese anamnese={this.props.anamnese}/>
+            </div>
         );
     }
 }
