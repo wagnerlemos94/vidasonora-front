@@ -61,8 +61,8 @@ class Prontuario extends React.Component{
         return(
             <Card title={this.state.titulo}>
                   <Select options={this.state.options}
-                    onChange={e => this.setState({prontuario:{
-                        ...this.state.prontuario,
+                    onChange={e => this.setState({anamnese:{
+                        ...this.state.anamnese,
                         paciente:{
                             id:e.value,
                             nome:e.label

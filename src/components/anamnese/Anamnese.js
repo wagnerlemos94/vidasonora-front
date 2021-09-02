@@ -11,7 +11,6 @@ class Anamnese extends React.Component{
     render(){
         return(
             <div>
-            <Card title={this.state.titulo}>
                 <FormGroup htmlForm="nomeMedico" label="Encaminhado por :">
                     <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
                         onChange={e => this.props.anamnese.nomeMedico = e.target.value}
@@ -179,7 +178,6 @@ class Anamnese extends React.Component{
                         </Card>
                     </div>
                 </div>
-            </Card>
             </div>
         );
     }
