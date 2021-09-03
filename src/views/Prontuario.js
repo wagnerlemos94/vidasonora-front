@@ -17,6 +17,8 @@ class Prontuario extends React.Component{
         options:[],
         anamnese:{
             paciente:{},
+            principalQueixa:"",
+            encaminhadoPor:"",
             nomeMedico:"",
             preferenciaManual:"",
             escolaridade:"",
@@ -24,20 +26,22 @@ class Prontuario extends React.Component{
             usoAASI:"",
             zumbido:"",
             comorbidades:{
-                hipertensao:"",
-                diabetes:"",
-                colesterolAlto:"",
-                doencasHormonais:"",
                 doencasMetabolicas:"",
                 doencasInfecciosas:"",
+                doencasHormonais:"",
+                colesterolAlto:"",
+                hipertensao:"",
+                diabetes:"",
+                inputOutras:"",
+                outras:"",
             },
             queixas:{
-                prurido:"",
-                otorreia:"",
-                otite:"",
-                tonturaVertigem:"",
                 perfuracaoMembranaTimpanica:"",
                 desconfortoSonsIntensos:"",
+                tonturaVertigem:"",
+                otorreia:"",
+                prurido:"",
+                otite:"",
             }
         }
     }

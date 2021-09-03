@@ -2,23 +2,70 @@ import React from 'react';
 import Card from '../Card';
 import FormGroup from '../FormGroup';
 import AnamnesePacRadioButton from './AnamnesePacRadioButton';
+import Select from 'react-select';
+import Comobirdades from './Comorbidades';
+import Queixas from './Queixas';
 
 
 class Anamnese extends React.Component{
     
-    state = {      
+    state = {     
+        options:[
+            {
+                label:"NENHUM"
+            },
+            {
+                label:"CLÍNICO GERAL"
+            },
+            {
+                label:"OTORRINOLARINGOLOGISTA"
+            },
+            {
+                label:"NEUROLOGISTA"
+            },
+            {
+                label:"PEDIATRA"
+            },
+            {
+                label:"PSICOLOGO"
+            },
+            {
+                label:"PSICOPEDAGOGO"
+            },
+            {
+                label:"NEUROPEDIATRA"
+            },
+            {
+                label:"OUTROS"
+            }
+        ]
     }
     render(){
         return(
             <div>
-                <FormGroup htmlForm="nomeMedico" label="Encaminhado por :">
-                    <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
-                        onChange={e => this.props.anamnese.nomeMedico = e.target.value}
+                <FormGroup htmlForm="princialQueixa" label="Principal Queixa:">
+                    <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
+                        onChange={e => this.props.anamnese.princialQueixa = e.target.label}
                         required
-                    />
+                        />
                 </FormGroup>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-6">
+                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por qual profissional ?">
+                            <Select options={this.state.options}
+                                onChange={e => this.props.anamnese.encaminhadoPor = e.label}
+                                />
+                        </FormGroup>
+                    </div>
+                    <div className="col-6">
+                        <FormGroup htmlForm="nomeMedico" label="Nome Medico:">
+                            <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
+                                onChange={e => this.props.anamnese.nomeMedico = e.target.value}
+                                required
+                                />
+                        </FormGroup>
+                    </div>
+                    <div className="col-6">
                         <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
                             <select className="form-control" defaultValue=""
                                 onChange={e => this.props.anamnese.preferenciaManual = e.target.value}
@@ -30,7 +77,7 @@ class Anamnese extends React.Component{
                             </select>
                         </FormGroup>
                     </div>
-                    <div className="col">
+                    <div className="col-6">
                         <FormGroup htmlForm="escolaridade" label="Escolaridade :">
                             <input type="text" className="form-control" placeholder="Ex: Superior Completo"
                                 onChange={e => this.props.anamnese.escolaridade = e.target.value}
@@ -40,141 +87,31 @@ class Anamnese extends React.Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-4 mb-2">
+                    <div className="col-6">
+                        <Comobirdades comorbidades={this.props.anamnese.comorbidades}/>
+                    </div>
+                    <div className="col-6">
+                        <Queixas queixas={this.props.anamnese.queixas}/>
+                    </div>
+                    <div className="col-4 mt-4">
                         <Card title="Perda auditiva">
                             <AnamnesePacRadioButton name="historicoPerdaAuditiva" id="historicoPerdaAuditiva" valorChekbox={this.props.anamnese.historicoPerdaAuditiva}
                                 onChange={e => this.props.anamnese.historicoPerdaAuditiva = e.target.value}
                               />
                         </Card>
                     </div>
-                    <div className="col-4">
+                    <div className="col-4 mt-4">
                         <Card title="Uso De AASI">
                             <AnamnesePacRadioButton name="usoAASI" id="usoAASI" valorChekbox={this.props.anamnese.usoAASI} 
                                  onChange={e => this.props.anamnese.usoAASI = e.target.value}
                             />
                         </Card>
                     </div>
-                    <div className="col-4">
+                    <div className="col-4 mt-4">
                         <Card title="Zumbido">
                             <AnamnesePacRadioButton name="zumbido" id="zumbido" valorChekbox={this.props.anamnese.zumbido} 
                                  onChange={e => this.props.anamnese.zumbido = e.target.value}
                             />
-                        </Card>
-                    </div>
-                    <div className="col">
-                        <Card title="Comobirdades">
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" id="hipertensao"
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.comorbidades.hipertensao = e.target.value}
-                                    />
-                                <label className="form-check-label" htmlFor="hipertensao">
-                                    Hipertensão
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="diabetes"
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.comorbidades.diabetes = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="diabetes">
-                                    Diabetes
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="colesterolAlto" 
-                                   value="SIM"
-                                   onChange={e => this.props.anamnese.comorbidades.colesterolAlto = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="colesterolAlto">
-                                    Colesterol alto
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="doencasHormonais" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.comorbidades.doencasHormonais = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="doencasHormonais">
-                                    Doenças hormonais
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="doencasMetabolicas" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.comorbidades.doencasMetabolicas = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="doencasMetabolicas">
-                                    Doenças metabólicas
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="doencasInfecciosas" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.comorbidades.doencasInfecciosas = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="doencasInfecciosas">
-                                    Doenças infecciosas
-                                </label>
-                            </div>
-                        </Card>
-                    </div>
-                    <div className="col">
-                        <Card title="Queixas">
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="prurido"
-                                     value="SIM"
-                                     onChange={e => this.props.anamnese.queixas.prurido = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="prurido">
-                                    Prurido
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="otorreia" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.queixas.otorreia = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="otorreia">
-                                    Otorreia
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="otite" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.queixas.otite = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="otite">
-                                    Otite
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="tonturaVertigem" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.queixas.tonturaVertigem = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="tonturaVertigem">
-                                    Tontura/vertigem
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="perfuracaoMembranaTimpanica" 
-                                     value="SIM"
-                                     onChange={e => this.props.anamnese.queixas.perfuracaoMembranaTimpanica = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="perfuracaoMembranaTimpanica">
-                                    Perfuração membrana timpânica
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="desconfortoSonsIntensos" 
-                                    value="SIM"
-                                    onChange={e => this.props.anamnese.queixas.desconfortoSonsIntensos = e.target.value}
-                                />
-                                <label className="form-check-label" htmlFor="desconfortoSonsIntensos">
-                                    Desconforto sons intensos
-                                </label>
-                            </div>
                         </Card>
                     </div>
                 </div>
