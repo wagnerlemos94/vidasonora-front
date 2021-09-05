@@ -43,15 +43,15 @@ class Anamnese extends React.Component{
     render(){
         return(
             <div>
-                <FormGroup htmlForm="princialQueixa" label="Principal Queixa:">
+                <FormGroup htmlForm="principalQueixa" label="Principal Queixa:">
                     <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
-                        onChange={e => this.props.anamnese.princialQueixa = e.target.label}
+                        onChange={e => this.props.anamnese.principalQueixa = e.target.value}
                         required
                         />
                 </FormGroup>
                 <div className="row">
                     <div className="col-6">
-                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por qual profissional ?">
+                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
                             <Select options={this.state.options}
                                 onChange={e => this.props.anamnese.encaminhadoPor = e.label}
                                 />
