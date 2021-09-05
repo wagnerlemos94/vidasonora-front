@@ -35,42 +35,44 @@ class ListaPessoa extends React.Component{
 
     editar = (event) => {
         const id = event.target.id
-        this.service.buscarPessoa(id).then(response => {
-          const state = new Object();
-          state.pessoa = response.data;
-          state.pessoa.nascimento = this.formartarData(response.data.nascimento);
-          state.titulo = 'Editar Cliente';
-          state.pessoa.contatos.forEach(contato => {
-            if(contato.tipo === 'celular'){
-              state.idCelular = contato.id;
-              state.celular = contato.contato;
-            }else if(contato.tipo === 'email'){
-              state.idEmail = contato.id;
-              state.email = contato.contato;
-              }
-          });
-          state.pessoa.contatos = [];
-          state.pessoa.enderecos.forEach(endereco => {
-            if(endereco){
-              state.endereco = {
-                id : endereco.id,
-                cep : endereco.cep,
-                bairro : endereco.bairro,
-                rua : endereco.rua,
-                numero : endereco.numero,
-                cidade : {
-                    nome:endereco.cidade.nome
-                },
-                estado:endereco.cidade.estado.nome,
-                complemento: endereco.complemento
-              }
+    
+        const pessoas = this.state.pessoas;
+        let pessoa = pessoas.filter((pessoa) => pessoa.id == id );
+        pessoa = pessoa.pop(pessoa);
+        
+        const state = new Object();
+        state.pessoa = pessoa;
+        state.pessoa.nascimento = this.formartarData(pessoa.nascimento);
+        state.titulo = 'Editar Cliente';
+        state.pessoa.contatos.forEach(contato => {
+          if(contato.tipo === 'celular'){
+            state.idCelular = contato.id;
+            state.celular = contato.contato;
+          }else if(contato.tipo === 'email'){
+            state.idEmail = contato.id;
+            state.email = contato.contato;
             }
-          });
-          LocalStorageService.adicionarItem('_usuario_edit', state);
-          this.props.history.push('/cadastro-pessoa');
-        }).catch(error => {
-            console.log(error);
         });
+        state.pessoa.contatos = [];
+        state.pessoa.enderecos.forEach(endereco => {
+          if(endereco){
+            state.endereco = {
+              id : endereco.id,
+              cep : endereco.cep,
+              bairro : endereco.bairro,
+              rua : endereco.rua,
+              numero : endereco.numero,
+              cidade : {
+                  nome:endereco.cidade.nome
+              },
+              estado:endereco.cidade.estado.nome,
+              complemento: endereco.complemento
+            }
+          }
+        });
+        LocalStorageService.adicionarItem('_usuario_edit', state);
+        this.props.history.push('/cadastro-pessoa');
+        
     }
 
     formartarData(data){
