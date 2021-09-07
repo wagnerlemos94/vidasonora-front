@@ -26,6 +26,9 @@ class Prontuario extends React.Component{
             usoAASI:"",
             zumbido:"",
             historicoOutraDoenca:"",
+            historicoOutraDoencaInput:"",
+            acompanahmentoMedico:"",
+            acompanahmentoMedicoInput:"",
             comorbidades:{
                 doencasMetabolicas:"",
                 doencasInfecciosas:"",

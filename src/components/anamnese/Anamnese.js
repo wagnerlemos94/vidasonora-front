@@ -13,6 +13,7 @@ class Anamnese extends React.Component{
     
     state = {    
         historicoOutraDoencaInput:0, 
+        acompanahmentoMedicoInput:0,
         options:[
             {
                 label:"NENHUM"
@@ -126,27 +127,28 @@ class Anamnese extends React.Component{
                 <div className="col mt-2">
                     <div className="row">
                         <div className="col">
-                            <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
-                                <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
-                                id="historicoOutraDoenca"htmlForm="historicoOutraDoenca" 
-                                onChange={e => (this.props.anamnese.historicoOutraDoenca = e.target.value,
-                                    this.setState({historicoOutraDoencaInput : e.target.value}))
+                            <FormGroup className="row" htmlForm="acompanahmentoMedico" label="Está em acompanhamento médico?">
+                                <RadioButtonSimNao className="ml-2" name="acompanahmentoMedico" 
+                                id="acompanahmentoMedico"htmlForm="acompanahmentoMedico" 
+                                onChange={e => (this.props.anamnese.acompanahmentoMedico = e.target.value,
+                                    this.setState({acompanahmentoMedicoInput : e.target.value}))
                                 }
                                 />
-                            {this.state.historicoOutraDoencaInput === "1"?(
+                            {this.state.acompanahmentoMedicoInput === "1"?(
                                 <MDBInputGroup
+                                className="col-7"
                                 material
                                 containerClassName="mb-2 mt-0"
-                                hint="Historico de outras Doenças:"
+                                hint="Início e motivo:"
                                 size="sm"
-                                onChange={e => this.props.anamnese.historicoOutraDoencaInput = e.target.value}
+                                onChange={e => this.props.anamnese.acompanahmentoMedicoInput = e.target.value}
                                 />
                                 ):(
-                                    this.props.anamnese.historicoOutraDoencaInput = "")
+                                    this.props.anamnese.acompanahmentoMedicoInput = "")
                                 }
                             </FormGroup>
                         </div>
-                        <div className="col">
+                        <div className="col-4">
                             <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
                                 <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
                                 id="historicoOutraDoenca"htmlForm="historicoOutraDoenca" 
@@ -158,7 +160,7 @@ class Anamnese extends React.Component{
                                 <MDBInputGroup
                                 material
                                 containerClassName="mb-2 mt-0"
-                                hint="Historico de outras Doenças:"
+                                hint="Quais e quando:"
                                 size="sm"
                                 onChange={e => this.props.anamnese.historicoOutraDoencaInput = e.target.value}
                                 />
