@@ -8,11 +8,7 @@ class RadioButtonSimNao extends React.Component{
 
     state = {
         radio1:null,
-        radio2:null,
-        radio3:null,
-        radio1:null,
-        radio4:null,
-        radio5:null,
+        radio2:null
     }
 
     componentDidMount(){

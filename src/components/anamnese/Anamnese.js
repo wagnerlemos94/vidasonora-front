@@ -5,11 +5,14 @@ import AnamnesePacRadioButton from './AnamnesePacRadioButton';
 import Select from 'react-select';
 import Comobirdades from './Comorbidades';
 import Queixas from './Queixas';
+import RadioButtonSimNao from './RadioButtonSimNao';
+import {MDBInputGroup} from 'mdbreact';
 
 
 class Anamnese extends React.Component{
     
-    state = {     
+    state = {    
+        historicoOutraDoencaInput:0, 
         options:[
             {
                 label:"NENHUM"
@@ -40,6 +43,11 @@ class Anamnese extends React.Component{
             }
         ]
     }
+
+    funct = () =>{
+        alert()
+    }
+
     render(){
         return(
             <div>
@@ -113,6 +121,52 @@ class Anamnese extends React.Component{
                                  onChange={e => this.props.anamnese.zumbido = e.target.value}
                             />
                         </Card>
+                    </div>
+                </div>
+                <div className="col mt-2">
+                    <div className="row">
+                        <div className="col">
+                            <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
+                                <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
+                                id="historicoOutraDoenca"htmlForm="historicoOutraDoenca" 
+                                onChange={e => (this.props.anamnese.historicoOutraDoenca = e.target.value,
+                                    this.setState({historicoOutraDoencaInput : e.target.value}))
+                                }
+                                />
+                            {this.state.historicoOutraDoencaInput === "1"?(
+                                <MDBInputGroup
+                                material
+                                containerClassName="mb-2 mt-0"
+                                hint="Historico de outras Doenças:"
+                                size="sm"
+                                onChange={e => this.props.anamnese.historicoOutraDoencaInput = e.target.value}
+                                />
+                                ):(
+                                    this.props.anamnese.historicoOutraDoencaInput = "")
+                                }
+                            </FormGroup>
+                        </div>
+                        <div className="col">
+                            <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
+                                <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
+                                id="historicoOutraDoenca"htmlForm="historicoOutraDoenca" 
+                                onChange={e => (this.props.anamnese.historicoOutraDoenca = e.target.value,
+                                    this.setState({historicoOutraDoencaInput : e.target.value}))
+                                }
+                                />
+                            {this.state.historicoOutraDoencaInput === "1"?(
+                                <MDBInputGroup
+                                material
+                                containerClassName="mb-2 mt-0"
+                                hint="Historico de outras Doenças:"
+                                size="sm"
+                                onChange={e => this.props.anamnese.historicoOutraDoencaInput = e.target.value}
+                                />
+                                ):(
+                                    this.props.anamnese.historicoOutraDoencaInput = "")
+                                }
+                            </FormGroup>
+                        </div>
                     </div>
                 </div>
             </div>

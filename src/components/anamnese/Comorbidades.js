@@ -62,9 +62,10 @@ class Comobirdades extends React.Component{
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="outras" 
                         onChange={
-                            e => this.props.comorbidades.outras = e.target.checked
+                            e => (this.props.comorbidades.outras = e.target.checked,
+                                this.setState({comborbidadesOutras:!e.target.checked})  
+                                )
                         }
-                        onClick={ e => this.setState({comborbidadesOutras:!e.target.checked})}
                     />
                     <label className="form-check-label" htmlFor="outras">
                         outras
