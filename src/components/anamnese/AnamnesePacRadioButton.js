@@ -37,7 +37,7 @@ class AnamnesePacRadioButton extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className={this.props.className}>
                 <div className="form-check">
                     <input className="form-check-input" type="radio" name={this.props.name} id={this.props.id+'1'} value="1" 
                         checked={this.state.radio1} onChange={this.props.onChange}/>
