@@ -25,10 +25,6 @@ class Prontuario extends React.Component{
             historicoPerdaAuditiva:"",
             usoAASI:"",
             zumbido:"",
-            historicoOutraDoenca:"",
-            historicoOutraDoencaInput:"",
-            acompanahmentoMedico:"",
-            acompanahmentoMedicoInput:"",
             comorbidades:{
                 doencasMetabolicas:"",
                 doencasInfecciosas:"",
@@ -40,14 +36,23 @@ class Prontuario extends React.Component{
                 outras:"",
             },
             queixas:{
-                perfuracaoMembranaTimpanica:"",
-                desconfortoSonsIntensos:"",
-                tonturaVertigem:"",
-                otorreia:"",
-                prurido:"",
-                otite:"",
+                od:{
+                    perfuracaoMembranaTimpanica:"",
+                    plenitudeAuricular:"",
+                    tonturaVertigem:"",
+                    otorreia:"",
+                    prurido:"",
+                    otite:""
+                },
+                oe:{
+                    perfuracaoMembranaTimpanica:"",
+                    plenitudeAuricular:"",
+                    tonturaVertigem:"",
+                    otorreia:"",
+                    prurido:"",
+                    otite:"",}
+                }
             }
-        }
     }
     
     componentDidMount(){
