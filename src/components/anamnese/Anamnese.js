@@ -96,32 +96,35 @@ class Anamnese extends React.Component{
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col">
                         <Comobirdades comorbidades={this.props.anamnese.comorbidades}/>
                     </div>
-                    <div className="col-6">
-                        <Queixas queixas={this.props.anamnese.queixas}/>
-                    </div>
-                    <div className="col-4 mt-4">
+                     <div className="col">
                         <Card title="Perda auditiva">
-                            <AnamnesePacRadioButton name="historicoPerdaAuditiva" id="historicoPerdaAuditiva" valorChekbox={this.props.anamnese.historicoPerdaAuditiva}
+                            <AnamnesePacRadioButton className="mb-5" name="historicoPerdaAuditiva" id="historicoPerdaAuditiva" valorChekbox={this.props.anamnese.historicoPerdaAuditiva}
                                 onChange={e => this.props.anamnese.historicoPerdaAuditiva = e.target.value}
                               />
                         </Card>
                     </div>
-                    <div className="col-4 mt-4">
+                    <div className="col">
                         <Card title="Uso De AASI">
-                            <AnamnesePacRadioButton name="usoAASI" id="usoAASI" valorChekbox={this.props.anamnese.usoAASI} 
+                            <AnamnesePacRadioButton className="mb-5" name="usoAASI" id="usoAASI" valorChekbox={this.props.anamnese.usoAASI} 
                                  onChange={e => this.props.anamnese.usoAASI = e.target.value}
                             />
                         </Card>
                     </div>
-                    <div className="col-4 mt-4">
+                    <div className="col">
                         <Card title="Zumbido">
-                            <AnamnesePacRadioButton name="zumbido" id="zumbido" valorChekbox={this.props.anamnese.zumbido} 
+                            <AnamnesePacRadioButton className="mb-5" name="zumbido" id="zumbido" valorChekbox={this.props.anamnese.zumbido} 
                                  onChange={e => this.props.anamnese.zumbido = e.target.value}
                             />
                         </Card>
+                    </div>
+                    <div className="col-6 mt-4">
+                        <Queixas titulo="QUEIXAS AUDITIVAS OD" queixas={this.props.anamnese.queixas.od}/>
+                    </div>
+                    <div className="col-6 mt-4">
+                        <Queixas titulo="QUEIXAS AUDITIVAS OE" queixas={this.props.anamnese.queixas.oe}/>
                     </div>
                 </div>
                 <div className="col mt-2">
