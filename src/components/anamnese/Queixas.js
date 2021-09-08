@@ -1,10 +1,11 @@
 import React from 'react';
 import Card from '../Card';
+import Tontura from './Tontuara';
 
 class Queixas extends React.Component{
     render(){
         return(
-            <Card title="Queixas">
+            <Card title={this.props.titulo}>
                 <div className="mb-4"> 
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="perfuracaoMembranaTimpanica" 
@@ -15,11 +16,11 @@ class Queixas extends React.Component{
                         </label>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="desconfortoSonsIntensos" 
-                            onChange={e => this.props.queixas.desconfortoSonsIntensos = e.target.checked}
+                        <input className="form-check-input" type="checkbox" id="plenitudeAuricular" 
+                            onChange={e => this.props.queixas.plenitudeAuricular = e.target.checked}
                         />
-                        <label className="form-check-label" htmlFor="desconfortoSonsIntensos">
-                            Desconforto sons intensos
+                        <label className="form-check-label" htmlFor="plenitudeAuricular">
+                            Plenitude auricular
                         </label>
                     </div>
                     <div className="form-check">
@@ -55,6 +56,7 @@ class Queixas extends React.Component{
                         </label>
                     </div>
                 </div>
+                <Tontura />
             </Card>
         );
     }
