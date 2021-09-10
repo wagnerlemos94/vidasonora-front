@@ -3,6 +3,11 @@ import Card from '../Card';
 import Tontura from './Tontuara';
 
 class Queixas extends React.Component{
+
+    state = {
+        tontura:false
+    }
+
     render(){
         return(
             <Card title={this.props.titulo}>
@@ -25,7 +30,10 @@ class Queixas extends React.Component{
                     </div>
                     <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="tonturaVertigem" 
-                            onChange={e => this.props.queixas.tonturaVertigem = e.target.checked}
+                            onChange={
+                                e => (this.props.queixas.tonturaVertigem = e.target.checked,
+                                      this.setState({tontura:e.target.checked}))
+                                }
                         />
                         <label className="form-check-label" htmlFor="tonturaVertigem">
                             Tontura/vertigem
@@ -43,6 +51,7 @@ class Queixas extends React.Component{
                         <input className="form-check-input" type="checkbox" id="prurido"
                             onChange={e => this.props.queixas.prurido = e.target.checked}
                         />
+                        {this.state.tontura}
                         <label className="form-check-label" htmlFor="prurido">
                             Prurido
                         </label>
@@ -56,7 +65,10 @@ class Queixas extends React.Component{
                         </label>
                     </div>
                 </div>
-                <Tontura />
+                {this.state.tontura ? (
+                    <Tontura />
+                ):(false)
+                }
             </Card>
         );
     }
