@@ -66,7 +66,7 @@ class Queixas extends React.Component{
                     </div>
                 </div>
                 {this.state.tontura ? (
-                    <Tontura />
+                    <Tontura queixas={this.props.queixas}/>
                 ):(false)
                 }
             </Card>

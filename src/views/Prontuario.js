@@ -42,7 +42,18 @@ class Prontuario extends React.Component{
                     tonturaVertigem:"",
                     otorreia:"",
                     prurido:"",
-                    otite:""
+                    otite:"",
+                    tontura:{
+                        inicio:"",
+                        intensidade:"",
+                        ocorrencia:"",
+                        duracaoCrise:{
+                            tonturaForaCrise:"",
+                            sensacaoCriseTonturaOcorrer:"",
+                            sensacaoObjetosGiraRedor:"",
+                            sensacaoGirarAmbienteObjetosEstacionados:""
+                        }
+                    }
                 },
                 oe:{
                     perfuracaoMembranaTimpanica:"",
@@ -50,9 +61,67 @@ class Prontuario extends React.Component{
                     tonturaVertigem:"",
                     otorreia:"",
                     prurido:"",
-                    otite:"",}
+                    otite:"",
+                    tontura:{
+                        inicio:"",
+                        intensidade:"",
+                        ocorrencia:"",
+                        duracaoCrise:{
+                            tonturaForaCrise:"",
+                            sensacaoCriseTonturaOcorrer:"",
+                            sensacaoObjetosGiraRedor:"",
+                            sensacaoGirarAmbienteObjetosEstacionados:""
+                        },
+                        surgeOuPiora:{
+                            moviventoCabeca:"",
+                            veiculoMovimento:"",
+                            olharLado:"",
+                            determinadaPosicaoCorpo:""
+                        },
+                        sensacao:{
+                            sensacaoDesmaiar:"",
+                            sensacaoCabecaOca:"",
+                            sensacaoFlutuacao:"",
+                            desequilibioMarcha:"",
+                            perdaConciencia:"",
+                            pressaoCabeca:"",
+                            instabilidade:"",
+                            palpitacoes:"",
+                            oscilacao:"",
+                            sudorese:"",
+                            nauseas:"",
+                            quedas:"",
+                            palidez:"",
+                            vomito:"",
+                            outros:""
+
+                        },
+                        surgerePiora:{
+                            lugaresAltos:"",
+                            lugaresAmplos:"",
+                            supermercados:"",
+                            comerciais:"",
+                            filas:"",
+                        },
+                        tendenciaQueda:{
+                            direita:"",
+                            esquerda:"",
+                            frente:"",
+                            tras:""
+                        },
+                        devioMarcha:{
+                            direita:"",
+                            esquerda:""
+                        },
+                        fatoresDesencadeantes:"",
+                        fatoresAgravantes:"",
+                        fatoresMelhora:"",
+                        sintomasConcomitantes:"",
+                        outrosDados:""
+                    }
                 }
             }
+        }
     }
     
     componentDidMount(){
