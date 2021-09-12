@@ -183,123 +183,165 @@ class Tontura extends React.Component{
                     </div>
                 </FormGroup>
                 <FormGroup label="Sensação:">
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="sensacaoDesmaiar" 
-                            onChange={e => this.props.queixas.tontura.sensacao.sensacaoDesmaiar = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="sensacaoDesmaiar">
-                            Sensação de que vai desmaiar
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="sensacaoDesmaiar" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.sensacaoDesmaiar = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="sensacaoDesmaiar">
+                                    Sensação de que vai desmaiar
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="sensacaoFlutuacao" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.sensacaoFlutuacao = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="sensacaoFlutuacao">
+                                    Sensação de Flutuação
+                                </label>
+                            </div>
+                        </div>                       
                     </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="sensacaoCabecaOca" 
-                            onChange={e => this.props.queixas.tontura.sensacao.sensacaoCabecaOca = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="sensacaoCabecaOca">
-                            Sensação de cabeça oca
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="sensacaoCabecaOca" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.sensacaoCabecaOca = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="sensacaoCabecaOca">
+                                    Sensação de cabeça oca
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="desequilibioMarcha" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.desequilibioMarcha = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="desequilibioMarcha">
+                                    Desequilíbrio à marcha
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="sensacaoFlutuacao" 
-                            onChange={e => this.props.queixas.tontura.sensacao.sensacaoFlutuacao = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="sensacaoFlutuacao">
-                            Sensação de Flutuação
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="perdaConciencia" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.perdaConciencia = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="perdaConciencia">
+                                    Perda da consciência
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="pressaoCabeca" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.pressaoCabeca = e.target.checked}
+                                    />
+                                <label className="form-check-label" htmlFor="pressaoCabeca">
+                                    Pressão na cabeça
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="desequilibioMarcha" 
-                            onChange={e => this.props.queixas.tontura.sensacao.desequilibioMarcha = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="desequilibioMarcha">
-                            Desequilíbrio à marcha
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="instabilidade" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.instabilidade = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="instabilidade">
+                                    Instabilidade
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="palpitacoes" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.palpitacoes = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="palpitacoes">
+                                    Palpitações
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="perdaConciencia" 
-                            onChange={e => this.props.queixas.tontura.sensacao.perdaConciencia = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="perdaConciencia">
-                            Perda da consciência
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="oscilacao" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.oscilacao = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="oscilacao">
+                                    Oscilação
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="sudorese" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.sudorese = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="sudorese">
+                                    Sudorese
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="pressaoCabeca" 
-                            onChange={e => this.props.queixas.tontura.sensacao.pressaoCabeca = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="pressaoCabeca">
-                            Pressão na cabeça
-                        </label>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="nauseas" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.nauseas = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="nauseas">
+                                    Náuseas
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="quedas" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.quedas = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="quedas">
+                                    Quedas
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="palidez" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.palidez = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="palidez">
+                                    Palidez
+                                </label>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="form-check">
+                                <input className="form-check-input" type="checkbox" id="vomito" 
+                                    onChange={e => this.props.queixas.tontura.sensacao.vomito = e.target.checked}
+                                />
+                                <label className="form-check-label" htmlFor="vomito">
+                                    Vômito
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="instabilidade" 
-                            onChange={e => this.props.queixas.tontura.sensacao.instabilidade = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="instabilidade">
-                            Instabilidade
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="palpitacoes" 
-                            onChange={e => this.props.queixas.tontura.sensacao.palpitacoes = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="palpitacoes">
-                            Palpitações
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="oscilacao" 
-                            onChange={e => this.props.queixas.tontura.sensacao.oscilacao = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="oscilacao">
-                            Oscilação
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="sudorese" 
-                            onChange={e => this.props.queixas.tontura.sensacao.sudorese = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="sudorese">
-                            Sudorese
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="nauseas" 
-                            onChange={e => this.props.queixas.tontura.sensacao.nauseas = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="nauseas">
-                            Náuseas
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="quedas" 
-                            onChange={e => this.props.queixas.tontura.sensacao.quedas = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="quedas">
-                            Quedas
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="palidez" 
-                            onChange={e => this.props.queixas.tontura.sensacao.palidez = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="palidez">
-                            Palidez
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
-                        <input className="form-check-input" type="checkbox" id="vomito" 
-                            onChange={e => this.props.queixas.tontura.sensacao.vomito = e.target.checked}
-                        />
-                        <label className="form-check-label mr-2" htmlFor="vomito">
-                            Vômito
-                        </label>
-                    </div>
-                    <div className="form-check mr-2">
                         <input className="form-check-input" type="checkbox" id="outros" 
                             onChange={e => this.props.queixas.tontura.sensacao.outros = e.target.checked}
                         />
-                        <label className="form-check-label mr-2" htmlFor="outros">
+                        <label className="form-check-label" htmlFor="outros">
                             Outros
                         </label>
                     </div>    
