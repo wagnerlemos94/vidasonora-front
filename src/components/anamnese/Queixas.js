@@ -5,12 +5,23 @@ import Tontura from './Tontuara';
 class Queixas extends React.Component{
 
     state = {
-        tontura:false
+        tontura:false,
+        css:"col mt-4"
+    }
+
+    tonturaAcoes = (e) =>{
+        this.props.queixas.tonturaVertigem = e.target.checked;
+        this.setState({tontura:e.target.checked});
+        if(e.target.checked){
+            this.setState({css:""});
+        }else{
+            this.setState({css:"col mt-4"});
+        }
     }
 
     render(){
         return(
-            <div>
+            <div className={this.state.css}>
                 <Card title={this.props.titulo}>
                     <div className="mb-4"> 
                         <div className="form-check">
@@ -32,8 +43,7 @@ class Queixas extends React.Component{
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="tonturaVertigem" 
                                 onChange={
-                                    e => (this.props.queixas.tonturaVertigem = e.target.checked,
-                                        this.setState({tontura:e.target.checked}))
+                                    e => this.tonturaAcoes(e)
                                     }
                             />
                             <label className="form-check-label" htmlFor="tonturaVertigem">
