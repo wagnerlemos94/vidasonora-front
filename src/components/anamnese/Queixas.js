@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from '../Card';
+import FormGroup from '../FormGroup';
+import RadioButtonSimNao from './RadioButtonSimNao';
 import Tontura from './Tontuara';
 
 class Queixas extends React.Component{
@@ -13,7 +15,7 @@ class Queixas extends React.Component{
         this.props.queixas.tonturaVertigem = e.target.checked;
         this.setState({tontura:e.target.checked});
         if(e.target.checked){
-            this.setState({css:""});
+            this.setState({css:"mt-4"});
         }else{
             this.setState({css:"col mt-4"});
         }
@@ -74,6 +76,12 @@ class Queixas extends React.Component{
                             <label className="form-check-label" htmlFor="otite">
                                 Otite
                             </label>
+                        </div>
+                        <div className="col">
+                            <FormGroup className="row mb-1" htmlForm="usouAprarelhoAudio" label="Já usou aparelho auditivo? ">
+                                <RadioButtonSimNao className="ml-3" name={this.props.name} id="usouAprarelhoAudio" htmlForm="usouAprarelhoAudio"
+                                 onChange={e => this.props.queixas.usouAparelhoAudio = e.target.value}/>
+                            </FormGroup>
                         </div>
                     </div>
                 </Card>

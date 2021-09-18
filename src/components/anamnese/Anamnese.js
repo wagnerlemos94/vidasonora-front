@@ -122,8 +122,8 @@ class Anamnese extends React.Component{
                     </div>
                 </div>
                 <div className="row">                    
-                    <Queixas titulo="QUEIXAS AUDITIVAS OE" queixas={this.props.anamnese.queixas.oe}/>
-                    <Queixas titulo="QUEIXAS AUDITIVAS OD" queixas={this.props.anamnese.queixas.od}/>
+                    <Queixas titulo="QUEIXAS AUDITIVAS OE" name="OEusouAprarelhoAudio" queixas={this.props.anamnese.queixas.oe}/>
+                    <Queixas titulo="QUEIXAS AUDITIVAS OD" name="ODusouAprarelhoAudio" queixas={this.props.anamnese.queixas.od}/>
                 </div>
                 <div className="col mt-2">
                     <div className="row">
