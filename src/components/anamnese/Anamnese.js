@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 import FormGroup from '../FormGroup';
-import AnamnesePacRadioButton from './AnamnesePacRadioButton';
+import AnamneseRadioButton from './AnamneseRadioButton';
 import Select from 'react-select';
 import Comobirdades from './Comorbidades';
 import Queixas from './Queixas';
@@ -99,31 +99,24 @@ class Anamnese extends React.Component{
                     <div className="col">
                         <Comobirdades comorbidades={this.props.anamnese.comorbidades}/>
                     </div>
-                     <div className="col">
-                        <Card title="Perda auditiva">
-                            <AnamnesePacRadioButton className="mb-5" name="historicoPerdaAuditiva" id="historicoPerdaAuditiva" valorChekbox={this.props.anamnese.historicoPerdaAuditiva}
-                                onChange={e => this.props.anamnese.historicoPerdaAuditiva = e.target.value}
-                              />
-                        </Card>
-                    </div>
                     <div className="col">
                         <Card title="Uso De AASI">
-                            <AnamnesePacRadioButton className="mb-5" name="usoAASI" id="usoAASI" valorChekbox={this.props.anamnese.usoAASI} 
+                            <AnamneseRadioButton className="mb-5" name="usoAASI" id="usoAASI" valorChekbox={this.props.anamnese.usoAASI} 
                                  onChange={e => this.props.anamnese.usoAASI = e.target.value}
                             />
                         </Card>
                     </div>
                     <div className="col">
                         <Card title="Zumbido">
-                            <AnamnesePacRadioButton className="mb-5" name="zumbido" id="zumbido" valorChekbox={this.props.anamnese.zumbido} 
+                            <AnamneseRadioButton className="mb-5" name="zumbido" id="zumbido" valorChekbox={this.props.anamnese.zumbido} 
                                  onChange={e => this.props.anamnese.zumbido = e.target.value}
                             />
                         </Card>
                     </div>
                 </div>
                 <div className="row">                    
-                    <Queixas titulo="QUEIXAS AUDITIVAS OE" name="OEusouAprarelhoAudio" queixas={this.props.anamnese.queixas.oe}/>
-                    <Queixas titulo="QUEIXAS AUDITIVAS OD" name="ODusouAprarelhoAudio" queixas={this.props.anamnese.queixas.od}/>
+                    <Queixas titulo="QUEIXAS AUDITIVAS OE" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/>
+                    <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/>
                 </div>
                 <div className="col mt-2">
                     <div className="row">

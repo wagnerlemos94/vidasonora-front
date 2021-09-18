@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 import FormGroup from '../FormGroup';
+import Aparelho from './Aparelho';
 import RadioButtonSimNao from './RadioButtonSimNao';
 import Tontura from './Tontuara';
 
@@ -8,7 +9,8 @@ class Queixas extends React.Component{
 
     state = {
         tontura:false,
-        css:"col mt-4"
+        css:"col mt-4",
+        aparelho:false
     }
 
     tonturaAcoes = (e) =>{
@@ -19,6 +21,10 @@ class Queixas extends React.Component{
         }else{
             this.setState({css:"col mt-4"});
         }
+    }
+
+    aparelhoAcoes = (e) =>{
+        
     }
 
     render(){
@@ -79,12 +85,20 @@ class Queixas extends React.Component{
                         </div>
                         <div className="col">
                             <FormGroup className="row mb-1" htmlForm="usouAprarelhoAudio" label="Já usou aparelho auditivo? ">
-                                <RadioButtonSimNao className="ml-3" name={this.props.name} id="usouAprarelhoAudio" htmlForm="usouAprarelhoAudio"
-                                 onChange={e => this.props.queixas.usouAparelhoAudio = e.target.value}/>
+                                <RadioButtonSimNao className="ml-3" name={"usouAprarelhoAudio"+this.props.name} id="usouAprarelhoAudio" htmlForm="usouAprarelhoAudio"
+                                 onChange={e => 
+                                    this.setState({
+                                        ...this.props.queixas.usouAparelhoAudio = e.target.value
+                                    })
+                                    }/>
                             </FormGroup>
                         </div>
                     </div>
                 </Card>
+                    {this.props.queixas.usouAparelhoAudio === "1" ? (
+                        <Aparelho queixas={this.props.queixas} name={this.props.name}/>
+                    ):(false)
+                    }
                     {this.state.tontura ? (
                         <Tontura queixas={this.props.queixas}/>
                     ):(false)

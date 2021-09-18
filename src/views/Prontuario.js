@@ -22,8 +22,6 @@ class Prontuario extends React.Component{
             nomeMedico:"",
             preferenciaManual:"",
             escolaridade:"",
-            historicoPerdaAuditiva:"",
-            usoAASI:"",
             zumbido:"",
             comorbidades:{
                 doencasMetabolicas:"",
@@ -38,12 +36,24 @@ class Prontuario extends React.Component{
             queixas:{
                 od:{
                     perfuracaoMembranaTimpanica:"",
+                    antencendentesFamiliarePerdaAuditiva:"",
+                    antencendentesFamiliarePerdaAuditivaInput:"",
+                    entiologiaPerdaAuditiva:"",
+                    historicoPerdaAuditiva:"",
                     plenitudeAuricular:"",
+                    laudoAudiometria:"",
                     tonturaVertigem:"",
                     otorreia:"",
+                    usoAASI:"",
                     prurido:"",
                     otite:"",
                     usouAparelhoAudio:"",
+                    aparelho:{
+                        marca:"",
+                        modelo:"",
+                        tecnologia:"",
+                        canais:""
+                    },
                     tontura:{
                         inicio:"",
                         intensidade:"",
@@ -104,12 +114,24 @@ class Prontuario extends React.Component{
                 },
                 oe:{
                     perfuracaoMembranaTimpanica:"",
+                    antencendentesFamiliarePerdaAuditiva:"",
+                    antencendentesFamiliarePerdaAuditivaInput:"",
+                    entiologiaPerdaAuditiva:"",
+                    historicoPerdaAuditiva:"",
                     plenitudeAuricular:"",
+                    laudoAudiometria:"",
                     tonturaVertigem:"",
                     otorreia:"",
+                    usoAASI:"",
                     prurido:"",
                     otite:"",
                     usouAparelhoAudio:"",
+                    aparelho:{
+                        marca:"",
+                        modelo:"",
+                        tecnologia:"",
+                        canais:""
+                    },
                     tontura:{
                         inicio:"",
                         intensidade:"",
