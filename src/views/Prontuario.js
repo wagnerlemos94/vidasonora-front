@@ -29,6 +29,9 @@ class Prontuario extends React.Component{
             prurido:"",
             otite:"",
             usouAparelhoAudio:"",
+            zumbido:{
+                option:"2"
+            },
             aparelho:{
                 marca:"",
                 modelo:"",
@@ -129,7 +132,6 @@ class Prontuario extends React.Component{
             nomeMedico:"",
             preferenciaManual:"",
             escolaridade:"",
-            zumbido:"",
             comorbidades:{
                 doencasMetabolicas:"",
                 doencasInfecciosas:"",

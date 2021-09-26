@@ -1,9 +1,11 @@
 import React from 'react';
 import Card from '../Card';
 import FormGroup from '../FormGroup';
+import AnamneseRadioButton from './AnamneseRadioButton';
 import Aparelho from './Aparelho';
 import RadioButtonSimNao from './RadioButtonSimNao';
 import Tontura from './Tontuara';
+import Zumbindo from './Zumbindo';
 
 class Queixas extends React.Component{
 
@@ -92,6 +94,9 @@ class Queixas extends React.Component{
                                     })
                                     }/>
                             </FormGroup>
+                        </div>
+                        <div className="col">
+                            <Zumbindo zumbido={this.props.queixas.zumbido} name={this.props.name}/>
                         </div>
                     </div>
                 </Card>
