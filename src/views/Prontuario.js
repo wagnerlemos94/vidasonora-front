@@ -30,7 +30,24 @@ class Prontuario extends React.Component{
             otite:"",
             usouAparelhoAudio:"",
             zumbido:{
-                option:"2"
+                option:"2",
+                continuo:"",
+                pulsatil:"",
+                subito:"",
+                variavel:"",
+                frequencia:"",
+                apito:"",
+                cachoeira:"",
+                panelaPressao:"",
+                abelha:"",
+                outros:"",
+                outrosInput:"",
+                pitch:"",
+                itensidade:"",
+                DificuldadeDormirzumbindo:"",
+                algumTratamento:"",
+                tratamentaQual:""
+
             },
             aparelho:{
                 marca:"",
