@@ -29,7 +29,11 @@ class Login extends React.Component{
         }).then(response => {
             ValidarUsuario.login(response.data);
         }).catch(erro => {
-            mensagemErro(erro.response.data);
+            try {            
+                mensagemErro(erro.response.data);
+            } catch (error) {
+                mensagemErro("Sistema Indisponível");
+            }
         });
     }
 
