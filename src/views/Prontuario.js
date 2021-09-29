@@ -4,6 +4,7 @@ import Select from 'react-select';
 import PessoaService from '../app/service/PessoaService';
 import ValidarUsuario from '../app/service/ValidarUsuario';
 import AnamnesePac from '../components/anamnese/AnamnesePac';
+import Anamnese from '../components/anamnese/Anamnese';
 
 class Prontuario extends React.Component{
     
@@ -193,6 +194,7 @@ class Prontuario extends React.Component{
                         }
                     }})}
                   />
+                  {/* <Anamnese anamnese={this.state.anamnese}/> */}
                   <AnamnesePac anamnese={this.state.anamnese}/>
                   <button className="btn btn-md btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
