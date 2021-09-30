@@ -140,7 +140,7 @@ class Prontuario extends React.Component{
     }
 
     state = {
-        teste:{},
+        anamnesePac:{},
         titulo:'Prontuário',
         options:[],
         anamnese:{
@@ -178,7 +178,7 @@ class Prontuario extends React.Component{
         }
     }
     salvar = () => {
-        const anamnese = this.state.anamnese;
+        const anamnese = this.state;
         console.log(anamnese);
     }
 
@@ -195,7 +195,7 @@ class Prontuario extends React.Component{
                     }})}
                   />
                   {/* <Anamnese anamnese={this.state.anamnese}/> */}
-                  <AnamnesePac anamnese={this.state.anamnese}/>
+                  <AnamnesePac anamnesePac={this.state.anamnesePac}/>
                   <button className="btn btn-md btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
         );

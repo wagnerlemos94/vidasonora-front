@@ -269,7 +269,13 @@ class Aparelho extends React.Component{
                             />
                     </FormGroup>
                     <FormGroup label="Observações">
-                        <MDBInput type="textarea" label="Descrava" outline size="lg" />
+                        <MDBInput type="textarea" label="Descrava" outline size="lg" 
+                            onChange={
+                                e => this.setState({
+                                    ...this.props.queixas.aparelho.observacao = e.target.value
+                                })
+                            }
+                        />
                     </FormGroup>
 
                 </Card>
