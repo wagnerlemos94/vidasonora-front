@@ -45,10 +45,10 @@ class ListaPessoa extends React.Component{
         state.pessoa.nascimento = this.formartarData(pessoa.nascimento);
         state.titulo = 'Editar Cliente';
         state.pessoa.contatos.forEach(contato => {
-          if(contato.tipo === 'celular'){
+          if(contato.tipo.toUpperCase() === 'celular'.toUpperCase()){
             state.idCelular = contato.id;
             state.celular = contato.contato;
-          }else if(contato.tipo === 'email'){
+          }else if(contato.tipo.toUpperCase() === 'email'.toUpperCase()){
             state.idEmail = contato.id;
             state.email = contato.contato;
             }
@@ -70,9 +70,9 @@ class ListaPessoa extends React.Component{
             }
           }
         });
+        state.pessoa.enderecos = [];
         LocalStorageService.adicionarItem('_usuario_edit', state);
         this.props.history.push('/cadastro-pessoa');
-        
     }
 
     formartarData(data){

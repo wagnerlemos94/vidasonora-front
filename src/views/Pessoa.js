@@ -59,7 +59,7 @@ class Pessoa extends React.Component{
                 idCelular:usuarioEdit.idCelular,
                 idEmail:usuarioEdit.idEmail
             });
-        }       
+        } 
     }
 
     validarCpf = () => {
@@ -133,7 +133,8 @@ class Pessoa extends React.Component{
                     }else if(contato.tipo === "celular"){
                     }
                 });
-                console.log(this.state.pessoa);
+                // console.log(this.state.pessoa);
+                // return false;
                 this.service.atualizar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro atualizado com sucesso!");
                     this.props.history.push('/lista-pessoa'); 
