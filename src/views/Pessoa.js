@@ -77,10 +77,16 @@ class Pessoa extends React.Component{
         event.preventDefault();
         let validado = true;
         
-        let nascimento = this.state.pessoa.nascimento;
-        nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
-        this.state.pessoa.nascimento = nascimento;
-        
+        try {
+            let nascimento = this.state.pessoa.nascimento;
+            nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
+            this.setState({
+                ...this.state.pessoa.nascimento = nascimento
+            });
+        } catch (error) {
+            mensagemErro(error);
+        }
+
         const endereco = this.state.endereco;
         event.target.className += " was-validated";
         Object.values(this.state.pessoa).map((valor,index) => {
@@ -116,6 +122,7 @@ class Pessoa extends React.Component{
                     mensagemSucesso("Cadastro realizado com sucesso!");
                     this.props.history.push('/lista-pessoa');
                 }).catch(error => {
+                    console.log(error);
                     mensagemErro("Cadastro não realizado");
                 });
             }else{
@@ -123,9 +130,7 @@ class Pessoa extends React.Component{
                 this.state.pessoa.contatos.forEach((contato) => {
                     if(contato.tipo === "email"){
                         console.log(contato);
-                        // contato.id = this.state.idEmail;
                     }else if(contato.tipo === "celular"){
-                        // contato.id = this.state.idCelular;
                     }
                 });
                 console.log(this.state.pessoa);
