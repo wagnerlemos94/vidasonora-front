@@ -194,8 +194,8 @@ class Prontuario extends React.Component{
                         }
                     }})}
                   />
-                  {/* <Anamnese anamnese={this.state.anamnese}/> */}
-                  <AnamnesePac anamnesePac={this.state.anamnesePac}/>
+                  <Anamnese anamnese={this.state.anamnese}/>
+                  {/* <AnamnesePac anamnesePac={this.state.anamnesePac}/> */}
                   <button className="btn btn-md btn-primary" onClick={this.salvar}>Salvar</button>
             </Card>
         );
