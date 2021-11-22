@@ -102,7 +102,7 @@ class Anamnese extends React.Component{
                 </div>
                 <div className="row">                    
                     <Queixas titulo="QUEIXAS AUDITIVAS OE" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/>
-                    <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/>
+                    {/* <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/> */}
                 </div>
                 <div className="col mt-2">
                     <div className="row">
