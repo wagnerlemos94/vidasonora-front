@@ -7,168 +7,132 @@ import Comobirdades from './Comorbidades';
 import Queixas from './Queixas';
 import RadioButtonSimNao from './RadioButtonSimNao';
 import {MDBInputGroup} from 'mdbreact';
+import AnamneseService from '../../app/service/AnamneseService';
 
 
 class Anamnese extends React.Component{
-    
+
+    constructor(){
+        super();
+        this.service = new AnamneseService();
+        
+    }
+
     state = {    
         historicoOutraDoencaInput:0, 
         acompanahmentoMedicoInput:0,
-        options:[
-            {
-                label:"NENHUM"
-            },
-            {
-                label:"CLÍNICO GERAL"
-            },
-            {
-                label:"OTORRINOLARINGOLOGISTA"
-            },
-            {
-                label:"NEUROLOGISTA"
-            },
-            {
-                label:"PEDIATRA"
-            },
-            {
-                label:"PSICOLOGO"
-            },
-            {
-                label:"PSICOPEDAGOGO"
-            },
-            {
-                label:"NEUROPEDIATRA"
-            },
-            {
-                label:"OUTROS"
-            }
-        ]
+        options: []
     }
 
-    funct = () =>{
-        alert()
+    componentDidMount(){
+        this.setState({options:this.service.retornarArrayEncaminhaPor()});
     }
 
     render(){
         return(
             <div>
-                <FormGroup htmlForm="principalQueixa" label="Principal Queixa:">
-                    <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
-                        onChange={e => this.props.anamnese.principalQueixa = e.target.value}
-                        required
-                        />
-                </FormGroup>
-                <div className="row">
-                    <div className="col-6">
-                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
-                            <Select options={this.state.options}
-                                onChange={e => this.props.anamnese.encaminhadoPor = e.label}
-                                />
-                        </FormGroup>
+                <Card title="Anamnese">
+                    <FormGroup htmlForm="principalQueixa" label="Principal Queixa:">
+                        <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
+                            
+                            required
+                            />
+                    </FormGroup>
+                    <div className="row">
+                        <div className="col-6">
+                            <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
+                                <Select options={this.state.options}
+                                    
+                                    />
+                            </FormGroup>
+                        </div>
+                        <div className="col-6">
+                            <FormGroup htmlForm="nomeMedico" label="Nome Medico:">
+                                <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
+                                    
+                                    required
+                                    />
+                            </FormGroup>
+                        </div>
+                        <div className="col-6">
+                            <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
+                                <select className="form-control" defaultValue=""
+                                    
+                                    required
+                                >
+                                    <option value="" disabled>Selecione...</option>
+                                    <option value="DESTRA">DESTRA</option>
+                                    <option value="CANHOTA">CANHOTA</option>
+                                </select>
+                            </FormGroup>
+                        </div>
+                        <div className="col-6">
+                            <FormGroup htmlForm="escolaridade" label="Escolaridade :">
+                                <input type="text" className="form-control" placeholder="Ex: Superior Completo"
+                                    
+                                    required
+                                    />
+                            </FormGroup>
+                        </div>
                     </div>
-                    <div className="col-6">
-                        <FormGroup htmlForm="nomeMedico" label="Nome Medico:">
-                            <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
-                                onChange={e => this.props.anamnese.nomeMedico = e.target.value}
-                                required
-                                />
-                        </FormGroup>
-                    </div>
-                    <div className="col-6">
-                        <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
-                            <select className="form-control" defaultValue=""
-                                onChange={e => this.props.anamnese.preferenciaManual = e.target.value}
-                                required
-                            >
-                                <option value="" disabled>Selecione...</option>
-                                <option value="DESTRA">DESTRA</option>
-                                <option value="CANHOTA">CANHOTA</option>
-                            </select>
-                        </FormGroup>
-                    </div>
-                    <div className="col-6">
-                        <FormGroup htmlForm="escolaridade" label="Escolaridade :">
-                            <input type="text" className="form-control" placeholder="Ex: Superior Completo"
-                                onChange={e => this.props.anamnese.escolaridade = e.target.value}
-                                required
-                                />
-                        </FormGroup>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col form-inline">
-                        <div className="col btn btn-primary" id="comobirdade">Comobirdades</div>
-                        <div className="col btn btn-primary" id="comobirdade">QUEIXAS AUDITIVAS</div>
-                        {(this.props.anamnese.queixas.oe.tonturaVertigem)?(
+                    <div className="row">
+                        <div className="col form-inline">
+                            <div className="col btn btn-primary" id="comobirdade">Comobirdades</div>
+                            <div className="col btn btn-primary" id="comobirdade">QUEIXAS AUDITIVAS</div>
                             <div className="col btn btn-primary" id="comobirdade">Tontura</div>
-                        ):false}
-                        {(true)?(
                             <div className="col btn btn-primary" id="comobirdade">Aparelho</div>
-                        ):false}
-                        {(true)?(
                             <div className="col btn btn-primary" id="comobirdade">zumbido</div>
-                        ):false}
-                        {console.log(this.props.anamnese.queixas.oe.tonturaVertigem)}
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <Comobirdades comorbidades={this.props.anamnese.comorbidades}/>
-                    </div>
-                </div>
-                <div className="row">                    
-                    <Queixas titulo="QUEIXAS AUDITIVAS" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/>
-                    {/* <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/> */}
-                </div>
-                <div className="col mt-2">
                     <div className="row">
                         <div className="col">
-                            <FormGroup className="row" htmlForm="acompanahmentoMedico" label="Está em acompanhamento médico?">
-                                <RadioButtonSimNao className="ml-2" name="acompanahmentoMedico" 
-                                id="acompanahmentoMedico"htmlForm="acompanahmentoMedico" 
-                                onChange={e => (this.props.anamnese.acompanahmentoMedico = e.target.value,
-                                    this.setState({acompanahmentoMedicoInput : e.target.value}))
-                                }
-                                />
-                            {this.state.acompanahmentoMedicoInput === "1"?(
-                                <MDBInputGroup
-                                className="col-7"
-                                material
-                                containerClassName="mb-2 mt-0"
-                                hint="Início e motivo:"
-                                size="sm"
-                                onChange={e => this.props.anamnese.acompanahmentoMedicoInput = e.target.value}
-                                />
-                                ):(
-                                    this.props.anamnese.acompanahmentoMedicoInput = "")
-                                }
-                            </FormGroup>
-                        </div>
-                        <div className="col-4">
-                            <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
-                                <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
-                                id="historicoOutraDoenca"htmlForm="historicoOutraDoenca" 
-                                onChange={e => (this.props.anamnese.historicoOutraDoenca = e.target.value,
-                                    this.setState({historicoOutraDoencaInput : e.target.value}))
-                                }
-                                />
-                            {this.state.historicoOutraDoencaInput === "1"?(
-                                <MDBInputGroup
-                                material
-                                containerClassName="mb-2 mt-0"
-                                hint="Quais e quando:"
-                                size="sm"
-                                onChange={e => this.props.anamnese.historicoOutraDoencaInput = e.target.value}
-                                />
-                                ):(
-                                    this.props.anamnese.historicoOutraDoencaInput = "")
-                                }
-                            </FormGroup>
+                            {/* <Comobirdades comorbidades={this.props.anamnese.comorbidades}/> */}
                         </div>
                     </div>
-                </div>
-                <button type="button" className="btn btn-sm btn-danger" id="btnVoltar">Voltar</button>
-                <button type="button" className="btn btn-sm btn-primary" id="btnProximo">Próximo</button>
+                    <div className="row">                    
+                        {/* <Queixas titulo="QUEIXAS AUDITIVAS" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/> */}
+                        {/* <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/> */}
+                    </div>
+                    <div className="col mt-2">
+                        <div className="row">
+                            <div className="col">
+                                <FormGroup className="row" htmlForm="acompanahmentoMedico" label="Está em acompanhamento médico?">
+                                    <RadioButtonSimNao className="ml-2" name="acompanahmentoMedico" 
+                                    id="acompanahmentoMedico"htmlForm="acompanahmentoMedico"/>
+                                {(true)?(
+                                    <MDBInputGroup
+                                    className="col-7"
+                                    material
+                                    containerClassName="mb-2 mt-0"
+                                    hint="Início e motivo:"
+                                    size="sm"
+                                    
+                                    />
+                                    ):(
+                                        false)
+                                    }
+                                </FormGroup>
+                            </div>
+                            <div className="col-4">
+                                <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
+                                    <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
+                                    id="historicoOutraDoenca"htmlForm="historicoOutraDoenca"/>
+                                {true?(
+                                    <MDBInputGroup
+                                    material
+                                    containerClassName="mb-2 mt-0"
+                                    hint="Quais e quando:"
+                                    size="sm"
+                                    
+                                    />
+                                    ):(
+                                        false)
+                                    }
+                                </FormGroup>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
             </div>
         );
     }
