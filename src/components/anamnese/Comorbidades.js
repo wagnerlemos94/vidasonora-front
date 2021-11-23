@@ -10,81 +10,86 @@ class Comobirdades extends React.Component{
 
     render(){
         return(
-            <Card title="Comobirdades">
+            <Card title="Comobirdades" className="pb-5">
                 <div className="row">
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="doencasMetabolicas" 
-                            onChange={e => this.props.comorbidades.doencasMetabolicas = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="doencasMetabolicas">
-                            Doenças metabólicas
-                        </label>
-                    </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="doencasInfecciosas" 
-                            onChange={e => this.props.comorbidades.doencasInfecciosas = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="doencasInfecciosas">
-                            Doenças infecciosas
-                        </label>
-                    </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="doencasHormonais" 
-                            onChange={e => this.props.comorbidades.doencasHormonais = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="doencasHormonais">
-                            Doenças hormonais
-                        </label>
-                    </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="colesterolAlto" 
-                            onChange={e => this.props.comorbidades.colesterolAlto = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="colesterolAlto">
-                            Colesterol alto
-                        </label>
-                    </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="hipertensao"
-                            onChange={e => this.props.comorbidades.hipertensao = e.target.checked}
+                    <div className="col">                        
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="doencasMetabolicas" 
+                                onChange={e => this.props.comorbidades.doencasMetabolicas = e.target.checked}
                             />
-                        <label className="form-check-label" htmlFor="hipertensao">
-                            Hipertensão
-                        </label>
+                            <label className="form-check-label" htmlFor="doencasMetabolicas">
+                                Doenças metabólicas
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="doencasHormonais" 
+                                onChange={e => this.props.comorbidades.doencasHormonais = e.target.checked}
+                            />
+                            <label className="form-check-label" htmlFor="doencasHormonais">
+                                Doenças hormonais
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="hipertensao"
+                                onChange={e => this.props.comorbidades.hipertensao = e.target.checked}
+                                />
+                            <label className="form-check-label" htmlFor="hipertensao">
+                                Hipertensão
+                            </label>
+                        </div>
                     </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="diabetes"
-                            onChange={e => this.props.comorbidades.diabetes = e.target.checked}
-                        />
-                        <label className="form-check-label" htmlFor="diabetes">
-                            Diabetes
-                        </label>
+                    <div className="col">
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="doencasInfecciosas" 
+                                onChange={e => this.props.comorbidades.doencasInfecciosas = e.target.checked}
+                            />
+                            <label className="form-check-label" htmlFor="doencasInfecciosas">
+                                Doenças infecciosas
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="colesterolAlto" 
+                                onChange={e => this.props.comorbidades.colesterolAlto = e.target.checked}
+                            />
+                            <label className="form-check-label" htmlFor="colesterolAlto">
+                                Colesterol alto
+                            </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" id="diabetes"
+                                onChange={e => this.props.comorbidades.diabetes = e.target.checked}
+                            />
+                            <label className="form-check-label" htmlFor="diabetes">
+                                Diabetes
+                            </label>
+                        </div>
                     </div>
-                    <div className="form-check ml-4">
-                        <input className="form-check-input" type="checkbox" id="outras" 
-                            onChange={
-                                e => (this.props.comorbidades.outras = e.target.checked,
-                                    this.setState({comborbidadesOutras:!e.target.checked})  
-                                    )
-                            }
-                        />
-                        <label className="form-check-label" htmlFor="outras">
-                            outras
-                        </label>
-                    </div>
-                    {!this.state.comborbidadesOutras ?
-                        (
-                            <MDBInputGroup
-                        material
-                        containerClassName="mb-2"
-                        hint="Outras:"
-                        size="sm"
-                        onChange={e => this.props.comorbidades.inputOutras = e.target.value}
-                    />
-                        ):(this.props.comorbidades.inputOutras = "")
-                    }
-                    {this.props.children}
                 </div>
+                <div className="form-check">
+                    <input className="form-check-input" type="checkbox" id="outras" 
+                        onChange={
+                            e => (this.props.comorbidades.outras = e.target.checked,
+                                this.setState({comborbidadesOutras:!e.target.checked})  
+                                )
+                        }
+                    />
+                    <label className="form-check-label" htmlFor="outras">
+                        outras
+                    </label>
+                </div>
+                {!this.state.comborbidadesOutras ?
+                    (
+                        <MDBInputGroup
+                    material
+                    containerClassName="mb-2"
+                    hint="Outras:"
+                    size="sm"
+                    onChange={e => this.props.comorbidades.inputOutras = e.target.value}
+                />
+                    ):(this.props.comorbidades.inputOutras = "")
+                }
+                {this.props.children}
+                
             </Card>
         );
     }

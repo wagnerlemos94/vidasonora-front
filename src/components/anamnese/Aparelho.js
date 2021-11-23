@@ -20,7 +20,7 @@ class Aparelho extends React.Component{
                             size="sm"
                             onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.laudoAudiometria = e.target.value
+                                    ...this.props.aparelho.laudoAudiometria = e.target.value
                                 })
                             }
                         />
@@ -29,7 +29,7 @@ class Aparelho extends React.Component{
                         <AnamneseRadioButton className="mb-5" name={"historicoPerdaAuditiva"+this.props.name}
                             id="historicoPerdaAuditiva" onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.historicoPerdaAuditiva = e.target.value
+                                    ...this.props.aparelho.historicoPerdaAuditiva = e.target.value
                                 })
                             }
                             
@@ -43,7 +43,7 @@ class Aparelho extends React.Component{
                             size="sm"
                             onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.entiologiaPerdaAuditiva = e.target.value
+                                    ...this.props.aparelho.entiologiaPerdaAuditiva = e.target.value
                                 })
                             }
                         />
@@ -52,11 +52,11 @@ class Aparelho extends React.Component{
                         <RadioButtonSimNao className="mb-2 ml-2" name={"antencendentesFamiliarePerdaAuditiva"+this.props.name}
                             id="antencendentesFamiliarePerdaAuditiva" onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.antencendentesFamiliarePerdaAuditiva = e.target.value
+                                    ...this.props.aparelho.antencendentesFamiliarePerdaAuditiva = e.target.value
                                 })
                             }
                             />
-                            {this.props.queixas.antencendentesFamiliarePerdaAuditiva === "1" ?(
+                            {this.props.aparelho.antencendentesFamiliarePerdaAuditiva === "1" ?(
                                 <MDBInputGroup
                                 material
                                 containerClassName="mb-2 mt-0"
@@ -64,7 +64,7 @@ class Aparelho extends React.Component{
                                 size="sm"
                                 onChange={
                                     e => this.setState({
-                                        ...this.props.queixas.antencendentesFamiliarePerdaAuditivaInput = e.target.value
+                                        ...this.props.aparelho.antencendentesFamiliarePerdaAuditivaInput = e.target.value
                                     })
                                 }
                             />
@@ -76,12 +76,12 @@ class Aparelho extends React.Component{
                         <AnamneseRadioButton className="mb-5" name={"AASI"+this.props.name}
                             id="AASI" onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.usoAASI = e.target.value
+                                    ...this.props.aparelho.usoAASI = e.target.value
                                 })
                             }                        
                             />
                     </FormGroup>
-                    {this.props.queixas.usoAASI !== "1" && this.props.queixas.usoAASI !== ""?(
+                    {this.props.aparelho.usoAASI !== "1" && this.props.aparelho.usoAASI !== ""?(
                         <FormGroup label="Dados do último aparelho:">
                                 <div className="row">
                                     <div className="col">
@@ -92,7 +92,7 @@ class Aparelho extends React.Component{
                                         size="sm"
                                         onChange={
                                             e => this.setState({
-                                                ...this.props.queixas.aparelho.marca = e.target.value
+                                                ...this.props.aparelho.aparelho.marca = e.target.value
                                                 })
                                             }
                                             />
@@ -105,7 +105,7 @@ class Aparelho extends React.Component{
                                         size="sm"
                                         onChange={
                                             e => this.setState({
-                                                ...this.props.queixas.aparelho.modelo = e.target.value
+                                                ...this.props.aparelho.aparelho.modelo = e.target.value
                                                 })
                                             }
                                             />
@@ -118,7 +118,7 @@ class Aparelho extends React.Component{
                                         size="sm"
                                         onChange={
                                             e => this.setState({
-                                                ...this.props.queixas.aparelho.tecnologia = e.target.value
+                                                ...this.props.aparelho.aparelho.tecnologia = e.target.value
                                                 })
                                             }
                                             />
@@ -131,7 +131,7 @@ class Aparelho extends React.Component{
                                         size="sm"
                                         onChange={
                                             e => this.setState({
-                                                ...this.props.queixas.aparelho.canais = e.target.value
+                                                ...this.props.aparelho.aparelho.canais = e.target.value
                                                 })
                                             }
                                             />
@@ -150,7 +150,7 @@ class Aparelho extends React.Component{
                                 size="sm"
                                 onChange={
                                     e => this.setState({
-                                        ...this.props.queixas.aparelho.satisfeito = e.target.value
+                                        ...this.props.aparelho.aparelho.satisfeito = e.target.value
                                     })
                                 }
                                 />
@@ -165,7 +165,7 @@ class Aparelho extends React.Component{
                                     size="sm"
                                     onChange={
                                         e => this.setState({
-                                            ...this.props.queixas.aparelho.sonNatural = e.target.value
+                                            ...this.props.aparelho.aparelho.sonNatural = e.target.value
                                         })
                                     }
                                     />
@@ -180,7 +180,7 @@ class Aparelho extends React.Component{
                                 size="sm"
                                 onChange={
                                     e => this.setState({
-                                        ...this.props.queixas.aparelho.gostoAparelho = e.target.value
+                                        ...this.props.aparelho.aparelho.gostoAparelho = e.target.value
                                     })
                                 }
                                 />
@@ -195,7 +195,7 @@ class Aparelho extends React.Component{
                                     size="sm"
                                     onChange={
                                         e => this.setState({
-                                            ...this.props.queixas.aparelho.teveProblema = e.target.value
+                                            ...this.props.aparelho.aparelho.teveProblema = e.target.value
                                         })
                                     }
                                     />
@@ -210,7 +210,7 @@ class Aparelho extends React.Component{
                                     size="sm"
                                     onChange={
                                         e => this.setState({
-                                            ...this.props.queixas.aparelho.oqGostava = e.target.value
+                                            ...this.props.aparelho.aparelho.oqGostava = e.target.value
                                         })
                                     }
                                     />
@@ -220,7 +220,7 @@ class Aparelho extends React.Component{
                     <div className="form-inline">
                         <div className="form-check mr-4">
                             <input className="form-check-input" type="checkbox" id="sus" 
-                                onChange={e => this.props.queixas.aparelho.sus = e.target.checked}
+                                onChange={e => this.props.aparelho.aparelho.sus = e.target.checked}
                                 />
                             <label className="form-check-label" htmlFor="sus">
                                 SUS
@@ -228,7 +228,7 @@ class Aparelho extends React.Component{
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="particular" 
-                                onChange={e => this.props.queixas.aparelho.particular = e.target.checked}
+                                onChange={e => this.props.aparelho.aparelho.particular = e.target.checked}
                                 />
                             <label className="form-check-label" htmlFor="particular">
                                 Particular
@@ -238,7 +238,7 @@ class Aparelho extends React.Component{
                     <FormGroup label="Desconforto sons intensos:" className="form-inline mt-2">
                             <RadioButtonSimNao className="ml-2" name="desconfortoSonsIntensos"
                                 onChange={e => this.setState({
-                                    ...this.props.queixas.aparelho.desconfortoSonsIntensos = e.target.value
+                                    ...this.props.aparelho.aparelho.desconfortoSonsIntensos = e.target.value
                                 })}    
                             />
                     </FormGroup>
@@ -250,7 +250,7 @@ class Aparelho extends React.Component{
                             size="sm"
                             onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.aparelho.importanteOuvirMelhor = e.target.value
+                                    ...this.props.aparelho.aparelho.importanteOuvirMelhor = e.target.value
                                 })
                             }
                             />
@@ -263,7 +263,7 @@ class Aparelho extends React.Component{
                             size="sm"
                             onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.aparelho.aparelhoSeriaUtil = e.target.value
+                                    ...this.props.aparelho.aparelho.aparelhoSeriaUtil = e.target.value
                                 })
                             }
                             />
@@ -272,14 +272,14 @@ class Aparelho extends React.Component{
                         <MDBInput type="textarea" label="Descrava" outline size="lg" 
                             onChange={
                                 e => this.setState({
-                                    ...this.props.queixas.aparelho.observacao = e.target.value
+                                    ...this.props.aparelho.aparelho.observacao = e.target.value
                                 })
                             }
                         />
                     </FormGroup>
 
                 </Card>
-                <MaiorDificuldadesAuditivas queixas={this.props.queixas}/>
+                {/* <MaiorDificuldadesAuditivas aparelho={this.props.queixas}/> */}
             </div>
         );
     }
