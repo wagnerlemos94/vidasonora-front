@@ -24,7 +24,7 @@ class ListaPessoa extends React.Component{
             this.setState({pessoas:response.data});     
             this.state.pessoas.forEach(pessoa => {
                 pessoa.edit = <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit" /></a>
-                pessoa.excluir = 'Excluir'
+                pessoa.excluir = <a icon="address-book"></a>
             });
             this.setState({});
         }).catch(error => {

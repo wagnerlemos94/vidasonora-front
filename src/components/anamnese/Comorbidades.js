@@ -83,6 +83,7 @@ class Comobirdades extends React.Component{
                     />
                         ):(this.props.comorbidades.inputOutras = "")
                     }
+                    {this.props.children}
                 </div>
             </Card>
         );

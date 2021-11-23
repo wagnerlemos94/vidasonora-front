@@ -96,12 +96,28 @@ class Anamnese extends React.Component{
                     </div>
                 </div>
                 <div className="row">
+                    <div className="col form-inline">
+                        <div className="col btn btn-primary" id="comobirdade">Comobirdades</div>
+                        <div className="col btn btn-primary" id="comobirdade">QUEIXAS AUDITIVAS</div>
+                        {(this.props.anamnese.queixas.oe.tonturaVertigem)?(
+                            <div className="col btn btn-primary" id="comobirdade">Tontura</div>
+                        ):false}
+                        {(true)?(
+                            <div className="col btn btn-primary" id="comobirdade">Aparelho</div>
+                        ):false}
+                        {(true)?(
+                            <div className="col btn btn-primary" id="comobirdade">zumbido</div>
+                        ):false}
+                        {console.log(this.props.anamnese.queixas.oe.tonturaVertigem)}
+                    </div>
+                </div>
+                <div className="row">
                     <div className="col">
                         <Comobirdades comorbidades={this.props.anamnese.comorbidades}/>
                     </div>
                 </div>
                 <div className="row">                    
-                    <Queixas titulo="QUEIXAS AUDITIVAS OE" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/>
+                    <Queixas titulo="QUEIXAS AUDITIVAS" name="esquerdo" queixas={this.props.anamnese.queixas.oe}/>
                     {/* <Queixas titulo="QUEIXAS AUDITIVAS OD" name="direito" queixas={this.props.anamnese.queixas.od}/> */}
                 </div>
                 <div className="col mt-2">
@@ -151,6 +167,8 @@ class Anamnese extends React.Component{
                         </div>
                     </div>
                 </div>
+                <button type="button" className="btn btn-sm btn-danger" id="btnVoltar">Voltar</button>
+                <button type="button" className="btn btn-sm btn-primary" id="btnProximo">Próximo</button>
             </div>
         );
     }

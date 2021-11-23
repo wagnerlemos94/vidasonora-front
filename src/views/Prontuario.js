@@ -24,7 +24,7 @@ class Prontuario extends React.Component{
             historicoPerdaAuditiva:"",
             plenitudeAuricular:"",
             laudoAudiometria:"",
-            tonturaVertigem:"",
+            tonturaVertigem:false,
             otorreia:"",
             usoAASI:"",
             prurido:"",
