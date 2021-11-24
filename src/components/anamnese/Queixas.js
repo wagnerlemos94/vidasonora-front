@@ -11,18 +11,12 @@ class Queixas extends React.Component{
 
     state = {
         tontura:false,
-        css:"col mt-4",
         aparelho:false
     }
 
     tonturaAcoes = (e) =>{
         this.props.queixas.tonturaVertigem = e.target.checked;
         this.setState({tontura:e.target.checked});
-        if(e.target.checked){
-            this.setState({css:"mt-4"});
-        }else{
-            this.setState({css:"col mt-4"});
-        }
     }
 
     aparelhoAcoes = (e) =>{
@@ -37,22 +31,26 @@ class Queixas extends React.Component{
                         <div className="col">
                             <span>OD</span> <span>OE</span>
                             <div className="form-check">
-                                <input className="form-check-input" type="checkbox" id="perfuracaoMembranaTimpanicaOD" 
-                                    onChange={e => this.props.queixas.perfuracaoMembranaTimpanica = e.target.checked}
+                                <input className="form-check-input" type="checkbox" id="perfuracaoTimpanicaOD" 
+                                    value="Perfuração timpânica"
+                                    onChange={e => this.props.queixas.od.perfuracaoTimpanica = e.target.value}
                                     />
-                                <input className="form-check-input ml-2" type="checkbox" id="perfuracaoMembranaTimpanicaOE" 
-                                onChange={e => this.props.queixas.perfuracaoMembranaTimpanica = e.target.checked}
+                                <input className="form-check-input ml-2" type="checkbox" id="perfuracaoTimpanicaOE" 
+                                value="Perfuração timpânica"
+                                onChange={e => this.props.queixas.oe.perfuracaoTimpanica = e.target.value}
                                 />
-                                <label className="form-check-label ml-4" htmlFor="perfuracaoMembranaTimpanica">
+                                <label className="form-check-label ml-4" htmlFor="perfuracaoTimpanica">
                                     Perfuração timpânica
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="otorreia" 
-                                    onChange={e => this.props.queixas.otorreia = e.target.checked}
+                                    value="Otorreia"
+                                    onChange={e => this.props.queixas.od.otorreia = e.target.value}
                                 />
                                 <input className="form-check-input ml-2" type="checkbox" id="otorreia" 
-                                    onChange={e => this.props.queixas.otorreia = e.target.checked}
+                                    value="Otorreia"
+                                    onChange={e => this.props.queixas.oe.otorreia = e.target.value}
                                 />
                                 <label className="form-check-label ml-4" htmlFor="otorreia">
                                     Otorreia
@@ -60,10 +58,12 @@ class Queixas extends React.Component{
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="prurido"
-                                    onChange={e => this.props.queixas.prurido = e.target.checked}
+                                    value="Prurido"
+                                    onChange={e => this.props.queixas.od.prurido = e.target.value}
                                 />
                                 <input className="form-check-input ml-2" type="checkbox" id="prurido" 
-                                    onChange={e => this.props.queixas.prurido = e.target.checked}
+                                    value="Prurido"
+                                    onChange={e => this.props.queixas.oe.prurido = e.target.value}
                                 />
                                 <label className="form-check-label ml-4" htmlFor="prurido">
                                     Prurido
@@ -71,10 +71,12 @@ class Queixas extends React.Component{
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="otite" 
-                                    onChange={e => this.props.queixas.otite = e.target.checked}
+                                    value="Otite"
+                                    onChange={e => this.props.queixas.od.otite = e.target.value}
                                 />
                                 <input className="form-check-input ml-2" type="checkbox" id="otite" 
-                                    onChange={e => this.props.queixas.otite = e.target.checked}
+                                    value="Otite"
+                                    onChange={e => this.props.queixas.oe.otite = e.target.value}
                                 />
                                 <label className="form-check-label ml-4" htmlFor="otite">
                                     Otite
@@ -84,7 +86,8 @@ class Queixas extends React.Component{
                         <div className="col mt-4">
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="plenitudeAuricular" 
-                                    onChange={e => this.props.queixas.plenitudeAuricular = e.target.checked}
+                                    value="Plenitude Auricular"
+                                    onChange={e => this.props.queixas.plenitudeAuricular = e.target.value}
                                 />
                                 <label className="form-check-label" htmlFor="plenitudeAuricular">
                                     Plenitude auricular
@@ -92,9 +95,10 @@ class Queixas extends React.Component{
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="tonturaVertigem" 
+                                value="Tontura e Vertigem"
                                 onChange={e => 
                                     this.setState(
-                                        {...this.props.queixas.tonturaVertigem = e.target.checked},
+                                        {...this.props.queixas.tonturaVertigem = e.target.value},
                                         this.props.exibirOcutar("btnTontura",e.target.checked)
                                     )
                                 }
@@ -105,39 +109,33 @@ class Queixas extends React.Component{
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="zumbido" 
+                                    value="Zumbido"
                                   onChange={e => this.setState(
-                                        {...this.props.queixas.Zumbindo = e.target.checked},
+                                        {...this.props.queixas.Zumbindo = e.target.value},
                                         this.props.exibirOcutar("btnZumbido",e.target.checked)
                                     )
                                 }
                                 />
-                                <label className="form-check-label" htmlFor="tonturaVertigem">
+                                <label className="form-check-label" htmlFor="zumbido">
                                     Zumbindo
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="aparelhoAuditivo" 
+                                    value="Aparelho Auditivo"
                                     onChange={e => this.setState(
-                                        {...this.props.queixas.aparelhoAuditivo = e.target.checked},
+                                        {...this.props.queixas.aparelhoAuditivo = e.target.value},
                                         this.props.exibirOcutar("btnAparelhoAuditivo",e.target.checked)
                                     )
                                 }
                                 />
-                                <label className="form-check-label" htmlFor="tonturaVertigem">
+                                <label className="form-check-label" htmlFor="aparelhoAuditivo">
                                     Já usou aparelho auditivo?
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
-                {this.props.queixas.usouAparelhoAudio === "1" ? (
-                    <Aparelho queixas={this.props.queixas} name={this.props.name}/>
-                ):(false)
-                }
-                {this.state.tontura ? (
-                    <Tontura queixas={this.props.queixas}/>
-                ):(false)
-                }
             </Card>
             
         );

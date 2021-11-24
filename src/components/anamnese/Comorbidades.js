@@ -15,7 +15,8 @@ class Comobirdades extends React.Component{
                     <div className="col">                        
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="doencasMetabolicas" 
-                                onChange={e => this.props.comorbidades.doencasMetabolicas = e.target.checked}
+                                value="doenças Metábolicas"
+                                onChange={e => this.props.comorbidades.doencasMetabolicas = e.target.value}
                             />
                             <label className="form-check-label" htmlFor="doencasMetabolicas">
                                 Doenças metabólicas
@@ -23,7 +24,8 @@ class Comobirdades extends React.Component{
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="doencasHormonais" 
-                                onChange={e => this.props.comorbidades.doencasHormonais = e.target.checked}
+                                value="Doenças Hormonais"
+                                onChange={e => this.props.comorbidades.doencasHormonais = e.target.value}
                             />
                             <label className="form-check-label" htmlFor="doencasHormonais">
                                 Doenças hormonais
@@ -31,7 +33,8 @@ class Comobirdades extends React.Component{
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="hipertensao"
-                                onChange={e => this.props.comorbidades.hipertensao = e.target.checked}
+                                value="Hipertensão"
+                                onChange={e => this.props.comorbidades.hipertensao = e.target.value}
                                 />
                             <label className="form-check-label" htmlFor="hipertensao">
                                 Hipertensão
@@ -41,7 +44,8 @@ class Comobirdades extends React.Component{
                     <div className="col">
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="doencasInfecciosas" 
-                                onChange={e => this.props.comorbidades.doencasInfecciosas = e.target.checked}
+                                value="Doenças Infecciosas"
+                                onChange={e => this.props.comorbidades.doencasInfecciosas = e.target.value}
                             />
                             <label className="form-check-label" htmlFor="doencasInfecciosas">
                                 Doenças infecciosas
@@ -49,7 +53,8 @@ class Comobirdades extends React.Component{
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="colesterolAlto" 
-                                onChange={e => this.props.comorbidades.colesterolAlto = e.target.checked}
+                                value="Colesterol Alto"
+                                onChange={e => this.props.comorbidades.colesterolAlto = e.target.value}
                             />
                             <label className="form-check-label" htmlFor="colesterolAlto">
                                 Colesterol alto
@@ -57,7 +62,8 @@ class Comobirdades extends React.Component{
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="diabetes"
-                                onChange={e => this.props.comorbidades.diabetes = e.target.checked}
+                                value="Diabetes"
+                                onChange={e => this.props.comorbidades.diabetes = e.target.value}
                             />
                             <label className="form-check-label" htmlFor="diabetes">
                                 Diabetes
@@ -67,8 +73,9 @@ class Comobirdades extends React.Component{
                 </div>
                 <div className="form-check">
                     <input className="form-check-input" type="checkbox" id="outras" 
+                        value="outras"
                         onChange={
-                            e => (this.props.comorbidades.outras = e.target.checked,
+                            e => (this.props.comorbidades.outras = e.target.value,
                                 this.setState({comborbidadesOutras:!e.target.checked})  
                                 )
                         }
