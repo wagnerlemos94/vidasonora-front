@@ -237,7 +237,7 @@ class Anamnese extends React.Component{
                 <Modal id="modalTontura" tamanhoModal="modal-xl">
                     <Tontura queixas={this.state.tontura}/>
                 </Modal>
-                <Modal id="modalAparelho" tamanhoModal="modal-xl">
+                <Modal id="modalAparelho" tamanhoModal="modal-lg">
                     <Aparelho aparelho={this.state.aparelho} name={this.props.name}/>
                 </Modal>
                 <Modal id="modalZumbido" tamanhoModal="modal-xl">
@@ -245,8 +245,6 @@ class Anamnese extends React.Component{
                 </Modal>
                 <div className="row">
                     <div className="col form-inline mb-4">
-                        {/* <button className="col btn btn-primary" id="comobirdade">Comobirdades</button>
-                        <button className="col btn btn-primary" id="quixasAuditivas">QUEIXAS AUDITIVAS</button> */}
                         <button className="col btn btn-primary d-none" id="btnTontura" data-bs-toggle="modal" data-bs-target="#modalTontura">Tontura</button>
                         <button className="col btn btn-primary d-none" id="btnAparelhoAuditivo" data-bs-toggle="modal" data-bs-target="#modalAparelho">Aparelho</button>
                         <button className="col btn btn-primary d-none" id="btnZumbido" data-bs-toggle="modal" data-bs-target="#modalZumbido">zumbido</button>

@@ -16,7 +16,7 @@ class Modal extends React.Component{
                             {this.props.children}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         </div>
                         </div>
                     </div>
