@@ -23,14 +23,27 @@ class ListaPessoa extends React.Component{
         this.service.buscarTodos().then(response => {
             this.setState({pessoas:response.data});     
             this.state.pessoas.forEach(pessoa => {
-                pessoa.edit = <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit" /></a>
-                pessoa.excluir = <a icon="address-book"></a>
+                pessoa.buttom = 
+                <spam>
+                  <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit fa-lg" className="mr-2" style={{"color":"blue"}}/></a>
+                  <a onClick={this.prontuario}><MDBIcon id={pessoa.id} title="Prontuário" icon="address-book fa-lg" style={{"color":"blue"}}/></a>
+                </spam>
             });
             this.setState({});
         }).catch(error => {
             console.log(error);
         });
       }
+    }
+
+    prontuario = (event) => {
+      const id = event.target.id
+      const pessoas = this.state.pessoas;
+      let pessoa = pessoas.filter((pessoa) => pessoa.id == id );
+      pessoa = pessoa.pop(pessoa);
+        
+      LocalStorageService.adicionarItem('_usuario_prontuario', pessoa);
+      this.props.history.push('/prontuario');
     }
 
     editar = (event) => {
@@ -115,7 +128,7 @@ class ListaPessoa extends React.Component{
               },
               {
                 label: 'Ações',
-                field: 'edit',
+                field: 'buttom',
                 width: 200,
               }
             ],
