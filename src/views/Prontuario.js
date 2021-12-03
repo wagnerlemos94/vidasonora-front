@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../components/Card';
 import PessoaService from '../app/service/PessoaService';
-import ValidarUsuario from '../app/service/ValidarUsuario';
 import LocalStorageService from '../app/service/localStorageService';
 import { MDBInputGroup } from 'mdbreact';
+import FormGroup from '../components/FormGroup';
 
 class Prontuario extends React.Component{
     
@@ -13,25 +13,18 @@ class Prontuario extends React.Component{
     }
 
     state = {
-       pessoa:{}
+        prontuario:{
+            pessoa:{
+                nome:""
+            }
+        }
     }
     
     componentDidMount(){
-        if(ValidarUsuario.usuarioLogado()){
-            this.service.buscarPessoasIdNome().then(response => {
-                const pessoa = response.data;
-                this.setState({options:pessoa});
-            }).catch(erro => {
-                console.log(erro);
-            });
-        }
-
         const pessoa = LocalStorageService.obterItem('_usuario_prontuario');
-        this.setState({pessoa:pessoa});
-    }
-    salvar = () => {
-        const anamnese = this.state;
-        console.log(anamnese);
+        this.setState({
+            prontuario:pessoa
+        });
     }
 
     render(){
@@ -39,17 +32,19 @@ class Prontuario extends React.Component{
             <Card title="Prontuário">
                 <div className="row">
                     <div className="col text-right">
-                        <button className="btn btn-sm btn-primary">Nova anamnese</button>
+                        <a href={"#/anamnese"} className="btn btn-sm btn-primary">Nova anamnese</a >
                     </div>
                 </div>
-                 <MDBInputGroup
-                    material
-                    containerClassName="mb-2 mt-0 disabled"
-                    hint="Nome:"
-                    size="sm"
-                    value={this.state.pessoa.nome}
-                    
-                />                
+                <FormGroup htmlForm="cliente" label="Cliente:">
+                    <MDBInputGroup
+                        material
+                        containerClassName="mb-2 mt-0 disabled"
+                        hint="Nome:"
+                        size="sm"
+                        value={this.state.prontuario.pessoa.nome}
+                        
+                    />   
+                </FormGroup>             
             </Card>
         );
     }

@@ -1,13 +1,12 @@
 import React from 'react';
 import Card from '../Card';
 import FormGroup from '../FormGroup';
-import AnamneseRadioButton from './AnamneseRadioButton';
 import Select from 'react-select';
 import Comobirdades from './Comorbidades';
 import Queixas from './Queixas';
-import RadioButtonSimNao from './RadioButtonSimNao';
 import {MDBInputGroup} from 'mdbreact';
 import AnamneseService from '../../app/service/AnamneseService';
+import LocalStorageService from '../../app/service/localStorageService';
 import Tontura from './Tontuara';
 import Zumbindo from './Zumbindo';
 import Util from '../../app/util/Util';
@@ -20,7 +19,7 @@ class Anamnese extends React.Component{
     constructor(){
         super();
         this.service = new AnamneseService();
-        this.util = new Util()        ;
+        this.util = new Util();
     }
 
     queixa = () => {
@@ -167,6 +166,9 @@ class Anamnese extends React.Component{
             fatoresMelhora:"",
             sintomasConcomitantes:"",
             outrosDados:""
+        },
+        pessoa:{
+            nome:""
         }
     }
 
@@ -181,6 +183,11 @@ class Anamnese extends React.Component{
 
     componentDidMount(){
         this.setState({options:this.service.retornarArrayEncaminhaPor()});
+        const prontuario = LocalStorageService.obterItem('_usuario_prontuario');
+        this.setState({
+            pessoa:prontuario.pessoa
+        });
+        console.log(this.state.pessoa)
     }
 
     salvar = () => {
@@ -195,6 +202,15 @@ class Anamnese extends React.Component{
     render(){
         return(            
             <Card title="Anamnese">
+                <FormGroup htmlForm="cliente" label="Cliente:">
+                    <MDBInputGroup
+                        material
+                        containerClassName="mb-2 mt-0 disabled"
+                        hint="Nome:"
+                        size="sm"
+                        value={this.state.pessoa.nome}                    
+                    />  
+                </FormGroup>
                 <FormGroup htmlForm="queixaPrincipal" label="Queixa Principal:">
                     <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
                         onChange={e => this.setState({

@@ -4,6 +4,7 @@ import DataTable from '../components/DataTable';
 import LocalStorageService from '../app/service/localStorageService';
 import ValidarUsuario from '../app/service/ValidarUsuario';
 import PessoaService from '../app/service/PessoaService';
+import ProntuarioService from '../app/service/ProntuarioService';
 import { MDBIcon } from 'mdbreact';
 
 class ListaPessoa extends React.Component{
@@ -15,6 +16,7 @@ class ListaPessoa extends React.Component{
     constructor(){
         super();
         this.service = new PessoaService();
+        this.serviceProntuario = new ProntuarioService();
     }
 
     componentDidMount(){
@@ -38,12 +40,14 @@ class ListaPessoa extends React.Component{
 
     prontuario = (event) => {
       const id = event.target.id
-      const pessoas = this.state.pessoas;
-      let pessoa = pessoas.filter((pessoa) => pessoa.id == id );
-      pessoa = pessoa.pop(pessoa);
+      this.serviceProntuario.buscarPorIdPessoa(id).then(response => {
+        const pessoa = response.data;
+        LocalStorageService.adicionarItem('_usuario_prontuario', pessoa);
+        this.props.history.push('/prontuario');
+      }).catch(erro => {
+        console.log(erro);
+      });
         
-      LocalStorageService.adicionarItem('_usuario_prontuario', pessoa);
-      this.props.history.push('/prontuario');
     }
 
     editar = (event) => {
