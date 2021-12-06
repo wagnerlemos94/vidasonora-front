@@ -63,14 +63,19 @@ class ListaPessoa extends React.Component{
         state.titulo = 'Editar Cliente';
         state.pessoa.contatos.forEach(contato => {
           if(contato.tipo.toUpperCase() === 'celular'.toUpperCase()){
-            state.idCelular = contato.id;
-            state.celular = contato.contato;
+            state.celular = {
+                id:contato.id,
+                tipo:contato.tipo.toUpperCase(),
+                contato:contato.contato
+              }
           }else if(contato.tipo.toUpperCase() === 'email'.toUpperCase()){
-            state.idEmail = contato.id;
-            state.email = contato.contato;
+            state.email = {
+              id:contato.id,
+              tipo:contato.tipo.toUpperCase(),
+              contato:contato.contato
             }
+          }
         });
-        state.pessoa.contatos = [];
         state.pessoa.enderecos.forEach(endereco => {
           if(endereco){
             state.endereco = {

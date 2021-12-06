@@ -39,10 +39,14 @@ class Pessoa extends React.Component{
             estado:'',
             complemento: ''
         },
-        idCelular:null,
-        celular:'',
-        idEmail:null,
-        email:'',
+        celular:{
+            tipo:"CELULAR",
+            contato:""
+        },
+        email:{
+            tipo:"EMAIL",
+            contato:""
+        },
         titulo:"Cadastro de Cliente"
     }
 
@@ -113,11 +117,23 @@ class Pessoa extends React.Component{
 
     }
 
+    preparaEnderecos(){
+        this.state.pessoa.enderecos = [];
+        this.state.pessoa.enderecos.push(this.state.endereco);
+    }
+
+    preparaContatos(){
+        this.state.pessoa.contatos = [];
+        this.state.pessoa.contatos.push(this.state.celular);
+        this.state.pessoa.contatos.push(this.state.email);
+    }
+
     salvar = (event) => {
         const result = this.validarFormulario(event);
         if(result){
             if(!this.state.pessoa.id){
-                this.state.pessoa.enderecos.push(this.state.endereco);
+                this.preparaEnderecos();
+                this.preparaContatos();
                 this.service.salvar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro realizado com sucesso!");
                     this.props.history.push('/lista-pessoa');
@@ -126,15 +142,8 @@ class Pessoa extends React.Component{
                     mensagemErro("Cadastro não realizado");
                 });
             }else{
-                this.state.pessoa.enderecos.push(this.state.endereco);
-                this.state.pessoa.contatos.forEach((contato) => {
-                    if(contato.tipo === "email"){
-                        console.log(contato);
-                    }else if(contato.tipo === "celular"){
-                    }
-                });
-                // console.log(this.state.pessoa);
-                // return false;
+                this.preparaEnderecos();
+                this.preparaContatos();
                 this.service.atualizar(this.state.pessoa).then(response => {
                     mensagemSucesso("Cadastro atualizado com sucesso!");
                     this.props.history.push('/lista-pessoa'); 
@@ -200,27 +209,23 @@ class Pessoa extends React.Component{
                         </div> 
                         <div className="col-4">                        
                             <FormGroup label="Celular" htmlFor="inputCelular" >
-                                <InputMask value={this.state.celular} mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
+                                <InputMask value={this.state.celular.contato} mask="(99) 9 9999-9999" className="form-control mt-2 mb-2" type="text" id="celular" required
                                     name="contatos[]" placeholder="(00) 0 0000-0000"
-                                    onBlur={ e => this.state.pessoa.contatos.push({
-                                        id: this.state.idCelular,
-                                        tipo: 'celular',
-                                        contato : e.target.value.replace(/[^\d]+/g,'')
-                                    })}
-                                    onChange={e => this.setState({celular:e.target.value})}
+                                    onChange={e => this.setState({celular:{
+                                        tipo:"CELULAR",
+                                        contato:e.target.value.replace(/[^\d]+/g,'')
+                                    }})}
                                     />                 
                             </FormGroup>
                         </div>
                         <div className="col-4">                        
                             <FormGroup label="Email" htmlFor="inputEmail" >
-                                <input value={this.state.email} className="form-control mt-2 mb-2" type="email" id="email" required
+                                <input value={this.state.email.contato} className="form-control mt-2 mb-2" type="email" id="email" required
                                     name="contatos[]" placeholder="email@email.com"
-                                    onBlur={ e => this.state.pessoa.contatos.push({
-                                        id:this.state.idEmail,
-                                        tipo: 'email',
-                                        contato : e.target.value
-                                    })}
-                                    onChange={e => this.setState({email:e.target.value})}
+                                    onChange={e => this.setState({email:{
+                                        tipo:"EMAIL",
+                                        contato:e.target.value
+                                    }})}
                                     />                 
                             </FormGroup>
                         </div>
@@ -336,8 +341,8 @@ class Pessoa extends React.Component{
                         }}
                     </ViaCep>                         
                         <div className="">
-                            <button className="btn btn-primary mx-2" type="submit">Salvar</button>
-                            {/* <button className="btn btn-danger">Cancelar</button> */}
+                            <a href="#/lista-pessoa" className="btn btn-md btn-danger">Cancelar</a>
+                            <button className="btn btn-md btn-primary mx-2" type="submit">Salvar</button>
                         </div>
                 </form>
             </Card>
