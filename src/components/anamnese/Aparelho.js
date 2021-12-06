@@ -44,7 +44,7 @@ class Aparelho extends React.Component{
                                         })
                                     }
                                     />
-                                    {this.props.aparelho.antencendentesFamiliarePerdaAuditiva === "1" ?(
+                                    {this.props.aparelho.antencendentesFamiliarePerdaAuditiva === "Sim" ?(
                                         <MDBInputGroup
                                         material
                                         containerClassName="mb-2 mt-0"
@@ -74,7 +74,7 @@ class Aparelho extends React.Component{
                             <div className="form-inline">
                                 <div className="form-check mr-4">
                                     <input className="form-check-input" type="checkbox" id="sus" value="SUS"
-                                        onChange={e => this.props.aparelho.sus = e.target.value}
+                                        onChange={e => this.props.aparelho.sus_particular.sus = e.target.value}
                                         />
                                     <label className="form-check-label" htmlFor="sus">
                                         SUS
@@ -82,7 +82,7 @@ class Aparelho extends React.Component{
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" id="particular" value="Particular"
-                                        onChange={e => this.props.aparelho.particular = e.target.value}
+                                        onChange={e => this.props.aparelho.sus_particular.particular = e.target.value}
                                         />
                                     <label className="form-check-label" htmlFor="particular">
                                         Particular
@@ -303,7 +303,7 @@ class Aparelho extends React.Component{
                         />
                     </FormGroup>
 
-                    <MaiorDificuldadesAuditivas aparelho={this.props.aparelho}/>
+                    <MaiorDificuldadesAuditivas maioresDificuldadeAuditivas={this.props.aparelho.maioresDificuldadeAuditivas}/>
                 </Card>
             </div>
         );

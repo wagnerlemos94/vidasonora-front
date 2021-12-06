@@ -90,8 +90,6 @@ class Anamnese extends React.Component{
             gostoAparelho:"",
             teveProblema:"",
             oqGostava:"",
-            sus:"",
-            particular:"",
             telefone:"",
             conversacao:"",
             radioMusica:"",
@@ -108,7 +106,14 @@ class Anamnese extends React.Component{
             desconfortoSonsIntensos:"",
             importanteOuvirMelhor:"",
             aparelhoSeriaUtil:"",
-            usoAASI:"1"
+            usoAASI:"1",
+            sus_particular:{
+                sus:"",
+                particular:"",
+            },
+            maioresDificuldadeAuditivas:{
+                outras:""
+            }
         },
         tontura:{
             inicio:"",
@@ -187,16 +192,82 @@ class Anamnese extends React.Component{
         this.setState({
             pessoa:prontuario.pessoa
         });
-        console.log(this.state.pessoa)
+    }
+
+    preparaComorbidades(){
+        let nomes = [];
+        Object.values(this.state.comorbidades).map((valor,index) => {
+            if(valor && valor != "outras"){
+                nomes.push(valor);
+            }
+        });
+        return nomes;
+    }
+
+    preparaQueixas(){
+        const queixas = {
+            nomes:[],
+            ouvidoDireto:[],
+            ouvidoEsquerdo:[]
+        }
+        let nomes = [];
+        Object.values(this.state.queixas).map((valor,index) => {
+            if(typeof(valor) == "string"){
+                nomes.push(valor);
+            }
+        });
+        queixas.nomes = nomes;
+
+        nomes = [];
+        Object.values(this.state.queixas.od).map((valor,index) => {
+            nomes.push(valor);
+        });
+        queixas.ouvidoDireto = nomes;
+        
+        nomes = [];
+        Object.values(this.state.queixas.oe).map((valor,index) => {
+            nomes.push(valor);
+        });
+        queixas.ouvidoEsquerdo = nomes;
+        return queixas;
+    }
+
+    preparaAparelho(){
+        const aparelho = {
+            nomes:[],
+            maioresDificuldadeAuditivas:[],
+            sus_particular:[]
+        }
+        let nomes = [];
+        Object.values(this.state.aparelho).map((valor,index) => {
+            if(typeof(valor) == "string" && valor != "" && valor != "outras"){
+                nomes.push(valor);
+            }
+        });
+        aparelho.nomes = nomes;
+
+        nomes = [];
+        Object.values(this.state.aparelho.maioresDificuldadeAuditivas).map((valor,index) => {
+            nomes.push(valor);
+        });
+        aparelho.maioresDificuldadeAuditivas = nomes;
+
+        nomes = [];
+        Object.values(this.state.aparelho.sus_particular).map((valor,index) => {
+            nomes.push(valor);
+        });
+        aparelho.sus_particular = nomes;
+
+        return aparelho;
     }
 
     salvar = () => {
-        const anamnese = this.state.anamnese;
-        anamnese.comorbidades = this.state.comorbidades;
-        anamnese.queixas = this.state.queixas;
-        anamnese.aparelho = this.state.aparelho;
+        const anamnese = new Object();
+        anamnese.queixas = this.preparaQueixas();
+        anamnese.comorbidades = this.preparaComorbidades();      
+        anamnese.aparelho = this.preparaAparelho();
+        console.log(anamnese.aparelho);return false;
         anamnese.tontura = this.state.tontura;
-        console.log(anamnese);
     }
     
     render(){

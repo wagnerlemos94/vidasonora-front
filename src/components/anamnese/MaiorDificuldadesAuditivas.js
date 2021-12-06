@@ -18,7 +18,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="telefone" value="Telefone"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.telefone = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.telefone = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="telefone">
@@ -30,7 +30,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="conversacao" value="Conversação"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.conversacao = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.conversacao = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="conversacao">
@@ -42,7 +42,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="radioMusica" value="Rádio/Música"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.radioMusica = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.radioMusica = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="radioMusica">
@@ -54,7 +54,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="televisao" value="Televisão"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.televisao = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.televisao = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="televisao">
@@ -65,7 +65,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="vozMasculina" value="Voz Masculina"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.vozMasculina = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.vozMasculina = e.target.value
                                     })}
                                 />
                             <label className="form-check-label" htmlFor="vozMasculina">
@@ -77,7 +77,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="vozFeminina" value="Voz Feminina"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.vozFeminina = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.vozFeminina = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="vozFeminina">
@@ -93,7 +93,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="localizacaoFonteSonora" value="Localização da fonte sonora"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.localizacaoFonteSonora = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.localizacaoFonteSonora = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="localizacaoFonteSonora">
@@ -105,7 +105,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="palestrasCultoEtc" value="Palestras, Culto, Etc"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.palestrasCultoEtc = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.palestrasCultoEtc = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="palestrasCultoEtc">
@@ -117,7 +117,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="trabalho" value="No Trabalho"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.trabalho  = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.trabalho  = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="trabalho ">
@@ -129,7 +129,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="reunioes" value="Reuniões"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.reunioes = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.reunioes = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="reunioes">
@@ -141,7 +141,7 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="almocoFamilia" value="Almoço em Família"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.almocoFamilia  = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.almocoFamilia  = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="almocoFamilia">
@@ -153,14 +153,14 @@ class MaiorDificuldadesAuditivas extends React.Component{
                             <input className="form-check-input" type="checkbox" id="outras" value="Outras"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.outras = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.outras = e.target.value
                                     })}
                             />
                             <label className="form-check-label" htmlFor="outras">
                                 Outras
                             </label>
                         </div>
-                        {this.props.aparelho.outras === "Outras" ?
+                        {this.props.maioresDificuldadeAuditivas.outras === "Outras" ?
                             (
                                 <MDBInputGroup
                                 material
@@ -169,11 +169,11 @@ class MaiorDificuldadesAuditivas extends React.Component{
                                 size="sm"
                                 onChange={e => 
                                     this.setState({
-                                        ...this.props.aparelho.outrasDescricao = e.target.value
+                                        ...this.props.maioresDificuldadeAuditivas.outrasDescricao = e.target.value
                                     })}
                                 />
                             ):(e => this.setState({
-                                ...this.props.aparelho.outrasDescricao = ""
+                                ...this.props.maioresDificuldadeAuditivas.outrasDescricao = ""
                             }))
                         }
                     </div>
