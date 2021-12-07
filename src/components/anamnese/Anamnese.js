@@ -37,7 +37,7 @@ class Anamnese extends React.Component{
         anamnese:{
             queixaPrincipal:"",
             solicitante:"",
-            emcaminhadoPor:"",
+            encaminhadoPor:"",
             preferenciaManual:""
 
         },
@@ -179,6 +179,7 @@ class Anamnese extends React.Component{
         pessoa:{
             nome:""
         }
+        
     }
 
     exibirOcutar(id,click){
@@ -199,19 +200,24 @@ class Anamnese extends React.Component{
     }
 
     preparaComorbidades(){
+        const comorbidades = {
+            nomes:[]
+        }
         let nomes = [];
         Object.values(this.state.comorbidades).map((valor,index) => {
             if(valor && valor != "outras"){
                 nomes.push(valor);
             }
         });
-        return nomes;
+        comorbidades.nomes = nomes;
+
+        return comorbidades;
     }
 
     preparaQueixas(){
         const queixas = {
             nomes:[],
-            ouvidoDireto:[],
+            ouvidoDireito:[],
             ouvidoEsquerdo:[]
         }
         let nomes = [];
@@ -354,14 +360,29 @@ class Anamnese extends React.Component{
         return zumbido;
     }
 
-    salvar = () => {
-        const anamnese = new Object();
-        anamnese.queixas = this.preparaQueixas();
-        anamnese.comorbidades = this.preparaComorbidades();      
+    preparaAnamnese(){
+        let anamnese = new Object();
+        anamnese.queixaPrincipal = this.state.anamnese.queixaPrincipal;
+        anamnese.solicitante = this.state.anamnese.solicitante;
+        anamnese.encaminhadoPor = this.state.anamnese.encaminhadoPor;
+        anamnese.preferenciaManual = this.state.anamnese.preferenciaManual;
+        anamnese.queixasAuditiva = this.preparaQueixas();
+        anamnese.comorbidade = this.preparaComorbidades();      
         anamnese.aparelho = this.preparaAparelho();
         anamnese.tontura = this.preparaTontura();
         anamnese.zumbido = this.preparaZumbido();
-        console.log(anamnese.zumbido);return false;
+        anamnese.pessoa = this.state.pessoa;
+        return anamnese;
+    }
+
+    salvar = () => {
+        let anamnese = this.preparaAnamnese();
+        console.log(anamnese);
+        this.service.salvar(anamnese).then(response => {
+            alert("Anamnese realizada com Sucesso!");
+        }).catch(error => {
+            console.log(error);
+        });
     }
     
     render(){
@@ -379,8 +400,7 @@ class Anamnese extends React.Component{
                 <FormGroup htmlForm="queixaPrincipal" label="Queixa Principal:">
                     <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
                         onChange={e => this.setState({
-                            ...this.state.anamnese.queixaPrincipal,
-                            queixaPrincipal:e.target.value
+                            ...this.state.anamnese.queixaPrincipal = e.target.value
                         })}
                         required
                         />
@@ -390,8 +410,7 @@ class Anamnese extends React.Component{
                         <FormGroup htmlForm="solicitante" label="Solicitante:">
                             <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
                                 onChange={e => this.setState({
-                                    ...this.state.anamnese.solicitante,
-                                    solicitante:e.target.value
+                                    ...this.state.anamnese.solicitante = e.target.value
                                 })}
                                 required
                                 />
@@ -401,8 +420,7 @@ class Anamnese extends React.Component{
                         <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
                             <Select options={this.state.options}     
                             onChange={e => this.setState({
-                                ...this.state.anamnese.encaminhadoPor,
-                                encaminhadoPor:e.label
+                                ...this.state.anamnese.encaminhadoPor = e.label
                             })}
                                 />
                         </FormGroup>
@@ -411,8 +429,7 @@ class Anamnese extends React.Component{
                         <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
                             <select className="form-control" defaultValue=""
                                 onChange={e => this.setState({
-                                    ...this.state.anamnese.preferenciaManual,
-                                    preferenciaManual:e.target.value
+                                    ...this.state.anamnese.preferenciaManual = e.target.value
                                 })}                            
                                 required
                             >

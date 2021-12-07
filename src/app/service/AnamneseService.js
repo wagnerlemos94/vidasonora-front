@@ -2,11 +2,11 @@ import ApiService from '../apiservice';
 
 class AnamneseService extends ApiService{
     constructor(){
-        super('/anamnese');
+        super('/anamneses');
     }
 
-    salvar(pessoa){
-        return this.post('/', pessoa);
+    salvar(anamnese){
+        return this.post(`/${anamnese.pessoa.id}`, anamnese);
     }
 
     buscarPessoa(id){

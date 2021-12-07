@@ -15,6 +15,7 @@ class Prontuario extends React.Component{
     state = {
         prontuario:{
             pessoa:{
+                id:"",
                 nome:""
             }
         }
