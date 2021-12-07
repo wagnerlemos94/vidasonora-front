@@ -426,7 +426,7 @@ class Tontura extends React.Component{
                             <div className="">
                                 <div className="form-check mr-2">
                                     <input className="form-check-input" type="checkbox" id="lugaresAltos" value="Lugares altos"
-                                        onChange={e => this.props.tontura.surgerePiora.lugaresAltos = e.target.value}
+                                        onChange={e => this.props.tontura.surgePiora.lugaresAltos = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="lugaresAltos">
                                         Lugares altos
@@ -434,7 +434,7 @@ class Tontura extends React.Component{
                                 </div>
                                 <div className="form-check mr-2">
                                     <input className="form-check-input" type="checkbox" id="lugaresAmplos" value="Lugares amplos"
-                                        onChange={e => this.props.tontura.surgerePiora.lugaresAmplos = e.target.value}
+                                        onChange={e => this.props.tontura.surgePiora.lugaresAmplos = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="lugaresAmplos">
                                         Lugares amplos
@@ -442,7 +442,7 @@ class Tontura extends React.Component{
                                 </div>
                                 <div className="form-check mr-2">
                                     <input className="form-check-input" type="checkbox" id="supermercados" value="Supermercados"
-                                        onChange={e => this.props.tontura.surgerePiora.supermercados = e.target.value}
+                                        onChange={e => this.props.tontura.surgePiora.supermercados = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="supermercados">
                                         Supermercados
@@ -450,7 +450,7 @@ class Tontura extends React.Component{
                                 </div>
                                 <div className="form-check mr-2">
                                     <input className="form-check-input" type="checkbox" id="comerciais" value="Comerciais"
-                                        onChange={e => this.props.tontura.surgerePiora.comerciais = e.target.value}
+                                        onChange={e => this.props.tontura.surgePiora.comerciais = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="comerciais">
                                         Comerciais
@@ -458,7 +458,7 @@ class Tontura extends React.Component{
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" id="filas" value="Filas"
-                                        onChange={e => this.props.tontura.surgerePiora.filas = e.target.value}
+                                        onChange={e => this.props.tontura.surgePiora.filas = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="filas">
                                         Filas
@@ -473,7 +473,7 @@ class Tontura extends React.Component{
                             <div className="">
                                 <div className="form-check mr-2">
                                     <input className="form-check-input" type="checkbox" id="direita" value="Para a direita"
-                                        onChange={e => this.props.tontura.devioMarcha.direita = e.target.value}
+                                        onChange={e => this.props.tontura.desvioMarcha.direita = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="direita">
                                         Para a direita
@@ -481,7 +481,7 @@ class Tontura extends React.Component{
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" id="esquerda" value="Para a esquerda"
-                                        onChange={e => this.props.tontura.devioMarcha.esquerda = e.target.value}
+                                        onChange={e => this.props.tontura.desvioMarcha.esquerda = e.target.value}
                                     />
                                     <label className="form-check-label" htmlFor="esquerda">
                                         Para a esquerda

@@ -8,7 +8,7 @@ import {MDBInputGroup} from 'mdbreact';
 import AnamneseService from '../../app/service/AnamneseService';
 import LocalStorageService from '../../app/service/localStorageService';
 import Tontura from './Tontuara';
-import Zumbindo from './Zumbindo';
+import Zumbido from './Zumbido';
 import Util from '../../app/util/Util';
 import Modal from '../Modal';
 import Aparelho from './Aparelho';
@@ -60,23 +60,27 @@ class Anamnese extends React.Component{
             od:this.queixa(),
             oe:this.queixa()
         },zumbido:{
-            option:"2",
-            continuo:"",
-            pulsatil:"",
-            subito:"",
-            variavel:"",
+            tipo:{
+                continuo:"",
+                pulsatil:"",
+                subito:"",
+                variavel:"",
+                emCrise:""
+            },
+            comQueParece:{
+                panelaPressao:"",
+                cachoeira:"",
+                apito:"",
+                chiado:"",
+                abelha:"",
+                outros:"",
+            },
+            intensidade:"",
             frequencia:"",
-            apito:"",
-            cachoeira:"",
-            panelaPressao:"",
-            abelha:"",
-            outros:"",
-            outrosInput:"",
-            pitch:"",
-            itensidade:"",
-            DificuldadeDormirzumbindo:"",
+            dificuldadeDormir:"",
             algumTratamento:"",
-            tratamentaQual:""
+            pitch:"",
+            observacao:""
         },
         aparelho:{
             antencendentesFamiliarePerdaAuditivaDescricao:"",
@@ -149,7 +153,7 @@ class Anamnese extends React.Component{
                 outros:""
 
             },
-            surgerePiora:{
+            surgePiora:{
                 lugaresAltos:"",
                 lugaresAmplos:"",
                 supermercados:"",
@@ -162,7 +166,7 @@ class Anamnese extends React.Component{
                 frente:"",
                 tras:""
             },
-            devioMarcha:{
+            desvioMarcha:{
                 direita:"",
                 esquerda:""
             },
@@ -261,13 +265,103 @@ class Anamnese extends React.Component{
         return aparelho;
     }
 
+    preparaTontura(){
+
+        const tontura = {
+            inicio:this.state.tontura.inicio,
+            intensidade:this.state.tontura.intensidade,
+            ocorrencia:this.state.tontura.ocorrencia,
+            fatoresDesencadeantes:this.state.tontura.fatoresDesencadeantes,
+            fatoresAgravantes:this.state.tontura.fatoresAgravantes,
+            fatoresMelhora:this.state.tontura.fatoresMelhora,
+            sintomasConcomitantes:this.state.tontura.sintomasConcomitantes,
+            outrosDados:this.state.tontura.outrosDados,
+            nomes:[],
+            tendenciaQueda:[],
+            duracaoCrise:[],
+            surgeOuPiora:[],
+            sensacao:[],
+            surgePiora:[],
+            desvioMarcha:[]
+        }
+
+        let nomes = [];
+        Object.values(this.state.tontura.tendenciaQueda).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.tendenciaQueda = nomes;
+
+        nomes = [];
+        Object.values(this.state.tontura.duracaoCrise).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.duracaoCrise = nomes;
+
+        nomes = [];
+        Object.values(this.state.tontura.surgeOuPiora).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.surgeOuPiora = nomes;
+
+        nomes = [];
+        Object.values(this.state.tontura.sensacao).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.sensacao = nomes;
+
+        nomes = [];
+        Object.values(this.state.tontura.surgePiora).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.surgePiora = nomes;
+
+        nomes = [];
+        Object.values(this.state.tontura.desvioMarcha).map((valor,index) => {
+            nomes.push(valor);
+        });
+        tontura.desvioMarcha = nomes;
+
+        return tontura;
+    }
+
+    preparaZumbido(){
+
+        const zumbido = {
+            dificuldadeDormir:this.state.zumbido.dificuldadeDormir,
+            algumTratamento:this.state.zumbido.algumTratamento,
+            observacao:this.state.zumbido.observacao,
+            intensidade:this.state.zumbido.intensidade,
+            pitch:this.state.zumbido.pitch,
+            frequencia:this.state.zumbido.frequencia,
+            tipo:[],
+            comQueParece:[]
+        }
+
+        let nomes = [];
+        Object.values(this.state.zumbido.tipo).map((valor,index) => {
+            if(valor !== ""){
+                nomes.push(valor);
+            }
+        });
+        zumbido.tipo = nomes;
+
+        nomes = [];
+        Object.values(this.state.zumbido.comQueParece).map((valor,index) => {
+            nomes.push(valor);
+        });
+        zumbido.comQueParece = nomes;
+
+        return zumbido;
+    }
+
     salvar = () => {
         const anamnese = new Object();
         anamnese.queixas = this.preparaQueixas();
         anamnese.comorbidades = this.preparaComorbidades();      
         anamnese.aparelho = this.preparaAparelho();
-        console.log(anamnese.aparelho);return false;
-        anamnese.tontura = this.state.tontura;
+        anamnese.tontura = this.preparaTontura();
+        anamnese.zumbido = this.preparaZumbido();
+        console.log(anamnese.zumbido);return false;
     }
     
     render(){
@@ -346,7 +440,7 @@ class Anamnese extends React.Component{
                     <Aparelho aparelho={this.state.aparelho} name={this.props.name}/>
                 </Modal>
                 <Modal id="modalZumbido" tamanhoModal="modal-xl">
-                    <Zumbindo zumbido={this.state.zumbido} name={"teste"}/>
+                    <Zumbido zumbido={this.state.zumbido} name={"teste"}/>
                 </Modal>
                 <div className="row">
                     <div className="col form-inline mb-4">

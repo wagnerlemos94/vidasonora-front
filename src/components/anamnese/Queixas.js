@@ -5,7 +5,7 @@ import AnamneseRadioButton from './AnamneseRadioButton';
 import Aparelho from './Aparelho';
 import RadioButtonSimNao from './RadioButtonSimNao';
 import Tontura from './Tontuara';
-import Zumbindo from './Zumbindo';
+import Zumbindo from './Zumbido';
 
 class Queixas extends React.Component{
 
@@ -111,13 +111,13 @@ class Queixas extends React.Component{
                                 <input className="form-check-input" type="checkbox" id="zumbido" 
                                     value="Zumbido"
                                   onChange={e => this.setState(
-                                        {...this.props.queixas.Zumbindo = e.target.value},
+                                        {...this.props.queixas.zumbido = e.target.value},
                                         this.props.exibirOcutar("btnZumbido",e.target.checked)
                                     )
                                 }
                                 />
                                 <label className="form-check-label" htmlFor="zumbido">
-                                    Zumbindo
+                                    Zumbido
                                 </label>
                             </div>
                             <div className="form-check">
