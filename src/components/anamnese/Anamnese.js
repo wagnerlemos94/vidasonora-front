@@ -232,7 +232,7 @@ class Anamnese extends React.Component{
         Object.values(this.state.queixas.od).map((valor,index) => {
             nomes.push(valor);
         });
-        queixas.ouvidoDireto = nomes;
+        queixas.ouvidoDireito = nomes;
         
         nomes = [];
         Object.values(this.state.queixas.oe).map((valor,index) => {
