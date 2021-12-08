@@ -18,13 +18,18 @@ class Prontuario extends React.Component{
                 id:"",
                 nome:""
             }
+        },
+        anamnese:{
+
         }
     }
     
     componentDidMount(){
         const pessoa = LocalStorageService.obterItem('_usuario_prontuario');
+        const anamnese = pessoa.anamneses.pop();
         this.setState({
-            prontuario:pessoa
+            prontuario:pessoa,
+            anamnese:anamnese
         });
     }
 
@@ -45,7 +50,40 @@ class Prontuario extends React.Component{
                         value={this.state.prontuario.pessoa.nome}
                         
                     />   
-                </FormGroup>             
+                </FormGroup>      
+                <div className="row">
+                    {
+                        this.state.anamnese.comorbidade ? (
+                        <div className="col">
+                            <Card title="Comorbidades"> {console.log(this.state.anamnese)}</Card>
+                        </div>
+                        ):(false)
+                    }{
+                        this.state.anamnese.aparelho ? (
+                        <div className="col">
+                            <Card title="Aparelho"> {console.log(this.state.anamnese)}</Card>
+                        </div>
+                        ):(false)
+                    }{
+                        this.state.anamnese.queixasAuditiva ? (
+                        <div className="col">
+                            <Card title="Queixas Auditivas"> {console.log(this.state.anamnese)}</Card>
+                        </div>
+                        ):(false)
+                    }{
+                        this.state.anamnese.tontura ? (
+                        <div className="col">
+                            <Card title="Tontura"> {console.log(this.state.anamnese)}</Card>
+                        </div>
+                        ):(false)
+                    }{
+                        this.state.anamnese.zumbindo ? (
+                        <div className="col">
+                            <Card title="Zumbido"> {console.log(this.state.anamnese)}</Card>
+                        </div>
+                        ):(false)
+                    }
+                </div>
             </Card>
         );
     }
