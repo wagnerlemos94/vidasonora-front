@@ -2,8 +2,8 @@ import React from 'react';
 
 function FormGroup(props){
     return(
-        <div className={"form-group "+props.className}>
-            <label htmlFor={props.htmlForm}>{props.label}</label>
+        <div className={"input-group "+props.className}>
+            <span class={"input-group-text "+props.classLabel} id="basic-addon1">{props.label}</span>
             {props.children}
         </div>
     );

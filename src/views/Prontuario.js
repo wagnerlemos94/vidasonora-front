@@ -4,6 +4,8 @@ import PessoaService from '../app/service/PessoaService';
 import LocalStorageService from '../app/service/localStorageService';
 import { MDBInputGroup } from 'mdbreact';
 import FormGroup from '../components/FormGroup';
+import Tontura from './tontura/TonturaView';
+import TonturaView from './tontura/TonturaView';
 
 class Prontuario extends React.Component{
     
@@ -27,6 +29,9 @@ class Prontuario extends React.Component{
                 nomes:[],
                 ouvidoDireito:[],
                 ouvidoEsquerdo:[]
+            },
+            tontura:{
+                
             }
         }
     }
@@ -48,102 +53,124 @@ class Prontuario extends React.Component{
                         <a href={"#/anamnese"} className="btn btn-sm btn-primary">Nova anamnese</a >
                     </div>
                 </div>
-                <FormGroup htmlForm="cliente" label="Cliente:">
+                <div className="form-inline">
+                    <label>Paciente:</label>
                     <MDBInputGroup
                         material
-                        containerClassName="mb-2 mt-0 disabled"
+                        containerClassName="col mb-4 mt-0 disabled"
                         hint="Nome:"
                         size="sm"
                         value={this.state.prontuario.pessoa.nome}
                         
-                    />   
-                </FormGroup>      
+                        />  
+                        </div>
                 <div className="row">
                     <div className="col-12">
                         <Card title="Anamnese">
                             <div className="row">
-                                <div className="col">
-                                        <FormGroup htmlForm="queixaPrincipal" label="Queixa Principal:">
+                                <div className="col-6">
+                                    <div className="form-inline">
+                                            <label>Queixa Princical:</label>
                                             <MDBInputGroup
                                                 material
-                                                containerClassName="mb-2 mt-0 disabled"
+                                                containerClassName="col disabled"
                                                 hint="Nome:"
                                                 size="sm"
                                                 value={this.state.anamnese.queixaPrincipal}                                            
                                                 />   
-                                        </FormGroup>
+                                        </div>
                                     </div>
-                                    <div className="col">
+                                    <div className="col-6">
 
-                                        <FormGroup htmlForm="solicitante" label="Solicitante:">
+                                        <div className="form-inline">
+                                            <label>Solicitante:</label>
                                             <MDBInputGroup
                                                 material
-                                                containerClassName="mb-2 mt-0 disabled"
+                                                containerClassName="col disabled"
                                                 hint="Nome:"
                                                 size="sm"
                                                 value={this.state.anamnese.solicitante}                                            
                                                 /> 
-                                        </FormGroup>
+                                        </div>
                                     </div>
-                                    <div className="col">
+                                    <div className="col-6">
 
-                                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
+                                        <div className="form-inline">
+                                            <label>Encaminhado Por:</label>
                                             <MDBInputGroup
                                                 material
-                                                containerClassName="mb-2 mt-0 disabled"
+                                                containerClassName="col disabled"
                                                 hint="Nome:"
                                                 size="sm"
                                                 value={this.state.anamnese.encaminhadoPor}                                            
                                                 /> 
-                                        </FormGroup>
+                                        </div>
                                     </div>
-                                    <div className="col">
-
-                                        <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
+                                    <div className="col-6">
+                                        <div className="form-inline">
+                                            <label>Preferencia Manual</label>
                                             <MDBInputGroup
                                                 material
-                                                containerClassName="mb-2 mt-0 disabled"
+                                                containerClassName="col disabled"
                                                 hint="Nome:"
                                                 size="sm"
                                                 value={this.state.anamnese.preferenciaManual}                                            
                                                 /> 
-                                        </FormGroup>
+                                        </div>
                                     </div>
                             </div>
                             <div className="row">
-                                <div className="col">
-                                    <h5>Comorbidades</h5>
-                                        {this.state.anamnese.comorbidade.nomes.map( (c) =>
-                                            <div className="form-group">
-                                                <p>{c} </p>
-                                            </div>    
-                                        )}
-
+                                <div className="col-12">
+                                    <div className="form-inline">
+                                        <label>Comorbidades:</label>
+                                            <MDBInputGroup
+                                                material
+                                                containerClassName="col disabled"
+                                                hint="Nome:"
+                                                size="sm"
+                                                value={this.state.anamnese.comorbidade.nomes}
+                                            />                                         
+                                    </div>
                                 </div> 
-                                <div className="col">
-                                    <h5>Queixas Auditivas</h5>
-                                        {this.state.anamnese.queixasAuditiva.nomes.map( (c) =>
-                                            <div className="form-group">
-                                                <p>{c} </p>
-                                            </div>    
-                                        )}
-                                    </div>   
-                                    <div className="col">
-                                        <h5>Ouvido Direito</h5>
-                                        {this.state.anamnese.queixasAuditiva.ouvidoDireito.map( (c) =>
-                                            <div className="form-group">
-                                                <p>{c} </p>
-                                            </div>    
-                                        )}
-                                    </div>   
-                                    <div className="col">
-                                        <h5>Ouvido Esquerdo</h5>
-                                        {this.state.anamnese.queixasAuditiva.ouvidoEsquerdo.map( (c) =>
-                                            <div className="form-group">
-                                                <p>{c} </p>
-                                            </div>    
-                                        )}
+                                <div className="col-12">
+                                    <div className="form-inline">
+                                        <label>Queixas Auditivas</label>
+                                        <MDBInputGroup
+                                                material
+                                                containerClassName="col disabled"
+                                                hint="Nome:"
+                                                size="sm"
+                                                value={this.state.anamnese.queixasAuditiva.nomes}
+                                            /> 
+                                        </div>    
+                                </div>   
+                                <div className="col-6">
+                                    <div className="form-inline">
+                                        <label>Ouvido Direito</label>
+                                        <MDBInputGroup
+                                            material
+                                            containerClassName="col disabled"
+                                            hint="Nome:"
+                                            size="sm"
+                                            value={this.state.anamnese.queixasAuditiva.ouvidoDireito}
+                                        /> 
+                                    </div>    
+                                </div>   
+                                <div className="col-6">
+                                    <div className="form-inline">
+                                        <label>Ouvido Esquerdo</label>
+                                        <MDBInputGroup
+                                            material
+                                            containerClassName="col disabled"
+                                            hint="Nome:"
+                                            size="sm"
+                                            value={this.state.anamnese.queixasAuditiva.ouvidoEsquerdo}
+                                        /> 
+                                    </div>    
                                 </div>    
+                                <div className="col-12">
+                                    <TonturaView tontura={this.state.anamnese.tontura}/>
+                                </div>
                             </div>    
                         </Card>
                     </div>
