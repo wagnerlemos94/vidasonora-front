@@ -6,6 +6,8 @@ import { MDBInputGroup } from 'mdbreact';
 import FormGroup from '../components/FormGroup';
 import Tontura from './tontura/TonturaView';
 import TonturaView from './tontura/TonturaView';
+import ZumbidoView from './zumbido/ZumbidoView';
+import AparelhoView from './aparelho/AparelhoView';
 
 class Prontuario extends React.Component{
     
@@ -22,6 +24,10 @@ class Prontuario extends React.Component{
             }
         },
         anamnese:{
+            queixaPrincipal:"",
+            solicitante:"",
+            encaminhadoPor:"",
+            preferenciaManual:"",
             comorbidade:{
                 nomes:[]
             },
@@ -30,9 +36,9 @@ class Prontuario extends React.Component{
                 ouvidoDireito:[],
                 ouvidoEsquerdo:[]
             },
-            tontura:{
-                
-            }
+            tontura:{},
+            zumbido:{},
+            aparelho:{}
         }
     }
     
@@ -170,6 +176,12 @@ class Prontuario extends React.Component{
                                 </div>    
                                 <div className="col-12">
                                     <TonturaView tontura={this.state.anamnese.tontura}/>
+                                </div>
+                                <div className="col-12">
+                                    <ZumbidoView zumbido={this.state.anamnese.zumbido}/>
+                                </div>
+                                <div className="col-12">
+                                    <AparelhoView aparelho={this.state.anamnese.aparelho}/>
                                 </div>
                             </div>    
                         </Card>
