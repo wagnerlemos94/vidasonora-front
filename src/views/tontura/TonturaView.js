@@ -38,25 +38,25 @@ export default class TonturaView extends React.Component{
                         </div>
                         <div className="col-6">
                             <div className="form-inline">
-                                <label>intencidade:</label>
+                                <label>intensidade:</label>
                                 <MDBInputGroup
                                     material
                                     containerClassName="col disabled"
                                     hint="Nome:"
                                     size="sm"
-                                    value={this.props.tontura.intencidade}
+                                    value={this.props.tontura.intensidade}
                                     /> 
                             </div>
                         </div>
                         <div className="col-6">
                             <div className="form-inline">
-                                <label>fatores Desecadeantes:</label>
+                                <label>fatores Desencadeantes:</label>
                                 <MDBInputGroup
                                     material
                                     containerClassName="col disabled"
                                     hint="Nome:"
                                     size="sm"
-                                    value={this.props.tontura.fatoresDesecadeantes}
+                                    value={this.props.tontura.fatoresDesencadeantes}
                                 /> 
                             </div>
                         </div>

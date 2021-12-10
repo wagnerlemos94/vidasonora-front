@@ -182,6 +182,23 @@ class Anamnese extends React.Component{
         
     }
 
+    sweetalert = () =>{
+        const Swal = require('sweetalert2'); 
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Anamnese cadastrada com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            customClass: {
+                confirmButton: 'btn btn-sm btn-primary',
+              }
+          }).then(result => {
+            if(result.isConfirmed){
+                this.props.history.push('/lista-pessoa');
+            }
+          });
+    }
+
     exibirOcutar(id,click){
         const util = new Util();
         if(click){
@@ -244,6 +261,20 @@ class Anamnese extends React.Component{
 
     preparaAparelho(){
         const aparelho = {
+            perda_auditiva:this.state.aparelho.historicoPerdaAuditiva,
+            ducaracaoCrice:this.state.aparelho.ducaracaoCrice,
+            familiaresPerdaAuditiva:this.state.aparelho.antencendentesFamiliarePerdaAuditiva,
+            desconfortoSonsIntensos:this.state.aparelho.desconfortoSonsIntensos,
+            laudoAudiometria:this.state.aparelho.laudoAudiometria,
+            etilogiaPerdaAuditiva:this.state.aparelho.etilogiaPerdaAuditiva,
+            satisfeitoAparelho:this.state.aparelho.satisfeitoAparelho,
+            somNatural:this.state.aparelho.somNatural,
+            doQueNaoGostavaAparelho:this.state.aparelho.doQueNaoGostavaAparelho,
+            jaTeveProblemas:this.state.aparelho.jaTeveProblemas,
+            doQueGostava:this.state.aparelho.doQueGostava,
+            importandeOuvirMelhor:this.state.aparelho.importandeOuvirMelhor,
+            porQueAchaUsoAparelhoSeriaUtil:this.state.aparelho.porQueAchaUsoAparelhoSeriaUtil,
+            observacao:this.state.aparelho.observacao,
             nomes:[],
             maioresDificuldadeAuditivas:[],
             sus_particular:[]
@@ -379,7 +410,7 @@ class Anamnese extends React.Component{
         let anamnese = this.preparaAnamnese();
         console.log(anamnese);
         this.service.salvar(anamnese).then(response => {
-            alert("Anamnese realizada com Sucesso!");
+            this.sweetalert();
         }).catch(error => {
             console.log(error);
         });
@@ -388,46 +419,53 @@ class Anamnese extends React.Component{
     render(){
         return(            
             <Card title="Anamnese">
-                <FormGroup htmlForm="cliente" label="Cliente:">
+                <div className="form-inline">
+                    <label>Paciente:</label>
                     <MDBInputGroup
                         material
-                        containerClassName="mb-2 mt-0 disabled"
+                        containerClassName="col disabled"
                         hint="Nome:"
                         size="sm"
                         value={this.state.pessoa.nome}                    
                     />  
-                </FormGroup>
-                <FormGroup htmlForm="queixaPrincipal" label="Queixa Principal:">
-                    <input type="text" className="form-control" placeholder="Ex: Dificuldade de escultar"
-                        onChange={e => this.setState({
-                            ...this.state.anamnese.queixaPrincipal = e.target.value
-                        })}
-                        required
-                        />
-                </FormGroup>
+                </div>
                 <div className="row">
-                    <div className="col-5">
-                        <FormGroup htmlForm="solicitante" label="Solicitante:">
-                            <input type="text" className="form-control" placeholder="Ex: Dr. Daniel"
+                    <div className="col-6">
+                        <div className="form-inline">
+                        <label>Queixa Principal:</label>
+                        <input type="text" className="col form-control" placeholder="Ex: Dificuldade de escultar"
+                            onChange={e => this.setState({
+                                ...this.state.anamnese.queixaPrincipal = e.target.value
+                            })}
+                            required
+                            />
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="form-inline">
+                        <label>Solicitante:</label>
+                            <input type="text" className="col form-control" placeholder="Ex: Dr. Daniel"
                                 onChange={e => this.setState({
                                     ...this.state.anamnese.solicitante = e.target.value
                                 })}
                                 required
                                 />
-                        </FormGroup>
+                        </div>
                     </div>
-                    <div className="col">
-                        <FormGroup htmlForm="encaminhadoPor" label="Encaminhado por: ">
-                            <Select options={this.state.options}     
-                            onChange={e => this.setState({
-                                ...this.state.anamnese.encaminhadoPor = e.label
+                    <div className="col-6 mt-4">
+                        <div className="form-inline">
+                        <label>Encaminhado por: :</label>
+                                <Select className="col" options={this.state.options}     
+                                onChange={e => this.setState({
+                                    ...this.state.anamnese.encaminhadoPor = e.label
                             })}
                                 />
-                        </FormGroup>
+                        </div>
                     </div>
-                    <div className="col">
-                        <FormGroup htmlForm="preferenciaManual" label="Preferência manual :">
-                            <select className="form-control" defaultValue=""
+                    <div className="col-6 mt-4">
+                        <div className="form-inline">
+                            <label>Preferência manual :</label>
+                            <select className="col form-control" defaultValue=""
                                 onChange={e => this.setState({
                                     ...this.state.anamnese.preferenciaManual = e.target.value
                                 })}                            
@@ -437,11 +475,11 @@ class Anamnese extends React.Component{
                                 <option value="DESTRA">DESTRA</option>
                                 <option value="CANHOTA">CANHOTA</option>
                             </select>
-                        </FormGroup>
+                        </div>
                     </div>
                 </div>
                 
-                <div className="row">
+                <div className="row mt-4">
                     <div className="col exibirOcutar">
                         <Comobirdades comorbidades={this.state.comorbidades}/>
                     </div>
@@ -466,45 +504,7 @@ class Anamnese extends React.Component{
                         <button className="col btn btn-primary d-none" id="btnAparelhoAuditivo" data-bs-toggle="modal" data-bs-target="#modalAparelho">Aparelho</button>
                     </div>
                 </div>
-                <div className="col mt-2">
-                    <div className="row">
-                        {/* <div className="col">
-                            <FormGroup className="row" htmlForm="acompanahmentoMedico" label="Está em acompanhamento médico?">
-                                <RadioButtonSimNao className="ml-2" name="acompanahmentoMedico" 
-                                id="acompanahmentoMedico"htmlForm="acompanahmentoMedico"/>
-                            {(true)?(
-                                <MDBInputGroup
-                                className="col-7"
-                                material
-                                containerClassName="mb-2 mt-0"
-                                hint="Início e motivo:"
-                                size="sm"
-                                
-                                />
-                                ):(
-                                    false)
-                                }
-                            </FormGroup>
-                        </div> */}
-                        {/* <div className="col-4">
-                            <FormGroup className="row" htmlForm="historicoOutraDoenca" label="Historico de outras Doenças">
-                                <RadioButtonSimNao className="ml-2" name="historicoOutraDoenca" 
-                                id="historicoOutraDoenca"htmlForm="historicoOutraDoenca"/>
-                            {true?(
-                                <MDBInputGroup
-                                material
-                                containerClassName="mb-2 mt-0"
-                                hint="Quais e quando:"
-                                size="sm"
-                                
-                                />
-                                ):(
-                                    false)
-                                }
-                            </FormGroup>
-                        </div> */}
-                    </div>
-                </div>
+               
                 <button type="button" className="btn btn-primary" onClick={this.salvar}>salvar</button>
             </Card>
         );
