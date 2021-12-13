@@ -281,7 +281,7 @@ class Anamnese extends React.Component{
         }
         let nomes = [];
         Object.values(this.state.aparelho).map((valor,index) => {
-            if(typeof(valor) == "string" && valor != "" && valor != "outras"){
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
                 nomes.push(valor);
             }
         });
@@ -289,13 +289,17 @@ class Anamnese extends React.Component{
 
         nomes = [];
         Object.values(this.state.aparelho.maioresDificuldadeAuditivas).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         aparelho.maioresDificuldadeAuditivas = nomes;
 
         nomes = [];
         Object.values(this.state.aparelho.sus_particular).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         aparelho.sus_particular = nomes;
 
@@ -324,37 +328,49 @@ class Anamnese extends React.Component{
 
         let nomes = [];
         Object.values(this.state.tontura.tendenciaQueda).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.tendenciaQueda = nomes;
 
         nomes = [];
         Object.values(this.state.tontura.duracaoCrise).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.duracaoCrise = nomes;
 
         nomes = [];
         Object.values(this.state.tontura.surgeOuPiora).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.surgeOuPiora = nomes;
 
         nomes = [];
         Object.values(this.state.tontura.sensacao).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.sensacao = nomes;
 
         nomes = [];
         Object.values(this.state.tontura.surgePiora).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.surgePiora = nomes;
 
         nomes = [];
         Object.values(this.state.tontura.desvioMarcha).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         tontura.desvioMarcha = nomes;
 
@@ -376,7 +392,7 @@ class Anamnese extends React.Component{
 
         let nomes = [];
         Object.values(this.state.zumbido.tipo).map((valor,index) => {
-            if(valor !== ""){
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
                 nomes.push(valor);
             }
         });
@@ -384,7 +400,9 @@ class Anamnese extends React.Component{
 
         nomes = [];
         Object.values(this.state.zumbido.comQueParece).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         zumbido.comQueParece = nomes;
 
@@ -419,93 +437,96 @@ class Anamnese extends React.Component{
     render(){
         return(            
             <Card title="Anamnese">
-                <div className="form-inline">
-                    <label>Paciente:</label>
-                    <MDBInputGroup
-                        material
-                        containerClassName="col disabled"
-                        hint="Nome:"
-                        size="sm"
-                        value={this.state.pessoa.nome}                    
-                    />  
-                </div>
-                <div className="row">
-                    <div className="col-6">
-                        <div className="form-inline">
-                        <label>Queixa Principal:</label>
-                        <input type="text" className="col form-control" placeholder="Ex: Dificuldade de escultar"
-                            onChange={e => this.setState({
-                                ...this.state.anamnese.queixaPrincipal = e.target.value
-                            })}
-                            required
-                            />
-                        </div>
+                <form onSubmit={this.salvar}>
+                    <div className="form-inline">
+                        <label>Paciente:</label>
+                        <MDBInputGroup
+                            material
+                            containerClassName="col disabled"
+                            hint="Nome:"
+                            size="sm"
+                            value={this.state.pessoa.nome}                    
+                        />  
                     </div>
-                    <div className="col-6">
-                        <div className="form-inline">
-                        <label>Solicitante:</label>
-                            <input type="text" className="col form-control" placeholder="Ex: Dr. Daniel"
+                    <div className="row">
+                        <div className="col-6">
+                            <div className="form-inline">
+                            <label>Queixa Principal:</label>
+                            <input type="text" className="col form-control" placeholder="Ex: Dificuldade de escultar"
                                 onChange={e => this.setState({
-                                    ...this.state.anamnese.solicitante = e.target.value
+                                    ...this.state.anamnese.queixaPrincipal = e.target.value
                                 })}
                                 required
                                 />
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-6 mt-4">
-                        <div className="form-inline">
-                        <label>Encaminhado por: :</label>
-                                <Select className="col" options={this.state.options}     
-                                onChange={e => this.setState({
-                                    ...this.state.anamnese.encaminhadoPor = e.label
-                            })}
-                                />
+                        <div className="col-6">
+                            <div className="form-inline">
+                            <label>Solicitante:</label>
+                                <input type="text" className="col form-control" placeholder="Ex: Dr. Daniel"
+                                    onChange={e => this.setState({
+                                        ...this.state.anamnese.solicitante = e.target.value
+                                    })}
+                                    required
+                                    />
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-6 mt-4">
-                        <div className="form-inline">
-                            <label>Preferência manual :</label>
-                            <select className="col form-control" defaultValue=""
-                                onChange={e => this.setState({
-                                    ...this.state.anamnese.preferenciaManual = e.target.value
-                                })}                            
+                        <div className="col-6 mt-4">
+                            <div className="form-inline">
+                            <label>Encaminhado por: :</label>
+                                    <Select className="col" options={this.state.options}     
+                                    onChange={e => this.setState({
+                                        ...this.state.anamnese.encaminhadoPor = e.label
+                                })}
                                 required
-                            >
-                                <option value="" disabled>Selecione...</option>
-                                <option value="DESTRA">DESTRA</option>
-                                <option value="CANHOTA">CANHOTA</option>
-                            </select>
+                                    />
+                            </div>
+                        </div>
+                        <div className="col-6 mt-4">
+                            <div className="form-inline">
+                                <label>Preferência manual :</label>
+                                <select className="col form-control" defaultValue=""
+                                    onChange={e => this.setState({
+                                        ...this.state.anamnese.preferenciaManual = e.target.value
+                                    })}                            
+                                    required
+                                >
+                                    <option value="" disabled>Selecione...</option>
+                                    <option value="DESTRA">DESTRA</option>
+                                    <option value="CANHOTA">CANHOTA</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div className="row mt-4">
+                        <div className="col exibirOcutar">
+                            <Comobirdades comorbidades={this.state.comorbidades}/>
+                        </div>
+                        <div className="col exibirOcutar">      
+                            <Queixas name="esquerdo" queixas={this.state.queixas} exibirOcutar={this.exibirOcutar}/>
+                        </div>
+                    </div>
+                    
+                    <Modal id="modalTontura" tamanhoModal="modal-xl">
+                        <Tontura tontura={this.state.tontura}/>
+                    </Modal>
+                    <Modal id="modalAparelho" tamanhoModal="modal-lg">
+                        <Aparelho aparelho={this.state.aparelho} name={this.props.name}/>
+                    </Modal>
+                    <Modal id="modalZumbido" tamanhoModal="modal-xl">
+                        <Zumbido zumbido={this.state.zumbido} name={"teste"}/>
+                    </Modal>
+                    <div className="row">
+                        <div className="col form-inline mb-4">
+                            <button className="col btn btn-primary d-none" id="btnTontura" data-bs-toggle="modal" data-bs-target="#modalTontura">Tontura</button>
+                            <button className="col btn btn-primary d-none" id="btnZumbido" data-bs-toggle="modal" data-bs-target="#modalZumbido">zumbido</button>
+                            <button className="col btn btn-primary d-none" id="btnAparelhoAuditivo" data-bs-toggle="modal" data-bs-target="#modalAparelho">Aparelho</button>
+                        </div>
+                    </div>
                 
-                <div className="row mt-4">
-                    <div className="col exibirOcutar">
-                        <Comobirdades comorbidades={this.state.comorbidades}/>
-                    </div>
-                    <div className="col exibirOcutar">      
-                        <Queixas name="esquerdo" queixas={this.state.queixas} exibirOcutar={this.exibirOcutar}/>
-                    </div>
-                </div>
-                
-                <Modal id="modalTontura" tamanhoModal="modal-xl">
-                    <Tontura tontura={this.state.tontura}/>
-                </Modal>
-                <Modal id="modalAparelho" tamanhoModal="modal-lg">
-                    <Aparelho aparelho={this.state.aparelho} name={this.props.name}/>
-                </Modal>
-                <Modal id="modalZumbido" tamanhoModal="modal-xl">
-                    <Zumbido zumbido={this.state.zumbido} name={"teste"}/>
-                </Modal>
-                <div className="row">
-                    <div className="col form-inline mb-4">
-                        <button className="col btn btn-primary d-none" id="btnTontura" data-bs-toggle="modal" data-bs-target="#modalTontura">Tontura</button>
-                        <button className="col btn btn-primary d-none" id="btnZumbido" data-bs-toggle="modal" data-bs-target="#modalZumbido">zumbido</button>
-                        <button className="col btn btn-primary d-none" id="btnAparelhoAuditivo" data-bs-toggle="modal" data-bs-target="#modalAparelho">Aparelho</button>
-                    </div>
-                </div>
-               
-                <button type="button" className="btn btn-primary" onClick={this.salvar}>salvar</button>
+                    <button type="submit" className="btn btn-primary">salvar</button>
+                </form>
             </Card>
         );
     }
