@@ -6,9 +6,8 @@ import { MDBInputGroup } from 'mdbreact';
 import TonturaView from './tontura/TonturaView';
 import ZumbidoView from './zumbido/ZumbidoView';
 import AparelhoView from './aparelho/AparelhoView';
-
-
-// CommonJS
+import Modal from '../components/Modal';
+import Evolucao from '../components/Evoluvao';
 
 class Prontuario extends React.Component{
     
@@ -64,8 +63,15 @@ class Prontuario extends React.Component{
                 <div className="row">
                     <div className="col text-right">
                         <a href={"#/anamnese"} className="btn btn-sm btn-primary">Nova anamnese</a >
+                        { this.state.anamnese.data != "" ? (
+                            <a className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#evolucao">Evolução</a >
+                        ):(false)                        
+                    }
                     </div>
                 </div>
+                <Modal id="evolucao" titulo="Evolução" tamanhoModal="modal-xl" footerClass="d-none">
+                    <Evolucao />
+                </Modal>
                 <div className="form-inline">
                     <label>Paciente:</label>
                     <MDBInputGroup

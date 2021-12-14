@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../Card';
-import FormGroup from '../FormGroup';
 import Select from 'react-select';
 import Comobirdades from './Comorbidades';
 import Queixas from './Queixas';
