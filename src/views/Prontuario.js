@@ -7,7 +7,7 @@ import TonturaView from './tontura/TonturaView';
 import ZumbidoView from './zumbido/ZumbidoView';
 import AparelhoView from './aparelho/AparelhoView';
 import Modal from '../components/Modal';
-import Evolucao from '../components/Evoluvao';
+import Evolucao from '../components/Evolucao';
 
 class Prontuario extends React.Component{
     

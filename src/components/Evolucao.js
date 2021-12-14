@@ -1,18 +1,31 @@
 import React from 'react';
 import { MDBInput } from 'mdbreact';
 import LocalStorageService from '../app/service/localStorageService';
+import EvolucaoService from '../app/service/EvolucaoService';
 
 export default class Evolucao extends React.Component{
+
+    constructor(){
+        super();
+        this.service = new EvolucaoService();
+    }
     
     state = {
         evolucao:{
             data:"",
-            profissional:"",
+            nomeProfissional:"",
             descricao:""
         }
     }
 
     salvar = () => {
+        const evolucao = this.state.evolucao;
+        evolucao.prontuario = {id:1}
+        this.service.cadastro(evolucao).then(response => {
+            alert("funfou");
+        }).catch(error => {
+            alert("Deu ruim");
+        });
         console.log(this.state.evolucao);
     }
 
@@ -21,7 +34,7 @@ export default class Evolucao extends React.Component{
         console.log(usuarioLogado);
         this.setState({evolucao:{
             ...this.state.evolucao, 
-            profissional:usuarioLogado.email
+            nomeProfissional:usuarioLogado.email
         }})
     }
 
@@ -39,19 +52,19 @@ export default class Evolucao extends React.Component{
                         />
                     </div>
                     <div className="col-12">
-                        <MDBInput required type="text" label="Nome do profissional:" 
+                        <MDBInput required type="text" label="Nome do Profissional:"  size="lg" 
                         disabled
-                        value={this.state.evolucao.profissional}
+                        value={this.state.evolucao.nomeProfissional}
                         onChange={e => this.setState({evolucao:{
                             ...this.state.evolucao, 
-                            profissional:e.target.value
+                            nomeProfissional:e.target.value
                             }
                         })}
                         />
                     </div>
                 </div>
 
-                <MDBInput required type="textarea" label="Evolução do Paciente" rows="10"
+                <MDBInput required type="textarea" label="Evolução do Paciente" rows="10" size="lg" 
                     onChange={e => this.setState({evolucao:{
                         ...this.state.evolucao,
                         descricao:e.target.value
