@@ -9,11 +9,10 @@ export default class TonturaView extends React.Component{
     }
     render(){
         return <div className="">
-            {/* {console.log(this.state.tontura)} */}
-                    <h5>Tontura:</h5>
+                    <h5 className={this.props.tontura.inicio === "" ? "form-inline d-none" : "form-inline"}>Tontura:</h5>
                     <div className="row">
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.inicio === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>inicio:</label>
                                 <MDBInputGroup
                                     material
@@ -25,7 +24,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.ocorrencia === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>ocorrencia:</label>
                                 <MDBInputGroup
                                     material
@@ -37,7 +36,7 @@ export default class TonturaView extends React.Component{
                                 </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.intensidade === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>intensidade:</label>
                                 <MDBInputGroup
                                     material
@@ -49,7 +48,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.fatoresDesencadeantes === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>fatores Desencadeantes:</label>
                                 <MDBInputGroup
                                     material
@@ -61,7 +60,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.fatoresAgravantes === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>fatores Agravantes:</label>
                                 <MDBInputGroup
                                     material
@@ -73,7 +72,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.fatoresMelhora === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>fatores Melhora:</label>
                                 <MDBInputGroup
                                     material
@@ -85,7 +84,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.sintomasConcomitantes === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>sintomas Concomitantes:</label>
                                 <MDBInputGroup
                                     material
@@ -97,7 +96,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-6">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.outrosDados === "" ? "form-inline d-none" : "form-inline"}>
                                 <label>outros Dados:</label>
                                 <MDBInputGroup
                                     material
@@ -111,7 +110,7 @@ export default class TonturaView extends React.Component{
                     </div>
                     <div className="row">
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.tendenciaQueda.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>tendencia Queda:</label>
                                 <MDBInputGroup
                                     material
@@ -123,7 +122,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.duracaoCrise.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>duracao  Crise:</label>
                                 <MDBInputGroup
                                     material
@@ -135,7 +134,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.surgeOuPiora.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>surge Ou Piora:</label>
                                 <MDBInputGroup
                                     material
@@ -147,7 +146,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.sensacao.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>sensacao:</label>
                                 <MDBInputGroup
                                     material
@@ -159,7 +158,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.surgePiora.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>surge Piora:</label>
                                 <MDBInputGroup
                                     material
@@ -171,7 +170,7 @@ export default class TonturaView extends React.Component{
                             </div>
                         </div>
                         <div className="col-12">
-                            <div className="form-inline">
+                            <div className={this.props.tontura.desvioMarcha.length === 0 ? "form-inline d-none" : "form-inline"}>
                                 <label>desvioMarcha:</label>
                                 <MDBInputGroup
                                     material

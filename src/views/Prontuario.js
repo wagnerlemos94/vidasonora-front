@@ -106,7 +106,6 @@ class Prontuario extends React.Component{
                                                 </div>
                                             </div>
                                             <div className="col-6">
-
                                                 <div className="form-inline">
                                                     <label>Solicitante:</label>
                                                     <MDBInputGroup
@@ -146,7 +145,7 @@ class Prontuario extends React.Component{
                                     </div>
                                     <div className="row">
                                         <div className="col-12">
-                                            <div className="form-inline">
+                                            <div className={this.state.anamnese.comorbidade.nomes.length === 0 ? "form-inline d-none" : "form-inline"}>
                                                 <label>Comorbidades:</label>
                                                     <MDBInputGroup
                                                         material
@@ -158,7 +157,7 @@ class Prontuario extends React.Component{
                                             </div>
                                         </div> 
                                         <div className="col-12">
-                                            <div className="form-inline">
+                                            <div className={this.state.anamnese.queixasAuditiva.nomes.length === 0 ? "form-inline d-none" : "form-inline"}>
                                                 <label>Queixas Auditivas</label>
                                                 <MDBInputGroup
                                                         material
@@ -170,7 +169,7 @@ class Prontuario extends React.Component{
                                                 </div>    
                                         </div>   
                                         <div className="col-6">
-                                            <div className="form-inline">
+                                            <div className={this.state.anamnese.queixasAuditiva.ouvidoDireito.length === 0 ? "form-inline d-none" : "form-inline"}>
                                                 <label>Ouvido Direito</label>
                                                 <MDBInputGroup
                                                     material
@@ -182,7 +181,7 @@ class Prontuario extends React.Component{
                                             </div>    
                                         </div>   
                                         <div className="col-6">
-                                            <div className="form-inline">
+                                            <div className={this.state.anamnese.queixasAuditiva.ouvidoEsquerdo.length === 0 ? "form-inline d-none" : "form-inline"}>
                                                 <label>Ouvido Esquerdo</label>
                                                 <MDBInputGroup
                                                     material
@@ -193,6 +192,7 @@ class Prontuario extends React.Component{
                                                 /> 
                                             </div>    
                                         </div>    
+                                        <hr />
                                         <div className="col-12">
                                             <TonturaView tontura={this.state.anamnese.tontura}/>
                                         </div>

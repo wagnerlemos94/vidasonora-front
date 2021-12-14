@@ -238,7 +238,7 @@ class Anamnese extends React.Component{
         }
         let nomes = [];
         Object.values(this.state.queixas).map((valor,index) => {
-            if(typeof(valor) == "string"){
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
                 nomes.push(valor);
             }
         });
@@ -246,13 +246,17 @@ class Anamnese extends React.Component{
 
         nomes = [];
         Object.values(this.state.queixas.od).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         queixas.ouvidoDireito = nomes;
         
         nomes = [];
         Object.values(this.state.queixas.oe).map((valor,index) => {
-            nomes.push(valor);
+            if(typeof(valor) == "string" && valor !== "" && valor !== "outras"){
+                nomes.push(valor);
+            }
         });
         queixas.ouvidoEsquerdo = nomes;
         return queixas;

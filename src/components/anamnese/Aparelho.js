@@ -288,20 +288,19 @@ class Aparelho extends React.Component{
                                     />
                             
                         </div>
-                        <div className="col-12">
-                            
+                        <div className="col-12">                            
                             <h5>Por que você acha que o uso do aparelho seria útil:</h5>
-                                <MDBInputGroup
-                                    material
-                                    containerClassName="mt-0"
-                                    hint="Descreva:"
-                                    size="sm"
-                                    onChange={
-                                        e => this.setState({
-                                            ...this.props.aparelho.porQueAchaUsoAparelhoSeriaUtil = e.target.value
-                                        })
-                                    }
-                                    />
+                            <MDBInputGroup
+                                material
+                                containerClassName="mt-0"
+                                hint="Descreva:"
+                                size="sm"
+                                onChange={
+                                    e => this.setState({
+                                        ...this.props.aparelho.porQueAchaUsoAparelhoSeriaUtil = e.target.value
+                                    })
+                                }
+                                />
                             
                         </div>
                     </div>
