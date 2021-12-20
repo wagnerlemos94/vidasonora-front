@@ -3,10 +3,10 @@ import React from 'react';
 
 export default function AparelhoView(props){
     return <div className="">
-                <h5>Aparelho:</h5>
+                <h5 className={props.aparelho.perda_auditiva === null ? "d-none" : ""}>Aparelho:</h5>
                 <div className="row">
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.perda_auditiva === null ? "form-inline d-none" : "form-inline"}>
                             <label>Perda Auditiva:</label>
                             <MDBInputGroup
                                 material
@@ -18,19 +18,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
-                            <label>Ducaração Crice:</label>
-                            <MDBInputGroup
-                                material
-                                containerClassName="col disabled"
-                                hint="Nome:"
-                                size="sm"
-                                value={props.aparelho.ducaracaoCrice}
-                            /> 
-                        </div>
-                    </div>
-                    <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.familiaresPerdaAuditiva === "" ? "form-inline d-none" : "form-inline"}>
                             <label>Familiares Perda Auditiva:</label>
                             <MDBInputGroup
                                 material
@@ -42,7 +30,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.desconfortoSonsIntensos === "" ? "form-inline d-none" : "form-inline"}>
                             <label>Desconforto Sons Intensos:</label>
                             <MDBInputGroup
                                 material
@@ -54,7 +42,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.sus_particular.length === 0 ? "form-inline d-none" : "form-inline"}>
                             <label>Sus/Particular:</label>
                             <MDBInputGroup
                                 material
@@ -66,7 +54,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.maioresDificuldadeAuditivas.length === 0 ? "form-inline d-none" : "form-inline"}>
                             <label>Maiores Dificuldade Auditivas:</label>
                             <MDBInputGroup
                                 material
@@ -78,7 +66,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.laudoAudiometria === null ? "form-inline d-none" : "form-inline"}>
                             <label>Laudo Audiometria:</label>
                             <MDBInputGroup
                                 material
@@ -90,7 +78,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.etilogiaPerdaAuditiva === null ? "form-inline d-none" : "form-inline"}>
                             <label>Etilogia Perda Auditiva:</label>
                             <MDBInputGroup
                                 material
@@ -102,7 +90,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.satisfeitoAparelho === null ? "form-inline d-none" : "form-inline"}>
                             <label>Satisfeito com Aparelho:</label>
                             <MDBInputGroup
                                 material
@@ -114,7 +102,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.somNatural === null ? "form-inline d-none" : "form-inline"}>
                             <label>Som Natural:</label>
                             <MDBInputGroup
                                 material
@@ -126,7 +114,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.doQueNaoGostavaAparelho === null ? "form-inline d-none" : "form-inline"}>
                             <label>Do Que Não Gostava do Aparelho:</label>
                             <MDBInputGroup
                                 material
@@ -138,7 +126,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.jaTeveProblemas === null ? "form-inline d-none" : "form-inline"}>
                             <label>Já Teve Problemas:</label>
                             <MDBInputGroup
                                 material
@@ -150,7 +138,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.doQueGostava === null ? "form-inline d-none" : "form-inline"}>
                             <label>O Que Gostava:</label>
                             <MDBInputGroup
                                 material
@@ -162,7 +150,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.importandeOuvirMelhor === null ? "form-inline d-none" : "form-inline"}>
                             <label>É importante para você ouvir melhor:</label>
                             <MDBInputGroup
                                 material
@@ -174,7 +162,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.porQueAchaUsoAparelhoSeriaUtil === null ? "form-inline d-none" : "form-inline"}>
                             <label>Por que você acha que o uso do aparelho seria útil:</label>
                             <MDBInputGroup
                                 material
@@ -186,7 +174,7 @@ export default function AparelhoView(props){
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-inline">
+                        <div className={props.aparelho.observacao === null ? "form-inline d-none" : "form-inline"}>
                             <label>Observação:</label>
                             <MDBInputGroup
                                 material
