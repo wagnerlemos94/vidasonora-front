@@ -20,7 +20,7 @@ class NavBar extends React.Component{
                     <ul className="navbar-nav">
                         <NavBarItem href="#/home" label="home"/>
                         <NavBarItem href="#/lista-pessoa" label="Clientes"/>
-                        {/* <NavBarItem href="#/prontuario" label="Prontuarios"/> */}
+                        <NavBarItem href="#/lista-usuarios" label="Usuarios"/>
                         {/* <NavBarItem href="#/anamnese" label="Anamnese"/> */}
                         <li className="nav-item" >
                             <a className="nav-link" onClick={this.loggff}>Sair</a>

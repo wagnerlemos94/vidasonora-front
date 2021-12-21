@@ -52,16 +52,16 @@ class Pessoa extends React.Component{
 
     componentDidMount(){
         ValidarUsuario.usuarioLogado();
-        const usuarioEdit = LocalStorageService.obterItem("_usuario_edit");
-        if(usuarioEdit){    
+        const pessoaEdit = LocalStorageService.obterItem("_pessoa_edit");
+        if(pessoaEdit){    
             this.setState({
-                pessoa:usuarioEdit.pessoa,
-                endereco:usuarioEdit.endereco,
-                celular:usuarioEdit.celular,
-                email:usuarioEdit.email,
-                titulo:usuarioEdit.titulo,
-                idCelular:usuarioEdit.idCelular,
-                idEmail:usuarioEdit.idEmail
+                pessoa:pessoaEdit.pessoa,
+                endereco:pessoaEdit.endereco,
+                celular:pessoaEdit.celular,
+                email:pessoaEdit.email,
+                titulo:pessoaEdit.titulo,
+                idCelular:pessoaEdit.idCelular,
+                idEmail:pessoaEdit.idEmail
             });
         } 
     }

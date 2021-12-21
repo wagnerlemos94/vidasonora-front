@@ -429,7 +429,6 @@ class Anamnese extends React.Component{
 
     salvar = () => {
         let anamnese = this.preparaAnamnese();
-        console.log(anamnese);
         this.service.salvar(anamnese).then(response => {
             this.sweetalert();
         }).catch(error => {

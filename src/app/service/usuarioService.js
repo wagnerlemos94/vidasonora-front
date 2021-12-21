@@ -16,6 +16,10 @@ class UsuarioSerice extends ApiService{
     buscarUsuario(id){
         return this.get(`/${id}`);
     }
+
+    buscarTodos(){
+        return this.get("/");
+    }
 }
 
 export default UsuarioSerice;
