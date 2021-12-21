@@ -34,7 +34,7 @@ export default class Evolucao extends React.Component{
         console.log(usuarioLogado);
         this.setState({evolucao:{
             ...this.state.evolucao, 
-            nomeProfissional:usuarioLogado.email
+            nomeProfissional:usuarioLogado.nome
         }})
     }
 

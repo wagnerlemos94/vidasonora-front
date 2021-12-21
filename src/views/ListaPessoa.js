@@ -93,7 +93,7 @@ class ListaPessoa extends React.Component{
           }
         });
         state.pessoa.enderecos = [];
-        LocalStorageService.adicionarItem('_usuario_edit', state);
+        LocalStorageService.adicionarItem('_pessoa_edit', state);
         this.props.history.push('/cadastro-pessoa');
     }
 
@@ -109,7 +109,7 @@ class ListaPessoa extends React.Component{
     }
 
     novoCadastro = () => {
-        LocalStorageService.removerItem("_usuario_edit");
+        LocalStorageService.removerItem("_pessoa_edit");
         this.props.history.push('/cadastro-pessoa');
     }
 
