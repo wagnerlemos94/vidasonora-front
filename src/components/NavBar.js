@@ -25,7 +25,7 @@ class NavBar extends React.Component{
                 </div>
                     <ul className="navbar-nav">
                         <li className="nav-item" >
-                            <a className="nav-link" onClick={this.loggff}><label className="mr-4 font-italic" style={{"color":"black"}}>{this.props.usuario.nome}</label> Sair</a>
+                            <a className="nav-link" onClick={this.loggff}> Sair</a>
                         </li>
                     </ul>
             </div>
