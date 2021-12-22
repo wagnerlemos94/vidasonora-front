@@ -5,6 +5,8 @@ import LocalStorageService from '../../app/service/localStorageService';
 import ValidarUsuario from '../../app/service/ValidarUsuario';
 import UsuarioService from '../../app/service/usuarioService';
 import { MDBIcon } from 'mdbreact';
+import Icon from '@mdi/react'
+import { mdiToggleSwitchOff,mdiAccountEdit   } from '@mdi/js'
 
 export default class ListaUsuario extends React.Component{
 
@@ -27,14 +29,15 @@ export default class ListaUsuario extends React.Component{
                 <spam>
                   { usuario.status === "ATIVO" ?(
                     
-                    <a onClick={this.desativar}><MDBIcon id={usuario.id} title="Ativar" icon="toggle-on fa-lg" className="mr-2" style={{"color":"green"}}/></a>
+                    <a onClick={e => this.desativar(usuario.id)}><Icon path={mdiToggleSwitchOff } title={"Ativar"} size={1.3} horizontal color="green" /></a>  
                     
                     ):(
-                    <a onClick={this.ativar}><MDBIcon id={usuario.id} title="Desativar" icon="toggle-off fa-lg" className="mr-2" style={{"color":"#747474"}}/></a>  
-                      )
-                      
-                    }
-                    <a onClick={this.editar}><MDBIcon id={usuario.id} title="Editar" icon="user-edit fa-lg" className="mr-2" style={{"color":"blue"}}/></a>
+                    <a onClick={e => this.ativar(usuario.id)}><Icon path={mdiToggleSwitchOff } title={"Desativar"} size={1.3} vertical color="gray" /></a>  
+                    
+                    )
+                    
+                  }
+                  <a onClick={e => this.editar(usuario.id)}><Icon path={mdiAccountEdit} title={"Editar"} size={1.1} color="blue" /></a>  
                 </spam>
             });
             this.setState({});
@@ -44,8 +47,7 @@ export default class ListaUsuario extends React.Component{
       }
     }
 
-    ativar = (e) => {
-      const id = e.target.id;
+    ativar = (id) => {
       this.service.ativar(id).then(response => {
         this.componentDidMount();
       }).catch(erro => {
@@ -53,8 +55,7 @@ export default class ListaUsuario extends React.Component{
       });
     }
 
-    desativar = (e) => {
-      const id = e.target.id;
+    desativar = (id) => {
       this.service.desativar(id).then(response => {
         this.componentDidMount();
       }).catch(erro => {
@@ -62,8 +63,7 @@ export default class ListaUsuario extends React.Component{
       });
     }
 
-    editar = (event) => {
-        const id = event.target.id
+    editar = (id) => {
         const usuarios = this.state.usuarios;
         let usuario = usuarios.filter((usuarios) => usuarios.id == id);
         usuario = usuario.pop();
