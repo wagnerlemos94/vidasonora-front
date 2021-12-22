@@ -61,7 +61,7 @@ class CadastroUsuario extends React.Component{
               }
           }).then(result => {
             if(result.isConfirmed){
-                this.props.history.push('/lista-pessoa');
+                this.props.history.push('/lista-usuarios');
             }
           });
     }
@@ -78,15 +78,14 @@ class CadastroUsuario extends React.Component{
         }
 
         const usuario = {
-            nome: this.state.nome,
-            email : this.state.email,
-            senha : this.state.senha,
-            status : this.state.status
+            nome: this.state.usuario.nome,
+            email : this.state.usuario.email,
+            senha : this.state.usuario.senha,
+            status : this.state.usuario.status
         }
         usuario.perfil = {
             'id': 1
         }
-        
         this.service.salvar(usuario).then(response =>{
             this.sweetalert();
         }).catch( error => {
@@ -96,7 +95,7 @@ class CadastroUsuario extends React.Component{
     }
 
     cancelar = () => {
-        this.props.history.push('/lista-pessoa');
+        this.props.history.push('/lista-usuarios');
     }
     
     render(){
@@ -133,7 +132,6 @@ class CadastroUsuario extends React.Component{
                         id="inputSenha"
                         className="form-control"
                         name="senha" 
-                        value={this.state.usuario.senha}
                         onChange={ e => this.setState({usuario :{
                             ...this.state.usuario, 
                             senha :e.target.value
@@ -145,7 +143,10 @@ class CadastroUsuario extends React.Component{
                         id="inputRepitaSenha"
                         className="form-control"
                         name="repeticao" 
-                        onChange={e => this.setState({senhaRepeticao : e.target.value})}/>
+                        onChange={ e => this.setState({usuario :{
+                            ...this.state.usuario, 
+                            senhaRepeticao :e.target.value
+                            }})}/>
                     </FormGroup>
                     <button onClick={this.cancelar} type="button" className="btn btn-md btn-danger">Cancelar</button>
                     <button onClick={this.cadastrar} type="button" className="btn btn-md btn-primary">Salvar</button>

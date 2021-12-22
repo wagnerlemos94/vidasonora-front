@@ -1,14 +1,13 @@
 import React from 'react';
 import NavBarItem from './NavBarItem';
 import ValidarUsuario from '../app/service/ValidarUsuario';
+import LocalStorageService from '../app/service/localStorageService';
 
 class NavBar extends React.Component{
 
-    
     loggff = () => {
         ValidarUsuario.logoff();
     }
-    
     
     render(){
 
@@ -22,11 +21,13 @@ class NavBar extends React.Component{
                         <NavBarItem href="#/lista-pessoa" label="Clientes"/>
                         <NavBarItem href="#/lista-usuarios" label="Usuarios"/>
                         {/* <NavBarItem href="#/anamnese" label="Anamnese"/> */}
-                        <li className="nav-item" >
-                            <a className="nav-link" onClick={this.loggff}>Sair</a>
-                        </li>
                     </ul>
                 </div>
+                    <ul className="navbar-nav">
+                        <li className="nav-item" >
+                            <a className="nav-link" onClick={this.loggff}><label className="mr-4 font-italic" style={{"color":"black"}}>{this.props.usuario.nome}</label> Sair</a>
+                        </li>
+                    </ul>
             </div>
         </div>
         );

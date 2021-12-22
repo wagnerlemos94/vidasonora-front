@@ -20,6 +20,19 @@ class UsuarioSerice extends ApiService{
     buscarTodos(){
         return this.get("/");
     }
+
+    ativar(id){
+        return this.put(`/ativar/${id}`);
+    }
+
+    desativar(id){
+        return this.put(`/desativar/${id}`);
+    }
+
+
+    deletar(id){
+        return this.delete(`/${id}`);
+    }
 }
 
 export default UsuarioSerice;
