@@ -25,7 +25,16 @@ export default class ListaUsuario extends React.Component{
             this.state.usuarios.forEach(usuario => {
                 usuario.buttom = 
                 <spam>
-                  <a onClick={this.editar}><MDBIcon id={usuario.id} title="Editar" icon="user-edit fa-lg" className="mr-2" style={{"color":"blue"}}/></a>
+                  { usuario.status === "ATIVO" ?(
+                    
+                    <a onClick={this.desativar}><MDBIcon id={usuario.id} title="Ativar" icon="toggle-on fa-lg" className="mr-2" style={{"color":"green"}}/></a>
+                    
+                    ):(
+                    <a onClick={this.ativar}><MDBIcon id={usuario.id} title="Desativar" icon="toggle-off fa-lg" className="mr-2" style={{"color":"red"}}/></a>  
+                      )
+                      
+                    }
+                    <a onClick={this.editar}><MDBIcon id={usuario.id} title="Editar" icon="user-edit fa-lg" className="mr-2" style={{"color":"blue"}}/></a>
                 </spam>
             });
             this.setState({});
@@ -33,6 +42,24 @@ export default class ListaUsuario extends React.Component{
             console.log(error);
         });
       }
+    }
+
+    ativar = (e) => {
+      const id = e.target.id;
+      this.service.ativar(id).then(response => {
+        this.componentDidMount();
+      }).catch(erro => {
+        console.log(erro);
+      });
+    }
+
+    desativar = (e) => {
+      const id = e.target.id;
+      this.service.desativar(id).then(response => {
+        this.componentDidMount();
+      }).catch(erro => {
+        console.log(erro);
+      });
     }
 
     editar = (event) => {
@@ -75,6 +102,9 @@ export default class ListaUsuario extends React.Component{
                 label: 'Status',
                 field: 'status',
                 width: 270,
+                css: {
+                  'color': 'blue',
+                }
               },
               {
                 label: 'Ações',

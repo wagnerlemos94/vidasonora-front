@@ -12,19 +12,24 @@ import'mdbreact/dist/css/mdb.css';
 import '../custom.css';
 import 'toastr/build/toastr.css';
 import ValidarUsuario from '../app/service/ValidarUsuario';
+import LocalStorageService from '../app/service/localStorageService';
 
 class App extends React.Component {
 
+  state = {
+    usuario:{}
+  }
   componentDidMount(){
     ValidarUsuario.usuarioLogado();
+    const usuario = LocalStorageService.obterItem("_usuario_logado");
+    this.setState({usuario:usuario});
   }
-
   render(){
 
     return (
       <>
-        <NavBar />
       <div className="container">
+            <NavBar usuario={this.state.usuario}/>
             <Rotas />
         </div>
       </>
