@@ -30,7 +30,7 @@ export default class ListaUsuario extends React.Component{
                     <a onClick={this.desativar}><MDBIcon id={usuario.id} title="Ativar" icon="toggle-on fa-lg" className="mr-2" style={{"color":"green"}}/></a>
                     
                     ):(
-                    <a onClick={this.ativar}><MDBIcon id={usuario.id} title="Desativar" icon="toggle-off fa-lg" className="mr-2" style={{"color":"red"}}/></a>  
+                    <a onClick={this.ativar}><MDBIcon id={usuario.id} title="Desativar" icon="toggle-off fa-lg" className="mr-2" style={{"color":"#747474"}}/></a>  
                       )
                       
                     }

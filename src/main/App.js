@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <>
       <div className="container">
-            <NavBar usuario={this.state.usuario}/>
+            <NavBar/>
             <Rotas />
         </div>
       </>
