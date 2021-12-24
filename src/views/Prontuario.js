@@ -8,6 +8,8 @@ import ZumbidoView from './zumbido/ZumbidoView';
 import AparelhoView from './aparelho/AparelhoView';
 import Modal from '../components/Modal';
 import Evolucao from '../components/Evolucao';
+import { mdiClipboardTextClock } from '@mdi/js';
+import Icon from '@mdi/react';
 
 class Prontuario extends React.Component{
     
@@ -64,7 +66,10 @@ class Prontuario extends React.Component{
                     <div className="col text-right">
                         <a href={"#/anamnese"} className="btn btn-sm btn-primary">Nova anamnese</a >
                         { this.state.anamnese.data != "" ? (
-                            <a className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#evolucao">Evolução</a >
+                            <>
+                                <a className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#evolucao">Evolução</a >
+                                <a className="btn btn-sm btn-primary" href="#/historico-prontuario">Histórico</a >
+                            </>
                         ):(false)                        
                     }
                     </div>
@@ -86,6 +91,8 @@ class Prontuario extends React.Component{
                 <div className="row">
                     <div className="col-12">
                         <Card title="Anamnese">
+                        <a data-bs-toggle="modal" data-bs-target="#historicoAnamnese"><Icon path={mdiClipboardTextClock } title={"Histórico"} size={1.3} vertical color="blue" /></a>  
+                        <Modal id="historicoAnamnese" titulo="Historico Anamnese" tamanhoModal="modal-sm" footerClass="d-none" />
                             { this.state.anamnese.data != "" ? (
                                 <>
                                  <div className="form-inline">
