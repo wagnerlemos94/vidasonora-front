@@ -2,21 +2,34 @@ import React from 'react';
 import Card from './Card';
 import DataTable from '../components/DataTable';
 import LocalStorageService from '../app/service/localStorageService';
+import Icon from '@mdi/react'
+import { mdiBookEdit } from '@mdi/js';
 
 export default class HistoricoProntuario extends React.Component{
 
     state = {
-        anamnene:[],
+        anamnenes:[],
         evolucoes:[]
     }
 
     componentDidMount(){
         const prontuario = LocalStorageService.obterItem('_usuario_prontuario');
-        
+        Object.values(prontuario.anamneses).map((value,indeex) => {
+            value.buttom = 
+            <spam>
+              <a onClick={e => this.ativar(prontuario.id)}><Icon path={mdiBookEdit} title={"Desativar"} size={1} vertical color="blue" /></a>  
+            </spam>
+        });
+        Object.values(prontuario.evolucoes).map((value,indeex) => {
+            value.buttom = 
+            <spam>
+              <a onClick={e => this.ativar(prontuario.id)}><Icon path={mdiBookEdit} title={"Desativar"} size={1} vertical color="blue" /></a>  
+            </spam>
+        })
         this.setState({
-            anamnene:prontuario.anamneses,
+            anamnenes:prontuario.anamneses,
             evolucoes:prontuario.evolucoes
-
+            
         });
     }
 
@@ -43,7 +56,7 @@ export default class HistoricoProntuario extends React.Component{
                 width: 200,
               }
             ],
-            rows: this.state.anamnene
+            rows: this.state.anamnenes
             ,
           };
           const evolucoes = {
@@ -76,14 +89,12 @@ export default class HistoricoProntuario extends React.Component{
                 {console.log(this.state)}
                 <Card title="Histório Prontuário">
                     <div className="row">
-
-                        <div className="col">
-
+                        <div className="col pl-0 pr-0">
                             <Card title="Anamneses">
                                 <DataTable datatable={anamneses} />
                             </Card>
                         </div>
-                        <div className="col">
+                        <div className="col pr-0">
                             <Card title="Evoluções">
                             <DataTable datatable={evolucoes} />
                             </Card>

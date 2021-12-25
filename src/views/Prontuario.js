@@ -54,7 +54,8 @@ class Prontuario extends React.Component{
         });
         if(anamnese){
             this.setState({
-                anamnese:anamnese
+                anamnese:anamnese,
+                anamneses:pessoa.anamneses
             });
         }
     }
@@ -68,7 +69,7 @@ class Prontuario extends React.Component{
                         { this.state.anamnese.data != "" ? (
                             <>
                                 <a className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#evolucao">Evolução</a >
-                                <a className="btn btn-sm btn-primary" href="#/historico-prontuario">Histórico</a >
+                                {/* <a className="btn btn-sm btn-primary" href="#/historico-prontuario">Histórico</a > */}
                             </>
                         ):(false)                        
                     }
@@ -91,8 +92,10 @@ class Prontuario extends React.Component{
                 <div className="row">
                     <div className="col-12">
                         <Card title="Anamnese">
-                        <a data-bs-toggle="modal" data-bs-target="#historicoAnamnese"><Icon path={mdiClipboardTextClock } title={"Histórico"} size={1.3} vertical color="blue" /></a>  
-                        <Modal id="historicoAnamnese" titulo="Historico Anamnese" tamanhoModal="modal-sm" footerClass="d-none" />
+                        {/* <a data-bs-toggle="modal" data-bs-target="#historicoAnamnese"><Icon path={mdiClipboardTextClock } title={"Histórico"} size={1.3} vertical color="blue" /></a>   */}
+                        <Modal id="historicoAnamnese" titulo="Historico Anamnese" tamanhoModal="modal-sm" footerClass="d-none">
+
+                        </Modal>
                             { this.state.anamnese.data != "" ? (
                                 <>
                                  <div className="form-inline">
@@ -221,38 +224,6 @@ class Prontuario extends React.Component{
                              
                         </Card>
                     </div>
-                    
-                    {/* {
-                        this.state.anamnese.comorbidade ? (
-                        <div className="col">
-                            <Card title="Comorbidades"> {console.log(this.state.anamnese)}</Card>
-                        </div>
-                        ):(false)
-                    }{
-                        this.state.anamnese.aparelho ? (
-                        <div className="col">
-                            <Card title="Aparelho"> {console.log(this.state.anamnese)}</Card>
-                        </div>
-                        ):(false)
-                    }{
-                        this.state.anamnese.queixasAuditiva ? (
-                        <div className="col">
-                            <Card title="Queixas Auditivas"> {console.log(this.state.anamnese)}</Card>
-                        </div>
-                        ):(false)
-                    }{
-                        this.state.anamnese.tontura ? (
-                        <div className="col">
-                            <Card title="Tontura"> {console.log(this.state.anamnese)}</Card>
-                        </div>
-                        ):(false)
-                    }{
-                        this.state.anamnese.zumbido ? (
-                        <div className="col">
-                            <Card title="Zumbido"> {console.log(this.state.anamnese)}</Card>
-                        </div>
-                        ):(false)
-                    } */}
                 </div>
             </Card>
         );
