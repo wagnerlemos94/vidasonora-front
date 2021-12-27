@@ -439,7 +439,7 @@ class Anamnese extends React.Component{
     render(){
         return(            
             <Card title="Anamnese">
-                <form onSubmit={this.salvar}>
+                <form>
                     <div className="form-inline">
                         <label>Paciente:</label>
                         <MDBInputGroup
@@ -527,7 +527,7 @@ class Anamnese extends React.Component{
                         </div>
                     </div>
                 
-                    <button type="submit" className="btn btn-primary">salvar</button>
+                    <button type="button" onClick={this.salvar}  className="btn btn-primary">salvar</button>
                 </form>
             </Card>
         );

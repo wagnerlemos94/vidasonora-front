@@ -45,7 +45,7 @@ export default class Evolucao extends React.Component{
           }).then(result => {
             if(result.isConfirmed){
                 this.buscarProntuario();
-                this.resetModal();
+                // this.resetModal();
             }
           });
     }
@@ -54,7 +54,9 @@ export default class Evolucao extends React.Component{
         const id = this.state.prontuario.pessoa.id;
         this.serviceProntuario.buscarPorIdPessoa(id).then(response => {
           const prontuario = response.data;
-          LocalStorageService.adicionarItem('_usuario_prontuario', prontuario);
+          LocalStorageService.adicionarItem('_usuario_prontuario', prontuario);  
+            document.getElementById("data").setAttribute("disabled", "disabled");
+            document.getElementById("descricao").setAttribute("disabled", "disabled");
         }).catch(erro => {
           console.log(erro);
         });
@@ -74,10 +76,15 @@ export default class Evolucao extends React.Component{
     componentDidMount(){
         const prontuario = LocalStorageService.obterItem('_usuario_prontuario');
         const evolucao = prontuario.evolucoes.pop();
-        this.setState({
-            evolucao:evolucao
-        });
-        this.setState({prontuario:prontuario})
+        if(evolucao){
+            this.setState({
+                evolucao:evolucao
+            });
+        }
+        if(prontuario){
+            this.setState({prontuario:prontuario})
+        }
+
     }
 
     novaEvolucao(){
@@ -104,6 +111,7 @@ export default class Evolucao extends React.Component{
     render(){
         return(
             <form onSubmit={this.salvar}>
+                {console.log(this.state.evolucao)}
                 <div className='row'>
                     <div className="col-4">
                         <input type="date" class="form-control" required 
