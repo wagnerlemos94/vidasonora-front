@@ -81,15 +81,15 @@ class Pessoa extends React.Component{
         event.preventDefault();
         let validado = true;
         
-        try {
-            let nascimento = this.state.pessoa.nascimento;
-            nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
-            this.setState({
-                ...this.state.pessoa.nascimento = nascimento
-            });
-        } catch (error) {
-            mensagemErro(error);
-        }
+        // try {
+        //     let nascimento = this.state.pessoa.nascimento;
+        //     nascimento = format(parseISO(nascimento), "dd/MM/yyyy");
+        //     this.setState({
+        //         ...this.state.pessoa.nascimento = nascimento
+        //     });
+        // } catch (error) {
+        //     mensagemErro(error);
+        // }
 
         const endereco = this.state.endereco;
         event.target.className += " was-validated";

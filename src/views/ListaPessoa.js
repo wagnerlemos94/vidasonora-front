@@ -25,6 +25,7 @@ class ListaPessoa extends React.Component{
         this.service.buscarTodos().then(response => {
             this.setState({pessoas:response.data});     
             this.state.pessoas.forEach(pessoa => {
+              pessoa.data = this.formartarData(pessoa.nascimento)
                 pessoa.buttom = 
                 <spam>
                   <a onClick={this.editar}><MDBIcon id={pessoa.id} title="Editar" icon="user-edit fa-lg" className="mr-2" style={{"color":"blue"}}/></a>
@@ -59,7 +60,6 @@ class ListaPessoa extends React.Component{
         
         const state = new Object();
         state.pessoa = pessoa;
-        state.pessoa.nascimento = this.formartarData(pessoa.nascimento);
         state.titulo = 'Editar Cliente';
         state.pessoa.contatos.forEach(contato => {
           if(contato.tipo.toUpperCase() === 'celular'.toUpperCase()){
@@ -99,11 +99,11 @@ class ListaPessoa extends React.Component{
 
     formartarData(data){
        
-      const ano = data.slice(-4);
-      const mes = data.slice(3, -5);
-      const dia = data.slice(0, -8);
-
-      data = `${ano}-${mes}-${dia}`;
+      const mes = data.slice(5,7);
+      const ano = data.slice(0,4);
+      const dia = data.slice(8);
+      
+      data = `${dia}/${mes}/${ano}`;
       
       return data;
     }
@@ -132,7 +132,7 @@ class ListaPessoa extends React.Component{
               },
               {
                 label: 'Nascimento',
-                field: 'nascimento',
+                field: 'data',
                 width: 270,
               },
               {
