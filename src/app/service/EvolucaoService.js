@@ -18,4 +18,8 @@ export default class EvolucaoService extends ApiService{
         return this.get(`/`);
     }
 
+    buscarTodosPorIdProntnuario(id){
+        return this.get(`/prontuario/${id}`);
+    }
+
 }

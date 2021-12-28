@@ -11,6 +11,7 @@ import Anamnese from '../components/anamnese/Anamnese';
 import { Route, Switch, HashRouter} from 'react-router-dom';
 import ListaUsuario from '../views/usuario/ListaUsuario';
 import HistoricoProntuario from '../components/HistoricoProntuario';
+import HistoricoEvolucao from '../components/evolucao/HistoricoEvoluvoes';
 
 
 function Rotas(){
@@ -25,6 +26,7 @@ function Rotas(){
                 <Route path="/lista-pessoa" component={ListaPessoa} />
                 <Route path="/prontuario" component={Prontuario} />
                 <Route path="/anamnese" component={Anamnese} />
+                <Route path="/historico-evolucoes" component={HistoricoEvolucao} />
                 <Route path="/historico-prontuario" component={HistoricoProntuario} />
             </Switch>
         </HashRouter>

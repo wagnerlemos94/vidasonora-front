@@ -1,11 +1,12 @@
 import React from 'react';
 import { MDBInput } from 'mdbreact';
-import LocalStorageService from '../app/service/localStorageService';
-import EvolucaoService from '../app/service/EvolucaoService';
-import Util from '../app/util/Util';
-import ProntuarioService from '../app/service/ProntuarioService';
+import LocalStorageService from '../../app/service/localStorageService';
+import EvolucaoService from '../../app/service/EvolucaoService';
+import Util from '../../app/util/Util';
+import ProntuarioService from '../../app/service/ProntuarioService';
+import { withRouter } from 'react-router';
 
-export default class Evolucao extends React.Component{
+class Evolucao extends React.Component{
 
     constructor(){
         super();
@@ -45,7 +46,6 @@ export default class Evolucao extends React.Component{
           }).then(result => {
             if(result.isConfirmed){
                 this.buscarProntuario();
-                // this.resetModal();
             }
           });
     }
@@ -107,11 +107,13 @@ export default class Evolucao extends React.Component{
         document.getElementById("data").setAttribute("disabled", "disabled");
         document.getElementById("descricao").setAttribute("disabled", "disabled");
     }
+    historicoEvolucoes = () => {
+        this.props.history.push('/historico-evolucoes');
+    }
 
     render(){
         return(
             <form onSubmit={this.salvar}>
-                {console.log(this.state.evolucao)}
                 <div className='row'>
                     <div className="col-4">
                         <input type="date" class="form-control" required 
@@ -127,6 +129,7 @@ export default class Evolucao extends React.Component{
                     </div>
                     <div className="col text-right">
                         <a className="btn btn-sm btn-primary" onClick={e => this.novaEvolucao()}>Nova Evolução</a >
+                        <a className="btn btn-sm btn-success" onClick={e => this.historicoEvolucoes()}>Históroco</a >
                     </div>
                     <div className="col-12">
                         <MDBInput required type="text" label="Nome do Profissional:"  size="lg" 
@@ -162,3 +165,5 @@ export default class Evolucao extends React.Component{
         );
     }
 }
+
+export default withRouter(Evolucao);
