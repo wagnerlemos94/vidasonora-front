@@ -57,6 +57,7 @@ class Evolucao extends React.Component{
           LocalStorageService.adicionarItem('_usuario_prontuario', prontuario);  
             document.getElementById("data").setAttribute("disabled", "disabled");
             document.getElementById("descricao").setAttribute("disabled", "disabled");
+            this.componentDidMount();
         }).catch(erro => {
           console.log(erro);
         });
